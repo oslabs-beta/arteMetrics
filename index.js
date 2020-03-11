@@ -1,7 +1,7 @@
-const arteMiddle = {};
+const artemiddle = {};
 
-arteMiddle.test = () => {
+artemiddle.test = () => {
   console.log("test");
 };
 
-module.exports = arteMiddle;
+module.exports = artemiddle;
