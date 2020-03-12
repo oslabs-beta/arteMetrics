@@ -35,7 +35,6 @@ artemiddle.test()
 Description of web app
 
 ## Contributing
-
  arteMetrics welomes contributions in any form. If you have something you would like to add, create a pull request.
 
 ## People
