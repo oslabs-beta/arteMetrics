@@ -1,52 +1,20 @@
 {
-  "name": "arteMetrics",
-  "version": "1.0.0",
-  "description": "Creating performance monitors for Apollo implementations of graphQL.",
-  "main": "server/server.js",
+  "name": "artemiddle",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
-    "build": "webpack",
-    "dev": "cross-env webpack-dev-server & nodemon server/server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oslabs-beta/arteMetrics"
+    "url": "git+https://github.com/itsmesean/arteMetrics.git"
   },
-  "keywords": [
-    "team"
-  ],
-  "author": "team ...",
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.4.1",
-    "cookie-parser": "^1.4.4",
-    "express": "^4.17.1",
-    "pg": "^7.18.2",
-    "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
-    "react-dom": "^16.12.0"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsmesean/arteMetrics/issues"
   },
-  "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/preset-react": "^7.8.3",
-    "babel-loader": "^8.0.6",
-    "concurrently": "^4.1.0",
-    "cross-env": "^5.2.0",
-    "css-loader": "^3.4.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.1",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.19.1",
-    "react-hot-loader": "^4.12.19",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.3",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.10.3"
-  }
+  "homepage": "https://github.com/itsmesean/arteMetrics#readme"
 }
