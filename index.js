@@ -1,6 +1,6 @@
 const arteMetrics = {};
 
-arteMetrics.process = reqest => {
+arteMetrics.process = request => {
   const text =
     "INSERT INTO trace_response(fieldName, startOffset, duration) VALUES($1, $2, $3) RETURNING *";
   const values = [
