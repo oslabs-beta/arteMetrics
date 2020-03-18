@@ -1,7 +1,21 @@
-const artemiddle = {};
+const arteMetrics = {};
 
-artemiddle.test = () => {
-  console.log("test");
+arteMetrics.process = reqest => {
+  const text =
+    "INSERT INTO trace_response(fieldName, startOffset, duration) VALUES($1, $2, $3) RETURNING *";
+  const values = [
+    response.extensions.tracing.execution.resolvers[0].fieldName,
+    response.extensions.tracing.execution.resolvers[0].startOffset,
+    response.extensions.tracing.execution.resolvers[0].duration
+  ];
+
+  db.query(text, values)
+    .then(result => {
+      // console.log(result);
+    })
+    .catch(err => {
+      // console.log(err);
+    });
 };
 
-module.exports = artemiddle;
+module.exports = arteMetrics;
