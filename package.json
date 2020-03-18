@@ -1,5 +1,5 @@
 {
-  "name": "artemiddle",
+  "name": "artemetrics",
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/itsmesean/arteMetrics/issues"
   },
-  "homepage": "https://github.com/itsmesean/arteMetrics#readme"
+  "homepage": "https://github.com/itsmesean/arteMetrics#readme",
+  "dependencies": {
+    "pg": "^7.18.2"
+  }
 }
