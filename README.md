@@ -31,7 +31,7 @@ test installation by running the 'process' method.
 
 ```javascript
 const arteMetrics = require("artemetrics");
-artemetrics.process(request);
+arteMetrics.process(request);
 ```
 
 #### React App
