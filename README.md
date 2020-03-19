@@ -4,7 +4,7 @@ Creating performance monitors for Apollo implementations of GraphQL.
 
 ```js
 const arteMetrics = require("artemetrics");
-arteMetrics.process(request);
+arteMetrics.process(response);
 ```
 
 ## Features
@@ -31,7 +31,7 @@ test installation by running the 'process' method.
 
 ```javascript
 const arteMetrics = require("artemetrics");
-arteMetrics.process(request);
+arteMetrics.process(response);
 ```
 
 #### React App
