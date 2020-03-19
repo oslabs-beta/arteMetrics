@@ -24,21 +24,18 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   tracing: true,
+  formatResponse: (response, context) => {
+    arteMetrics.process(response);
+  },
   dataSources: () => ({
     launchAPI: new LaunchAPI(),
     userAPI: new UserAPI({ store })
   }),
   engine: {
     apiKey: process.env.ENGINE_API_KEY
-  },
-  formatResponse: (response, context) => {
-    arteMetrics.process(response);
   }
 });
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
-  console.log(
-    'commiting before resolving merge conflicts with updated stage branch'
-  );
 });
