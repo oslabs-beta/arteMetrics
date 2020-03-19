@@ -5,6 +5,11 @@ import Particles from 'react-particles-js';
 import { ApolloProvider } from 'react-apollo';
 import 'animate.css/animate.min.css';
 import './styles/styles.css';
+import Features from './components/Features.jsx';
+import Hero from './components/Hero.jsx';
+import TopNavBar from './components/TopNavBar.jsx';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000'
@@ -35,10 +40,9 @@ function App() {
             }
           }}
         />
-        <h1>Hello World</h1>
-        {/* <TopNavbar />
-      <Hero />
-      <Features /> */}
+        <TopNavBar />
+        <Hero />
+        <Features />
       </div>
     </ApolloProvider>
   );
