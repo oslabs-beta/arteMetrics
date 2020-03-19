@@ -1,6 +1,7 @@
 const arteMetrics = {};
+const db = require("./db/model");
 
-arteMetrics.process = request => {
+arteMetrics.process = response => {
   const text =
     "INSERT INTO trace_response(fieldName, startOffset, duration) VALUES($1, $2, $3) RETURNING *";
   const values = [
