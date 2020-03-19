@@ -1,17 +1,18 @@
 ## arteMetrics
+
 Creating performance monitors for Apollo implementations of graphQL.
 
 ```js
-const artemiddle = require('artemiddle')
-artemiddle.test()
+const arteMetrics = require("artemetrics");
+arteMetrics.process(request);
 ```
 
 ## Features
 
-  * GrahpQL Tracing
-  * more features
-  * and more...
-  * moooooore
+- GrahpQL Tracing
+- more features
+- and more...
+- moooooore
 
 ## Installation
 
@@ -20,22 +21,26 @@ arteMetrics consists of an NPM package available through the
 
 #### Node module
 
-Install the [artemiddle](https://www.npmjs.com/package/artemiddle) node module 
+Install the [artemetrics](https://www.npmjs.com/package/artemetrics) node module
+
 ```
-npm install artemiddle
+npm install artemetrics
 ```
 
-test installation by running the 'test' method.
+test installation by running the 'process' method.
+
 ```javascript
-const artemiddle = require('artemiddle')
-artemiddle.test()
+const arteMetrics = require("artemetrics");
+arteMetrics.process(request);
 ```
 
 #### React App
+
 Description of web app
 
 ## Contributing
- arteMetrics welomes contributions in any form. If you have something you would like to add, create a pull request.
+
+arteMetrics welomes contributions in any form. If you have something you would like to add, create a pull request.
 
 ## People
 
@@ -45,10 +50,9 @@ Description of web app
 [Noah King](https://github.com/code-ark),
 [Joseph Renolayan](https://github.com/jodaisu),
 
-
 ## License
 
-  [MIT](LICENSE)
+[MIT](LICENSE)
 
 [npm-image]: **
 [npm-url]: https://www.npmjs.com/package/artemetrics
