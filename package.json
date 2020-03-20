@@ -1,6 +1,6 @@
 {
   "name": "artemetrics",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Creating performance monitors for Apollo implementations of GraphQL.",
   "main": "index.js",
   "scripts": {
