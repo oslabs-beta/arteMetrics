@@ -1,0 +1,77 @@
+//scss is good for using variables and nested rules
+//install live sass compiler by ritwick dey in extensions
+//when we click on watch sass at the bottom we'll see new files generate in /src/styles
+//never have to touch styles.css.map or styles.css in src/styles
+
+//general
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(45deg, navy, teal);
+}
+
+//landing bg
+.landing-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+}
+
+//hero
+#hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  font-size: 24px;
+  color: #fff;
+  margin: auto;
+  position: absolute;
+  top: 36vh;
+  right: 0;
+  left: 0;
+
+  h2 {
+    font-size: 48px;
+  }
+}
+
+//features
+#features {
+  background: ghostWhite;
+  padding: 40px 0;
+  margin-top: 80vh;
+  position: relative;
+
+  h2 {
+    text-align: center;
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    width: 1000px;
+    margin: 0 auto 20px;
+  }
+
+  //overwrites last-child margin to be 0 since there are no more figures below the last one
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  figcaption {
+    padding: 40px;
+  }
+}
+
+#chart {
+  background: ghostWhite;
+  padding: 40px 0;
+  margin-top: 80vh;
+  position: relative;
+}
