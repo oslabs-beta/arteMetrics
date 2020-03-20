@@ -3,6 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import Particles from 'react-particles-js';
 import './App.css';
+import MainContainer from './components/MainContainer.jsx';
 import 'animate.css/animate.min.css';
 import './styles/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
+        {/* <h1>arteMetrics under construction...</h1> */}
         <Particles
           className="landing-bg"
           params={{
@@ -43,6 +45,7 @@ function App() {
         <TopNavBar />
         <Hero />
         <Features />
+        <MainContainer />
       </div>
     </ApolloProvider>
   );
