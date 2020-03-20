@@ -20,11 +20,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 400px;
   font-size: 24px;
   color: #fff;
@@ -55,8 +55,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 1000px;
   margin: 0 auto 20px;
 }
@@ -67,5 +67,12 @@ body {
 
 #features figcaption {
   padding: 40px;
+}
+
+#chart {
+  background: ghostWhite;
+  padding: 40px 0;
+  margin-top: 80vh;
+  position: relative;
 }
 /*# sourceMappingURL=styles.css.map */
