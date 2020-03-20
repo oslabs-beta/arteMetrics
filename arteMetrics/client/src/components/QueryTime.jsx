@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import '../Container.css';
-import Data from './querydata.json';
+import Data from '../querydata.json';
 
 // console.log(Data)
 
-const ResolveTime = () => {
+const QueryTime = () => {
   const results = [];
   const labels = [];
 
@@ -39,4 +38,4 @@ const ResolveTime = () => {
   );
 };
 
-export default ResolveTime;
+export default QueryTime;
