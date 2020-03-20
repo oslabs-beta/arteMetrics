@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
 import ApolloClient from 'apollo-boost';
-import Particles from 'react-particles-js';
 import { ApolloProvider } from 'react-apollo';
+import Particles from 'react-particles-js';
+import './App.css';
 import 'animate.css/animate.min.css';
 import './styles/styles.css';
+
 import Features from './components/Features.jsx';
 import Hero from './components/Hero.jsx';
 import TopNavBar from './components/TopNavBar.jsx';
