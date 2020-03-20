@@ -5,12 +5,11 @@ import Particles from 'react-particles-js';
 import './App.css';
 import 'animate.css/animate.min.css';
 import './styles/styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Features from './components/Features.jsx';
 import Hero from './components/Hero.jsx';
 import TopNavBar from './components/TopNavBar.jsx';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000'
