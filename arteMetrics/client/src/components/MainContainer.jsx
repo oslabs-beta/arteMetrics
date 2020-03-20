@@ -3,11 +3,11 @@ import QueryTime from './QueryTime.jsx';
 
 const MainContainer = () => {
   return (
-    <div>
+    <section id="chart">
       <div>
         <QueryTime />
       </div>
-    </div>
+    </section>
   );
 };
 
