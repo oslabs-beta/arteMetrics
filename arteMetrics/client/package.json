@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "animate.css": "^3.7.2",
     "apollo-boost": "^0.4.7",
+    "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "graphql": "^14.6.0",
     "react": "^16.13.0",
