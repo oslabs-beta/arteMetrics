@@ -89,4 +89,14 @@ body {
   border: 1px solid #9397cd;
   border-radius: 4px;
 }
+
+#loginusername {
+  border: 1px solid 0;
+  border-radius: 4px;
+}
+
+#loginpassword {
+  border: 1px solid 0;
+  border-radius: 4px;
+}
 /*# sourceMappingURL=styles.css.map */

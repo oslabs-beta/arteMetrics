@@ -89,3 +89,12 @@ body {
   border: 1px solid #9397cd;
   border-radius: 4px;
 }
+
+#loginusername {
+  border: 1px solid red($color: #000000);
+  border-radius: 4px;
+}
+#loginpassword {
+  border: 1px solid red($color: #000000);
+  border-radius: 4px;
+}
