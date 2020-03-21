@@ -3,7 +3,7 @@
 Creating performance monitors for Apollo implementations of graphQL.
 
 ```js
-const arteMetrics = require("artemetrics");
+const arteMetrics = require('artemetrics');
 arteMetrics.process(request);
 ```
 
@@ -30,7 +30,7 @@ npm install artemetrics
 test installation by running the 'process' method.
 
 ```javascript
-const arteMetrics = require("artemetrics");
+const arteMetrics = require('artemetrics');
 arteMetrics.process(request);
 ```
 
