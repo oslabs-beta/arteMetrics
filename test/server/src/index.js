@@ -23,14 +23,18 @@ const server = new ApolloServer({
   },
   typeDefs,
   resolvers,
-  tracing: true,
-  formatResponse: (response, context) => {
+  rootValue: query => {
+    arteMetrics.getName(query);
+  },
+  formatResponse: response => {
     arteMetrics.process(response);
   },
+  tracing: true,
   dataSources: () => ({
     launchAPI: new LaunchAPI(),
     userAPI: new UserAPI({ store })
   }),
+  introspection: false,
   engine: {
     apiKey: process.env.ENGINE_API_KEY
   }
