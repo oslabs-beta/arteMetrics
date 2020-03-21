@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const CreateAccount = () => {
   return (
     <div class="loginpanel">
       <form>
@@ -23,16 +23,23 @@ const Login = () => {
           required
           placeholder="Password"
         />
+        <label
+          for="confirmPassword"
+          translate-context="Password"
+          translate
+        ></label>
+        <input
+          type="password"
+          id="loginPassword"
+          name="password"
+          required
+          placeholder="Confirm Password"
+        />
         <br />
-        <input type="submit" id="loginSubmitButton" value="LOGIN" />
+        <input type="submit" id="loginSubmitButton" value="Create Account" />
       </form>
-      <Link to="/createaccount">
-        <button to="/createaccount" id="createAccountButton">
-          Create Account
-        </button>
-      </Link>
     </div>
   );
 };
 
-export default Login;
+export default CreateAccount;
