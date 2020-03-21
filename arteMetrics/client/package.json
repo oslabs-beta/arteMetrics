@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -9,6 +10,7 @@
     "animate.css": "^3.7.2",
     "apollo-boost": "^0.4.7",
     "chart.js": "^2.9.3",
+    "cookie-parser": "^1.4.5",
     "graphql": "^14.6.0",
     "react": "^16.13.0",
     "react-animate-on-scroll": "^2.1.5",
@@ -40,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

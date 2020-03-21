@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -11,44 +11,50 @@ import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
 
-function App() {
-  return (
-    <div className="App">
-      <TopNavBar />
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div className="App">
+        <TopNavBar />
 
-      <Router>
-        <Route path="/" exact component={Home} />
-        <Route path="/home" component={Home} />
-        <Route path="/metrics" component={MainContainer} />
-        <Route path="/login" component={Login} />
-        <Route path="/createaccount" component={CreateAccount} />
-      </Router>
-      <div id="particles">
-        <Particles
-          className="landing-bg"
-          params={{
-            particles: {
-              number: {
-                value: 100
+        <Router>
+          <Route path="/" exact component={Home} />
+          <Route path="/home" component={Home} />
+          <Route path="/metrics" component={MainContainer} />
+          <Route path="/login" component={Login} />
+          <Route path="/createaccount" component={CreateAccount} />
+        </Router>
+        <div id="particles">
+          <Particles
+            className="landing-bg"
+            params={{
+              particles: {
+                number: {
+                  value: 100
+                },
+                size: {
+                  value: 3
+                }
               },
-              size: {
-                value: 3
-              }
-            },
-            interactivity: {
-              detect_on: 'window',
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: 'repulse'
+              interactivity: {
+                detect_on: 'window',
+                events: {
+                  onhover: {
+                    enable: true,
+                    mode: 'repulse'
+                  }
                 }
               }
-            }
-          }}
-        />
+            }}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
