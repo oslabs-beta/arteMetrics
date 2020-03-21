@@ -6,10 +6,12 @@ const queryController = {};
 queryController.getAllQueries = (req, res, next) => {
   const api_key = 'myapikey';
 
-  const text = `SELECT _id, name, duration, start_time
-  FROM    queries
-  WHERE   start_time >= NOW() - '1 day'::INTERVAL
-  AND     api_key ='${api_key}'`;
+  const text = `
+    SELECT _id, name, duration, start_time
+    FROM   queries
+    WHERE  start_time >= NOW() - '1 day'::INTERVAL
+    AND    api_key = '${api_key}'
+    `;
 
   db.query(text)
     .then(result => {
@@ -23,9 +25,11 @@ queryController.getAllQueries = (req, res, next) => {
 queryController.getQueryById = (req, res, next) => {
   const { id } = req.params;
 
-  const text = `SELECT * 
-  FROM    queries
-  WHERE   _id = ${id}`;
+  const text = `
+    SELECT *
+    FROM   queries
+    WHERE  _id = ${id}
+    `;
 
   db.query(text)
     .then(result => {
