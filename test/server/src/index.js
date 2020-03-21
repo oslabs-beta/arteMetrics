@@ -3,7 +3,7 @@ const typeDefs = require('./schema');
 const { createStore } = require('./utils');
 const resolvers = require('./resolvers');
 const isEmail = require('isemail');
-const artemiddle = require('artemiddle');
+const arteMetrics = require('artemetrics');
 
 const LaunchAPI = require('./datasources/launch');
 const UserAPI = require('./datasources/user');
@@ -12,8 +12,6 @@ const store = createStore();
 
 const server = new ApolloServer({
   context: async ({ req }) => {
-    // artemiddle.trace();
-
     const auth = (req.headers && req.headers.authorization) || '';
     const email = Buffer.from(auth, 'base64').toString('ascii');
     if (!isEmail.validate(email)) return { user: null };
@@ -25,11 +23,18 @@ const server = new ApolloServer({
   },
   typeDefs,
   resolvers,
+  rootValue: query => {
+    arteMetrics.getName(query);
+  },
+  formatResponse: response => {
+    arteMetrics.process(response);
+  },
   tracing: true,
   dataSources: () => ({
     launchAPI: new LaunchAPI(),
     userAPI: new UserAPI({ store })
   }),
+  introspection: false,
   engine: {
     apiKey: process.env.ENGINE_API_KEY
   }
@@ -37,7 +42,4 @@ const server = new ApolloServer({
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
-  console.log(
-    'commiting before resolving merge conflicts with updated stage branch'
-  );
 });
