@@ -14,12 +14,10 @@ const client = new ApolloClient({
 });
 //just adding a comment
 
-
 const Home = () => {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        {/* <h1>arteMetrics under construction...</h1> */}
         <Particles
           className="landing-bg"
           params={{
@@ -41,9 +39,9 @@ const Home = () => {
             }
           }}
         />
-          <TopNavBar />
-          <Hero />
-          <Features />
+        <TopNavBar />
+        <Hero />
+        <Features />
       </div>
     </ApolloProvider>
   );

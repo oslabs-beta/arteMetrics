@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Data from '../querydata.json';
-import TopNavBar from './TopNavBar.jsx';
 
 
 // console.log(Data)
@@ -36,7 +35,6 @@ const QueryTime = () => {
 
   return (
     <div>
-      <TopNavBar />
       <Bar data={queryData} />
     </div>
   );
