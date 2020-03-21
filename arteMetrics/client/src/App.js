@@ -16,6 +16,7 @@ function App() {
   return (
     <div>
       <TopNavBar />
+
       <Router>
         <Route path="/" exact component={Home} />
         <Route path="/home" component={Home} />
