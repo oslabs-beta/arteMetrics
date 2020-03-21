@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import TopNavBar from './components/TopNavBar.jsx';
 import MainContainer from './components/MainContainer.jsx';
+import Login from './components/Login.jsx';
+import Particles from 'react-particles-js';
 
 import Home from './components/Home.jsx';
 
@@ -16,11 +18,32 @@ function App() {
   return (
     <div>
       <TopNavBar />
-
+      <Particles
+        className="landing-bg"
+        params={{
+          particles: {
+            number: {
+              value: 200
+            },
+            size: {
+              value: 3
+            }
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: 'repulse'
+              }
+            }
+          }
+        }}
+      />
       <Router>
         <Route path="/" exact component={Home} />
         <Route path="/home" component={Home} />
         <Route path="/metrics" component={MainContainer} />
+        <Route path="/login" component={Login} />
       </Router>
     </div>
   );
