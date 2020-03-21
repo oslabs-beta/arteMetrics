@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import Data from '../querydata.json';
+import TopNavBar from './TopNavBar.jsx';
+
 
 // console.log(Data)
 
@@ -21,7 +23,8 @@ const QueryTime = () => {
       labels: labels,
       datasets: [
         {
-          data: results
+          data: results,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)'
         }
       ]
     });
@@ -33,6 +36,7 @@ const QueryTime = () => {
 
   return (
     <div>
+      <TopNavBar />
       <Bar data={queryData} />
     </div>
   );
