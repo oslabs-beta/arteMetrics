@@ -11,6 +11,7 @@ const app = express();
 
 const schema = require('./schema.js');
 const resolvers = require('./resolvers.js');
+const models = require('./models/index.js');
 
 require('dotenv').config();
 
@@ -38,14 +39,17 @@ app.get('/test', (req, res) => {
   res.status(200).send({ response: 'proxied server functional' });
 });
 
-app.listen(PORT, () => {
-  console.log(
-    `Server is listening on port: ${'http://localhost:' + PORT + '/'}...!!!!!! `
-  );
-  console.log(process.env.test);
-  console.log(
-    `🚀Apollo Server is listening on port: ${'http://localhost:' +
-      PORT +
-      '/graphql'} 🚀 `
-  );
+models.sequelize.sync().then(async () => {
+  app.listen(PORT, () => {
+    console.log(
+      `Server is listening on port: ${'http://localhost:' +
+        PORT +
+        '/'}...!!!!!! `
+    );
+    console.log(
+      `🚀Apollo Server is listening on port: ${'http://localhost:' +
+        PORT +
+        '/graphql'} 🚀 `
+    );
+  });
 });

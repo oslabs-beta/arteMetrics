@@ -22,15 +22,13 @@ const me = users[3];
 const resolvers = {};
 
 resolvers.Query = {
-  me: () => {
-    return me;
-  },
-  user: (parent, { id }) => {
-    return users[id];
-  },
-  users: () => {
-    return Object.values(users);
+  allUsers: () => {
+    return 'hello';
   }
+};
+
+resolvers.Mutation = {
+  createUser: (parent, args, context) => {}
 };
 
 module.exports = resolvers;
