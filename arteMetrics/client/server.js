@@ -14,4 +14,9 @@ app.get('/', (req, res) => {
   res.sendStatus(200);
 });
 
+app.get('/test', (req, res) => {
+  console.log('backend responding to test button');
+  res.status(200).send({ response: 'proxied server functional' });
+});
+
 app.listen(PORT, console.log(`Server is listening on port: ${PORT}...!!!!!! `));
