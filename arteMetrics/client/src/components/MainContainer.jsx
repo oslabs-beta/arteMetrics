@@ -4,9 +4,7 @@ import QueryTime from './QueryTime.jsx';
 const MainContainer = () => {
   return (
     <section id="chart">
-      <div>
-        <QueryTime />
-      </div>
+      <QueryTime />
     </section>
   );
 };

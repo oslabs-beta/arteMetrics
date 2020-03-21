@@ -14,6 +14,13 @@ body {
   top: 0;
 }
 
+#particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
 #hero {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,7 +37,7 @@ body {
   color: #fff;
   margin: auto;
   position: absolute;
-  top: 36vh;
+  top: 20vh;
   right: 0;
   left: 0;
 }
@@ -42,7 +49,7 @@ body {
 #features {
   background: ghostWhite;
   padding: 40px 0;
-  margin-top: 80vh;
+  margin-top: 40vh;
   position: relative;
 }
 
@@ -72,7 +79,55 @@ body {
 #chart {
   background: ghostWhite;
   padding: 40px 0;
-  margin-top: 80vh;
+  margin-top: 5%;
   position: relative;
+}
+
+.loginpanel {
+  background: rgba(255, 255, 255, 0.4);
+  padding: 50px 44px 0;
+  border: 1px solid #9397cd;
+  border-radius: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 30%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#loginUsername {
+  width: 180px;
+  border: 1px solid 0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#loginPassword {
+  width: 180px;
+  border: 1px solid 0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#loginSubmitButton {
+  width: 180px;
+  border-radius: 4px;
+  margin-bottom: 30%;
+}
+
+#createAccountButton {
+  background: rgba(255, 255, 255, 0.3);
+  color: whitesmoke;
+  width: 180px;
+  border-radius: 4px;
+  margin-bottom: 20%;
 }
 /*# sourceMappingURL=styles.css.map */
