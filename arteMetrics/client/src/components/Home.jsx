@@ -12,6 +12,8 @@ import Particles from 'react-particles-js';
 const client = new ApolloClient({
   uri: 'http://localhost:3000'
 });
+//just adding a comment
+
 
 const Home = () => {
   return (
