@@ -5,11 +5,7 @@ import TopNavBar from './TopNavBar.jsx';
 const MainContainer = () => {
   return (
     <section id="chart">
-      <div>
-        <TopNavBar />
-        <QueryTime />
-        <QueryTime />
-      </div>
+      <QueryTime />
     </section>
   );
 };
