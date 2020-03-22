@@ -19,6 +19,7 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   context: {
+    models
     //we can later use context to bring in login information from the frontend.
   }
 });
@@ -30,7 +31,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  console.log('Hello World');
+  console.log('Hello World from express app.get to /');
   res.sendStatus(200);
 });
 
@@ -38,6 +39,9 @@ app.get('/test', (req, res) => {
   console.log('backend responding to test button');
   res.status(200).send({ response: 'proxied server functional' });
 });
+
+//this is to verify authentication of SQL deployment
+models.sequelize.authenticate();
 
 models.sequelize.sync().then(async () => {
   app.listen(PORT, () => {
