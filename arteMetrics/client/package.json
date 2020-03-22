@@ -12,12 +12,19 @@
     "apollo-boost": "^0.4.7",
     "apollo-server": "^2.11.0",
     "apollo-server-express": "^2.11.0",
+<<<<<<< HEAD
     "babel": "^6.23.0",
+=======
+>>>>>>> staging
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "dependencies": "0.0.1",
+=======
+    "d3": "^5.15.0",
+>>>>>>> staging
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
