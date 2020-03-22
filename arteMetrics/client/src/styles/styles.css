@@ -2,6 +2,26 @@ html,
 body {
   height: 100%;
 }
+chart {
+  height: 100vh;
+  width: 100vw;
+}
+svg {
+  background: #eeeeee;
+  height: 50vh;
+  width: 100vw;
+  overflow: visible;
+}
+fragment-container {
+  width: 100vw;
+  height: 100vh;
+}
+.x-axis {
+  color: black
+}
+.y-axis {
+  color: black
+}
 
 body {
   background: linear-gradient(45deg, navy, teal);
@@ -130,4 +150,6 @@ body {
   border-radius: 4px;
   margin-bottom: 20%;
 }
+
+
 /*# sourceMappingURL=styles.css.map */
