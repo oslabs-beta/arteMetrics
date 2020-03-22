@@ -19,6 +19,7 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   context: {
+    models
     //we can later use context to bring in login information from the frontend.
   }
 });
@@ -38,6 +39,8 @@ app.get('/test', (req, res) => {
   console.log('backend responding to test button');
   res.status(200).send({ response: 'proxied server functional' });
 });
+
+models.sequelize.authenticate();
 
 models.sequelize.sync().then(async () => {
   app.listen(PORT, () => {
