@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  console.log('Hello World');
+  console.log('Hello World from express app.get to /');
   res.sendStatus(200);
 });
 
@@ -40,6 +40,7 @@ app.get('/test', (req, res) => {
   res.status(200).send({ response: 'proxied server functional' });
 });
 
+//this is to verify authentication of SQL deployment
 models.sequelize.authenticate();
 
 models.sequelize.sync().then(async () => {
