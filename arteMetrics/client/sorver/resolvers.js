@@ -22,21 +22,23 @@
 const resolvers = {};
 
 resolvers.Query = {
-  user: async (parent, {id}, {models}) => {
+  user: async (parent, { id }, { models }) => {
     return models.Student.findByPk(id);
   },
-  allUsers: async (parent, args, {models}) => {
+  allUsers: async (parent, args, { models }) => {
     return await models.User.findAll();
   }
 };
 
 resolvers.Mutation = {
-  createUser: async (parent, {username, password}, models) => {
-
+  createUser: async (parent, { username, password }, { models }) => {
+    console.log('we are here');
+    console.log(models);
     return models.User.create({
-      username, password
-    })
+      username,
+      password
+    });
   }
-}
+};
 
 module.exports = resolvers;
