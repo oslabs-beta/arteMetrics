@@ -4,7 +4,7 @@
   "description": "Creating performance monitors for Apollo implementations of graphQL.",
   "main": "server/server.js",
   "scripts": {
-    "start": "nodemon client/server/server.js",
+    "start": "nodemon client/sorver/sorver.js",
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
     "build": "webpack",
