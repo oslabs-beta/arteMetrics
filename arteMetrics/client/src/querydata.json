@@ -5,7 +5,7 @@
     "fieldName": "launches",
     "returnType": "LaunchConnection!",
     "startOffset": 20084125,
-    "duration": 804447652
+    "duration": 80444
   },
   {
     "path": ["launches", "cursor"],
@@ -13,7 +13,7 @@
     "fieldName": "cursor",
     "returnType": "String!",
     "startOffset": 824937271,
-    "duration": 138661
+    "duration": 13800
   },
   {
     "path": ["launches", "hasMore"],
@@ -45,7 +45,7 @@
     "fieldName": "isBooked",
     "returnType": "Boolean!",
     "startOffset": 825615575,
-    "duration": 67472366
+    "duration": 67472
   },
   {
     "path": ["launches", "launches", 0, "rocket"],
@@ -93,7 +93,7 @@
     "fieldName": "missionPatch",
     "returnType": "String",
     "startOffset": 827666353,
-    "duration": 112488
+    "duration": 11248
   },
   {
     "path": ["launches", "launches", 1, "id"],
@@ -109,7 +109,7 @@
     "fieldName": "isBooked",
     "returnType": "Boolean!",
     "startOffset": 827936261,
-    "duration": 62221662
+    "duration": 62221
   },
   {
     "path": ["launches", "launches", 1, "rocket"],
@@ -173,7 +173,7 @@
     "fieldName": "isBooked",
     "returnType": "Boolean!",
     "startOffset": 828862243,
-    "duration": 61311961
+    "duration": 61311
   },
   {
     "path": ["launches", "launches", 2, "rocket"],
@@ -237,7 +237,7 @@
     "fieldName": "isBooked",
     "returnType": "Boolean!",
     "startOffset": 829498823,
-    "duration": 60681474
+    "duration": 60681
   },
   {
     "path": ["launches", "launches", 3, "rocket"],
@@ -301,7 +301,7 @@
     "fieldName": "isBooked",
     "returnType": "Boolean!",
     "startOffset": 830225474,
-    "duration": 59961005
+    "duration": 59961
   },
   {
     "path": ["launches", "launches", 4, "rocket"],
@@ -365,7 +365,7 @@
     "fieldName": "isBooked",
     "returnType": "Boolean!",
     "startOffset": 830770272,
-    "duration": 59421935
+    "duration": 59421
   },
   {
     "path": ["launches", "launches", 5, "rocket"],

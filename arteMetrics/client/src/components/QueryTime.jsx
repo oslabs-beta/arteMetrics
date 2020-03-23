@@ -1,91 +1,109 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { Bar } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 import Data from '../querydata.json';
-import { select, scaleLinear, axisRight, axisBottom, scaleBand } from 'd3';
+// import { select, scaleLinear, axisRight, axisBottom, scaleBand } from 'd3';
 import '../styles/styles.css';
 
-// console.log(Data)
+console.log(Data)
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 600000);
+  var seconds = ((millis % 600000) / 1000).toFixed(0);
+  return minutes + "." + (seconds < 10 ? '0' : '') + seconds;
+}
 
 const QueryTime = () => {
-  const svgRef = useRef();
+  // const svgRef = useRef();
 
   const results = [];
   const labels = [];
-
+  const dataMilli = [];
+  console.log(labels)
+console.log(dataMilli)
   for (let i in Data) {
-    results.push(Data[i].duration.toString());
-    labels.push(i.toString());
+    const data = Data[i].duration.toString()
+    labels.push(Data[i].fieldName);
+    dataMilli.push(millisToMinutesAndSeconds(data))
   }
+  // const [data, setData] = useState(results);
+  // console.log(data);
 
-  const [data, setData] = useState(results);
-  // console.log(results);
-
-  // const [queryData, setQueryData] = useState({});
-
-  // const chart = () => {
-  //   setQueryData({
-  //     labels: labels,
-  //     datasets: [
-  //       {
-  //         data: results,
-  //         backgroundColor: 'rgba(255, 99, 132, 0.5)'
-  //       }
-  //     ]
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   chart();
-  // }, []);
+  const [queryData, setQueryData] = useState({});
+// console.log(queryData)
+  const chart = () => {
+    setQueryData({
+      labels: labels,
+      datasets: [
+        {
+          data: dataMilli,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        }
+      ],
+      options: {
+        'onClick' : function (evt, item) {
+          console.log ('legend onClick', evt);
+          console.log('legd item', item);
+      }
+      }
+    });
+  };
+ 
 
   useEffect(() => {
-    const svg = select(svgRef.current);
+    chart();
+  }, []);
+  // useEffect(() => {
+  //   const svg = select(svgRef.current);
 
-    const xScale = scaleBand()
-      .domain(data.map((value, index) => index))
-      .range([0, 300])
-      .padding(0.5);
+  //   const xScale = scaleBand()
+  //     .domain(data.map((value, index) => index))
+  //     .range([1, 300])
+  //     .padding(0.5)
 
-    const yScale = scaleLinear()
-      .domain([0, 300])
-      .range([150, 0]);
+  //   const yScale = scaleLinear()
+  //     .domain([0, 500])
+  //     .range([150, 0]);
 
-    const xAxis = axisBottom(xScale).ticks(data.length);
-    svg
-      .select('.x-axis')
-      .style('transform', 'translateY(150px)')
-      .call(xAxis);
+  //   const colorScale = scaleLinear()
+  //     .domain([75, 100, 150])
+  //     .range(['green', 'orange', 'red'])
+  //     .clamp(true);
 
-    const yAxis = axisRight(yScale);
-    svg
-      .select('.y-axis')
-      .style('tranform', 'translateX(300px)')
-      .call(yAxis);
+  //   const xAxis = axisBottom(xScale).ticks(data.length);
+  //   svg
+  //     .select('.x-axis')
+  //     .style('transform', 'translateY(150px)')
+  //     .call(xAxis);
 
-    svg
-      .selectAll('.bar')
-      .data(data)
-      .join('rect')
-      .attr('class', 'bar')
-      .style('transform', 'scale(1, -1)')
-      .attr('x', (value, index) => xScale(index))
-      .attr('y', -150)
-      .attr('width', xScale.bandwidth())
-      .transition()
-      .attr('height', value => 150 - yScale(value));
-  }, [data]);
+  //   const yAxis = axisRight(yScale);
+  //   svg
+  //     .select('.y-axis')
+  //     .style('tranform', 'translateX(300px)')
+  //     .call(yAxis);
 
-  // <div>
-  //   <QueryTime  />
-  // </div>
+  //   svg
+  //     .selectAll('.bar')
+  //     .data(data)
+  //     .join('rect')
+  //     .attr('class', 'bar')
+  //     .style('transform', 'scale(1, -1)')
+  //     .attr('x', (value, index) => xScale(index))
+  //     .attr('y', -150)
+  //     .attr('width', xScale.bandwidth())
+  //     .attr("fill", colorScale)
+  //     .transition()
+  //     .attr('height', value => 150 - yScale(value));
+  // }, [data]);
 
   return (
-    <React.Fragment className="fragment-container">
-      <svg ref={svgRef}>
-        <g className="x-axis" />
-        <g className="y-axis" />
-      </svg>
-    </React.Fragment>
+    <div>
+      <HorizontalBar data={queryData} />
+    </div>
+    // <React.Fragment >
+    //   <svg ref={svgRef} className="fragment-container">
+    //     <g className="x-axis" />
+    //     <g className="y-axis" />
+    //   </svg>
+    // </React.Fragment>
   );
 };
 
