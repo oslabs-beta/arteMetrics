@@ -13,8 +13,6 @@ const schema = require('./schema.js');
 const resolvers = require('./resolvers.js');
 const models = require('./models/index.js');
 
-const queryController = require('./controllers/queryController');
-
 require('dotenv').config();
 
 const server = new ApolloServer({
@@ -34,18 +32,6 @@ app.use(cors());
 app.get('/', (req, res) => {
   console.log('Hello World');
   res.sendStatus(200);
-});
-
-//middleware that handles getting all queries based on a user's api_key
-app.get('/query', queryController.getAllQueries, (req, res) => {
-  console.log('inside querycontroller.getAllQueries');
-  res.status(200).json(res.locals.queries);
-});
-
-//middleware that handles getting tracing info from a query based on user's api_key
-app.get('/query/:id', queryController.getQueryById, (req, res) => {
-  console.log('inside queryController.getQueryById');
-  res.status(200).json(res.locals.query);
 });
 
 app.get('/test', (req, res) => {
