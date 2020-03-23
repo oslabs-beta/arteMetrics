@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
 const CreateAccount = () => {
   const [count, setCount] = useState(0);
   const [post, setPost] = useState(false);
 
-  function fetchGQL() {
+  function fetchGQL(username, password) {
     console.log('inside fetchGQL');
     fetch('/graphql', {
       method: 'POST',
@@ -14,11 +12,13 @@ const CreateAccount = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        hi: 'bye'
+        // query: '{allUsers{username}}'
+        query: `mutation {createUser(username: "${username}", password: "${password}"){username password}}`
       })
     })
       .then(data => data.json())
-      .then(myJson => console.log(myJson));
+      .then(myJson => console.log('data back: ', myJson))
+      .catch(err => console.log(err));
   }
 
   return (
@@ -59,7 +59,7 @@ const CreateAccount = () => {
         id="loginSubmitButton"
         value="Create Account"
         // onClick={() => setCount(count + 1)}
-        onClick={() => fetchGQL()}
+        onClick={() => fetchGQL('testmutation1', 'password')}
       />
       <p>current Count: {count}</p>
       {/* </form> */}

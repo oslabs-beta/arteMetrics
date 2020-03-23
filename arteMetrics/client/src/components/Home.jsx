@@ -15,7 +15,7 @@ const client = new ApolloClient({
 const Home = () => {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <div className="Home">
         <Hero />
         <Features />
       </div>
