@@ -20,6 +20,7 @@ require('dotenv').config();
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
+  tracing: true,
   context: {
     models
     //we can later use context to bring in login information from the frontend.
