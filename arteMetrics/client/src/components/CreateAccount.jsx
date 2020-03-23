@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 const CreateAccount = () => {
-  const [count, setCount] = useState(0);
-  const [post, setPost] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  function fetchGQL(username, password) {
+  function createUser(username, password) {
     console.log('inside fetchGQL');
     fetch('/graphql', {
       method: 'POST',
@@ -21,6 +22,18 @@ const CreateAccount = () => {
       .catch(err => console.log(err));
   }
 
+  function handleUserChange(e) {
+    setUsername(e.target.value);
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  function handleConfirmPasswordChange(e) {
+    setConfirmPassword(e.target.value);
+  }
+
   return (
     <div class="loginpanel">
       {/* <form method="post"> */}
@@ -31,6 +44,7 @@ const CreateAccount = () => {
         name="username"
         required
         placeholder="Username"
+        onChange={handleUserChange}
       />
       <br />
       <label for="password" translate-context="Password" translate></label>
@@ -40,6 +54,7 @@ const CreateAccount = () => {
         name="password"
         required
         placeholder="Password"
+        onChange={handlePasswordChange}
       />
       <label
         for="confirmPassword"
@@ -52,16 +67,21 @@ const CreateAccount = () => {
         name="password"
         required
         placeholder="Confirm Password"
+        onChange={handleConfirmPasswordChange}
       />
       <br />
       <input
         type="submit"
         id="loginSubmitButton"
         value="Create Account"
-        // onClick={() => setCount(count + 1)}
-        onClick={() => fetchGQL('testmutation1', 'password')}
+        onClick={() => {
+          if (password === confirmPassword) {
+            createUser(username, password);
+          } else {
+            alert('password and confirm password must match');
+          }
+        }}
       />
-      <p>current Count: {count}</p>
       {/* </form> */}
     </div>
   );
