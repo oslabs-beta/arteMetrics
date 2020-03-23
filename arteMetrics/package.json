@@ -4,9 +4,15 @@
   "description": "Creating performance monitors for Apollo implementations of graphQL.",
   "main": "server/server.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "nodemon server/server.js",
     "server": "nodemon client/server/server.js",
     "client": "webpack --mode development",
+=======
+    "start": "nodemon client/sorver/sorver.js",
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+>>>>>>> ac3eab7074ceb22a32c7670b5e40005d9c25e684
     "build": "webpack",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
