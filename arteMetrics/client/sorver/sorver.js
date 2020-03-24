@@ -41,7 +41,14 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', queryController.login, (req, res) => {
-  res.status(200).json(res.locals.user);
+  const token = jwt.sign(
+    { username: res.locals.user.username },
+    process.env.JWT_KEY
+  );
+  res.status(200).send({
+    success: true,
+    token: token
+  });
 });
 
 //middleware that handles getting all queries based on a user's api_key

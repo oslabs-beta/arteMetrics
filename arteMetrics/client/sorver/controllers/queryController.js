@@ -40,12 +40,11 @@ queryController.getQueryById = (req, res, next) => {
 };
 
 queryController.login = (req, res, next) => {
-  console.log('inside login middleware');
   const { username, password } = req.body;
   const text = `
     SELECT * 
     FROM users
-    WHERE username = '${username}'
+    WHERE username = '${username}' and password = '${password}'
   `;
 
   db.query(text)
