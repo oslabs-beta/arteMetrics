@@ -1,3 +1,5 @@
 node_modules
 .env
 .sql
+.DS_Store
+schema.sql
