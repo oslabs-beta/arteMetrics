@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-=======
 const { Op } = require('sequelize');
 const moment = require('moment');
->>>>>>> staging
 const resolvers = {};
 
 resolvers.Query = {
