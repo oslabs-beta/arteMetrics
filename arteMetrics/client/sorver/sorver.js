@@ -40,13 +40,11 @@ app.get('/', (req, res) => {
 
 //middleware that handles getting all queries based on a user's api_key
 app.get('/query', queryController.getAllQueries, (req, res) => {
-  console.log('inside querycontroller.getAllQueries');
   res.status(200).json(res.locals.queries);
 });
 
 //middleware that handles getting tracing info from a query based on user's api_key
 app.get('/query/:id', queryController.getQueryById, (req, res) => {
-  console.log('inside queryController.getQueryById');
   res.status(200).json(res.locals.query);
 });
 
