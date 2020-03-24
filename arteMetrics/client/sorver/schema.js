@@ -6,14 +6,18 @@ const typeDefs = gql`
     allUsers: [User!]
   }
 
+  type Mutation {
+    createUser(username: String!, password: String!): AuthPayLoad!
+  }
+
   type User {
     id: ID!
     username: String!
     password: String!
   }
 
-  type Mutation {
-    createUser(username: String!, password: String!): User!
+  type AuthPayLoad {
+    token: String!
   }
 `;
 

@@ -16,11 +16,15 @@ const CreateAccount = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        query: `mutation {createUser(username: "${username}", password: "${password}"){username password}}`
+        query: `mutation {createUser(username: "${username}", password: "${password}"){token}}`
       })
     })
       .then(data => data.json())
-      .then(myJson => console.log('data back: ', myJson))
+      .then(myJson => {
+        console.log('data back: ', myJson);
+        document.cookie = 'token=' + myJson.data.createUser.token;
+      })
+
       .then(() => {
         console.log('successful account creation');
         history.push('/metrics');
