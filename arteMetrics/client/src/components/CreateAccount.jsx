@@ -16,7 +16,6 @@ const CreateAccount = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // query: '{allUsers{username}}'
         query: `mutation {createUser(username: "${username}", password: "${password}"){username password}}`
       })
     })
