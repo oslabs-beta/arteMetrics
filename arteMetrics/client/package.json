@@ -23,6 +23,7 @@
     "graphql": "^14.6.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "^4.0.7",
+    "moment": "^2.24.0",
     "pg": "^7.18.2",
     "react": "^16.13.0",
     "react-animate-on-scroll": "^2.1.5",

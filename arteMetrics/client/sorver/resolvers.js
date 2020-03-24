@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+const moment = require('moment');
 const resolvers = {};
 
 resolvers.Query = {
@@ -13,7 +15,12 @@ resolvers.Query = {
   allQueries: async (parent, args, { models }) => {
     return await models.Queries.findAll({
       where: {
-        api_key: 'myapikey'
+        api_key: 'myapikey',
+        start_time: {
+          [Op.gte]: moment()
+            .subtract(24, 'hours')
+            .toDate()
+        }
       }
     });
   }
