@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const CreateAccount = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  let history = useHistory();
 
   function createUser(username, password) {
     console.log('inside fetchGQL');
@@ -13,12 +16,19 @@ const CreateAccount = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // query: '{allUsers{username}}'
-        query: `mutation {createUser(username: "${username}", password: "${password}"){username password}}`
+        query: `mutation {createUser(username: "${username}", password: "${password}"){token}}`
       })
     })
       .then(data => data.json())
-      .then(myJson => console.log('data back: ', myJson))
+      .then(myJson => {
+        console.log('data back: ', myJson);
+        document.cookie = 'token=' + myJson.data.createUser.token;
+      })
+
+      .then(() => {
+        console.log('successful account creation');
+        history.push('/metrics');
+      })
       .catch(err => console.log(err));
   }
 
