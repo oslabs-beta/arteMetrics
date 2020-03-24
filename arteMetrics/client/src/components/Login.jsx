@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Router } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -21,7 +21,8 @@ const Login = () => {
     console.log('inside login');
     console.log(username);
     console.log(password);
-    fetch('graphql', {
+
+    fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +37,10 @@ const Login = () => {
       .then(myJson => {
         console.log(myJson);
         console.log('succesful login');
-        history.push('/metrics');
+        if (myJson.success) {
+          document.cookie = 'token=' + myJson.token;
+          history.push('/metrics');
+        }
       })
       .catch(err => console.log(err));
   }

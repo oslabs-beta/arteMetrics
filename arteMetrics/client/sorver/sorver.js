@@ -4,6 +4,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const PORT = 8080;
 
@@ -32,10 +33,15 @@ server.applyMiddleware({ app, path: '/graphql' });
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   console.log('Hello World from express app.get to /');
   res.sendStatus(200);
+});
+
+app.post('/login', queryController.login, (req, res) => {
+  res.status(200).json(res.locals.user);
 });
 
 //middleware that handles getting all queries based on a user's api_key

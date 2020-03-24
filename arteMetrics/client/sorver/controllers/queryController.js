@@ -39,4 +39,21 @@ queryController.getQueryById = (req, res, next) => {
     .catch(err => next(err));
 };
 
+queryController.login = (req, res, next) => {
+  console.log('inside login middleware');
+  const { username, password } = req.body;
+  const text = `
+    SELECT * 
+    FROM users
+    WHERE username = '${username}'
+  `;
+
+  db.query(text)
+    .then(result => {
+      res.locals.user = result.rows;
+      return next();
+    })
+    .catch(err => next(err));
+};
+
 module.exports = queryController;
