@@ -107,3 +107,6 @@ dist
 
 # Package-lock.json
 package-lock.json
+
+# DS Store
+.DS_Store
