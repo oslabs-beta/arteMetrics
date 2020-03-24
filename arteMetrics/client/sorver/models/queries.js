@@ -5,7 +5,8 @@ const queries = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       duration: DataTypes.INTEGER,
       start_time: DataTypes.DATE,
-      end_time: DataTypes.DATE
+      end_time: DataTypes.DATE,
+      resolvers: DataTypes.STRING
     },
     {
       timestamps: false
