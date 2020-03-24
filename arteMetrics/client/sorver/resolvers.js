@@ -1,3 +1,6 @@
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
 const { Op } = require('sequelize');
 const moment = require('moment');
 const resolvers = {};
@@ -28,11 +31,15 @@ resolvers.Query = {
 
 resolvers.Mutation = {
   createUser: async (parent, { username, password }, { models }) => {
-    console.log(models);
-    return models.User.create({
-      username,
-      password
-    });
+    console.log('inside mutation');
+    const user = await models.User.create({ username, password });
+    console.log(user);
+    console.log('after create');
+    return {
+      username: username,
+      password: password,
+      token: jwt.sign(username, process.env.JWT_KEY)
+    };
   }
 };
 
