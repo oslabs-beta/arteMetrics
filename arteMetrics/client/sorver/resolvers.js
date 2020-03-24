@@ -18,6 +18,7 @@ resolvers.Query = {
   allQueries: async (parent, args, { models }) => {
     return await models.Queries.findAll({
       where: {
+        // make this dynamic (per user)
         api_key: 'myapikey',
         start_time: {
           [Op.gte]: moment()
