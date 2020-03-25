@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const QueriesOverview = () => {
+  const [allQueries, setAllQueries] = useState([]);
   const [topFive, setTopFive] = useState([]);
 
   useEffect(() => {
@@ -27,12 +28,12 @@ const QueriesOverview = () => {
         // queries array
         const data = myJson.data.allQueries;
         console.log('data back: ', data);
-
+        setAllQueries(data);
         // filter the results to only show top 5 ('frequent' state)
         const names = data.map(item => item.name);
         const counter = {};
         for (let i = 0; i < names.length; i++) {
-          if (counter.hasOwnProperty(names[i])) {
+          if (counter[names[i]]) {
             counter[names[i]] += 1;
           } else counter[names[i]] = 1;
         }
@@ -80,11 +81,12 @@ const QueriesOverview = () => {
   return (
     <div class="queriesOverview">
       <h1>Queries Overview</h1>
-      <h3>Requests By Frequency</h3>
+      <h3>Request Rate</h3>
       <ul>
         {topFive.map((item, i) => (
           <li key={`top_${[i]}`}>
-            <a href={`/${item.id}`}>{item.name}</a>.......................
+            <a href={`/query?id=${item.id}`}>{item.name}</a>
+            .......................
             {Math.floor(item.duration / 1000000)}ms
           </li>
         ))}

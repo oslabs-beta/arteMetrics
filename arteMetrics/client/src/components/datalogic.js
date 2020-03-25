@@ -726,7 +726,7 @@ const data = [
 const names = data.map(item => item.name);
 const counter = {};
 for (let i = 0; i < names.length; i++) {
-  if (counter.hasOwnProperty(names[i])) {
+  if (counter[names[i]]) {
     counter[names[i]] += 1;
   } else counter[names[i]] = 1;
 }
