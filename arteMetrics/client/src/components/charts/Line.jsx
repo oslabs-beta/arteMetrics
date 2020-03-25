@@ -157,7 +157,7 @@ const LineG = () => {
   return (
     <div>
       <h2>Queries Overview</h2>
-      <h5>Request Rate</h5>
+      <h5>By Request Rate</h5>
       <ul>
         {topFive.map((item, i) => (
           <li key={`top_${[i]}`}>
