@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
@@ -10,7 +11,9 @@ const TopNavbar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="home">Home</Nav.Link>
-          <Nav.Link href="metrics">Metrics</Nav.Link>
+          {Cookies.get('token') ? (
+            <Nav.Link href="metrics">Metrics</Nav.Link>
+          ) : null}
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="queriesoverview">
               Queries Overview
