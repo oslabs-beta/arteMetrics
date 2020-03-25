@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', queryController.login, (req, res) => {
   if (res.locals.user[0] === undefined) {
-    res.send('incorrect username or password');
+    res.json({ error: 'incorrect username or password' });
   } else {
     const token = jwt.sign(res.locals.user[0].username, process.env.JWT_KEY);
     res.status(200).json({

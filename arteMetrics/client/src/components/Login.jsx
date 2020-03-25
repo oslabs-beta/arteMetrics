@@ -35,7 +35,6 @@ const Login = () => {
       .then(data => data.json())
       .then(myJson => {
         console.log(myJson);
-        console.log('succesful login');
         if (myJson.success) {
           document.cookie = 'token=' + myJson.token;
           history.push('/metrics');
