@@ -4,6 +4,8 @@ import moment from 'moment';
 
 const LineG = () => {
   const [data, setData] = useState({});
+  const [allQueries, setAllQueries] = useState([]);
+  const [topFive, setTopFive] = useState([]);
 
   useEffect(() => {
     createGraph();
@@ -30,7 +32,56 @@ const LineG = () => {
       })
     })
       .then(data => data.json())
-      .then(myJson => (json = myJson.data.allQueries))
+      .then(myJson => {
+        json = myJson.data.allQueries;
+
+        // filter the results to only show top 5 ('frequent' state)
+        const names = json.map(item => item.name);
+        const counter = {};
+        for (let i = 0; i < names.length; i++) {
+          if (counter[names[i]]) {
+            counter[names[i]] += 1;
+          } else counter[names[i]] = 1;
+        }
+        const sortable = [];
+        for (let names in counter) {
+          sortable.push([names, counter[names]]);
+        }
+        const result = sortable.sort((a, b) => b[1] - a[1]);
+        const topFive = result.slice(0, 5);
+
+        const topObj = [];
+
+        // grab latest objects based on top5
+        for (let i = 0; i < topFive.length; i++) {
+          let top = topFive[i][0];
+
+          // get the array of the same query name
+          let topArray = [];
+          for (let item in json) {
+            if (json[item].name === top) {
+              topArray.push(json[item]);
+            }
+          }
+          // grab the latest date of that query
+          for (let i in topArray) {
+            let d1 = new Date(topArray[i].start_time);
+            let d2 = new Date(
+              Math.max.apply(
+                null,
+                topArray.map(item => {
+                  return new Date(item.start_time);
+                })
+              )
+            );
+            if (d1.getTime() === d2.getTime()) {
+              topObj.push(topArray[i]);
+            }
+          }
+        }
+        // top 5 objects in topObj
+        setTopFive(topObj);
+      })
       .catch(err => console.log(err));
 
     let hours = json.map(item => {
@@ -105,7 +156,19 @@ const LineG = () => {
 
   return (
     <div>
-      <h2>Line Example</h2>
+      <h2>Queries Overview</h2>
+      <h5>By Request Rate</h5>
+      <ul>
+        {topFive.map((item, i) => (
+          <li key={`top_${[i]}`}>
+            <a href={`/query?id=${item.id}`}>{item.name}</a>
+            .......................
+            {Math.floor(item.duration / 1000000)}ms
+          </li>
+        ))}
+      </ul>
+      <br />
+      <h5>Queries Over Time</h5>
       {Object.keys(data).length ? (
         <Line data={data} width={1000} height={500} />
       ) : (
