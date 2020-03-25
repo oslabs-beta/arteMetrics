@@ -1,22 +1,21 @@
-const express = require('express');
+require('dotenv').config();
 const { ApolloServer } = require('apollo-server-express');
-
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const express = require('express');
 const jwt = require('jsonwebtoken');
 
-const PORT = 8080;
+const models = require('./models/index.js');
+const queryController = require('./controllers/queryController');
+const resolvers = require('./resolvers.js');
+const schema = require('./schema.js');
 
 const app = express();
 
-const schema = require('./schema.js');
-const resolvers = require('./resolvers.js');
-const models = require('./models/index.js');
-
-const queryController = require('./controllers/queryController');
-
-require('dotenv').config();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const server = new ApolloServer({
   typeDefs: schema,
@@ -27,13 +26,6 @@ const server = new ApolloServer({
     //we can later use context to bring in login information from the frontend.
   }
 });
-
-server.applyMiddleware({ app, path: '/graphql' });
-
-app.use(express.json());
-app.use(cookieParser());
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   console.log('Hello World from express app.get to /');
@@ -66,19 +58,21 @@ app.get('/test', (req, res) => {
   res.status(200).send({ response: 'proxied server functional' });
 });
 
+server.applyMiddleware({ app, path: '/graphql' });
+
 //this is to verify authentication of SQL deployment
 models.sequelize.authenticate();
 
 models.sequelize.sync().then(async () => {
-  app.listen(PORT, () => {
+  app.listen(8080, () => {
     console.log(
       `Server is listening on port: ${'http://localhost:' +
-        PORT +
+        8080 +
         '/'}...!!!!!! `
     );
     console.log(
       `🚀Apollo Server is listening on port: ${'http://localhost:' +
-        PORT +
+        8080 +
         '/graphql'} 🚀 `
     );
   });
