@@ -87,7 +87,7 @@ const QueryTime = () => {
     // console.log(firstQuery)
     // svg.selectAll(‘rect’).data(firstQuery).enter().append(‘rect’).attr(‘x’, 0).attr(‘y’, 0).attr(‘width’, (d) => d).attr(‘height’, 25).attr(‘transform’, ‘translate(150, 10)’).attr(‘fill’, ‘navy’).attr(‘class’, ‘bar’);
     //this renders the bars
-    // console.log(root[5])
+    // console.log(releventData)
     svg
       .selectAll('rect')
       .data(root[5])
