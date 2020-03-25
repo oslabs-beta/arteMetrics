@@ -6,8 +6,8 @@ import './styles/styles.css';
 
 import Particles from 'react-particles-js';
 import TopNavBar from './components/TopNavBar.jsx';
-import MainContainer from './components/MainContainer.jsx';
-import MetricsContainer from './components/MetricsContainer.jsx';
+import MainContainer from './components/containers/MainContainer.jsx';
+import MetricsContainer from './components/containers/MetricsContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
@@ -15,7 +15,7 @@ import QueriesOverview from './components/QueriesOverview.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000'
+  uri: 'http://localhost:3000/graphql'
 });
 
 class App extends Component {
