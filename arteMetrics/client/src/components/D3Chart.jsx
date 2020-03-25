@@ -16,29 +16,32 @@ const D3Chart = () => {
     const [path, setPath] = useState(paths);
     const [resolver, setResolver] = useState(resolverDuration);
 
-    d3.json('/query/345').then(queries => {
+    d3.json('/query/6').then(queries => {
         const {id, api_key, name, start_time, end_time, duration} = queries[0];
-        console.log(duration)
         rootQuery.push(id, api_key, name, start_time, end_time, duration);
         const resolvers = queries[0].resolvers;
-        console.log(resolvers)
         resolvers.forEach((info, i) => {
             startOffset.push(info['startOffset']);
             resolverDuration.push(info['duration']);
-            paths.push(info['path'])
+            paths.push(info['path']);
         })
 
         const width = 1400;
         const height = 465;
+
+        //this sets the main svg tag that will be used to create the chart
+        const svg = d3.select(svgRef.current).attr('width', width).attr('height', height);
+
+        //creating the x-axis 
         const x = d3.scaleLinear().domain([0, d3.max(root, (d) => d)]).range([150, width]);
         const xAxis = g => {
             g.attr('class', 'x-axis').attr('transform', `translate(0, 30)`).call(d3.axisTop(x))
         }
-
-        const svg = d3.select(svgRef.current).attr('width', width).attr('height', height);
-        
-        svg.append('rect').attr('class', 'background').attr('fill', 'none').attr('width', width).attr('height', height)
         svg.append('g').call(xAxis);
+
+        
+        //appending a rect tag to svg
+        svg.append('rect').attr('class', 'background').attr('fill', 'none').attr('width', width).attr('height', height)
         // svg.append('g').call(yAxis);
       
         // svg.selectAll('rect').data(root[5]).enter().append('rect').attr('x', 0).attr('y', 0).attr('width', (d, i) => d / 1000).attr('height', 25).attr('transform', 'translate(150, 30)').attr('fill', 'navy')
@@ -50,47 +53,45 @@ const D3Chart = () => {
         // svg.selectAll('rect').data(firstQuery).enter().append('rect').attr('x', 0).attr('y', 0).attr('width', (d) => d).attr('height', 25).attr('transform', 'translate(150, 10)').attr('fill', 'navy').attr('class', 'bar');
 
         //this renders the bars
-        svg.selectAll('rect').data(root[5]).enter().append('rect').attr('x', 0).attr('y', 0).attr('width', (d) => d).attr('height', 25).data(resolver).enter().append('rect').attr('x', 0).attr('y', (d, i) => (i + 1) * 30).attr('width', (d, i) => d/1000).attr('height', 25).attr('transform', 'translate(150, 10)').attr('fill', 'navy').attr('class', 'bar');
+        svg.selectAll('rect')
+            .data(root[5])
+            .enter()
+            .append('rect')
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('width', (d) => d)
+            .attr('height', 25)
+            .data(resolver)
+            .enter()
+            .append('rect')
+            .attr('x', 0)
+            .attr('y', (d, i) => (i + 1) * 30)
+            .attr('width', (d, i) => d/1000)
+            .attr('height', 25)
+            .attr('transform', 'translate(150, 10)')
+            .attr('fill', 'navy')
+            .attr('class', 'bar');
 
 
         //this renders the path's of each bar
-        svg.selectAll('text').data(root[2]).enter().append('text').text((d) => d).attr('x', 0).attr('y', 0).data(path).enter().append('text').text((d) => d).attr('x', 0).attr('y', (d, i) => (i + 1) * 30).attr('transform', 'translate(0, 30)')
-
-
-        
-        
+        svg.selectAll('text')
+            .data(root[2])
+            .enter()
+            .append('text')
+            .text((d) => d)
+            .attr('x', 0)
+            .attr('y', 0)
+            .data(path)
+            .enter()
+            .append('text')
+            .text((d) => d)
+            .attr('x', 0)
+            .attr('y', (d, i) => (i + 1) * 30)
+            .attr('transform', 'translate(0, 30)')
 })
 
   
-//   console.log('this is data', data)
-    // const xAxis = d3.axisBottom(xScale).ticks(data.length);
-    // svg
-    //   .select('.x-axis')
-    //   .style('transform', 'translateY(150px)')
-    //   .call(xAxis);
 
-    // const yAxis = d3.axisRight(yScale);
-    // svg
-    //   .select('.y-axis')
-    //   .style('tranform', 'translateX(500px)')
-    //   .call(yAxis);
-
-//     svg
-//       .selectAll('.bar')
-//       .data(data)
-//       .join('rect')
-//       .attr('class', 'bar')
-//       .style('transform', 'scale(1, -1)')
-//       .attr('x', (value, index) => xScale(index))
-//       .attr('y', -150)
-//       .attr('width', xScale.bandwidth())
-//       .transition()
-//       .attr('height', value => 150 - yScale(value));
-//   }, [data]);
-
-  // <div>
-  //   <QueryTime  />
-  // </div>
 
   return (
     <React.Fragment>
