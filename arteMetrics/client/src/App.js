@@ -26,27 +26,11 @@ class App extends Component {
     this.testBackend = this.testBackend.bind(this);
   }
 
-  componentDidMount() {
-    console.log('Mounted');
-  }
-
-  testBackend(e) {
-    console.log('testBackendFunction');
-    e.preventDefault();
-    fetch('/test')
-      .then(res => res.json())
-      .then(myJson => console.log('completedGetRequest: ', myJson));
-  }
-
   render() {
     return (
       <ApolloProvider client={client}>
         <div className="App">
           <TopNavBar />
-          <button onClick={this.testBackend}>
-            Test Connection to Server.js
-          </button>
-
           <Router>
             <Route path="/" exact component={Home} />
             <Route path="/home" component={Home} />
