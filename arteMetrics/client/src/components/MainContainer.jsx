@@ -8,20 +8,21 @@ import Cookies from 'js-cookie';
 
 const MainContainer = () => {
   let history = useHistory();
+  let user;
 
   async function verifyjwt() {
     const jwt = await Cookies.get('token');
-    console.log('inside else fetch now. this is jwt: ', jwt);
 
-    console.log('hello');
-
-    fetch('testjwt', {
+    await fetch('testjwt', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })
     })
       .then(data => data.json())
-      .then(myJson => console.log(myJson))
+      .then(myJson => {
+        user = myJson.user;
+        return user;
+      })
       .catch(err => console.log(err));
   }
 
@@ -45,11 +46,14 @@ const MainContainer = () => {
     <Tabs>
       <div className="tabs">
         <div className="tab-list">
+          <Tab>24 Hour Timeline</Tab>
           <Tab>Tracing</Tab>
           <Tab>Bar Graph</Tab>
-          <Tab>24 Hour Timeline</Tab>
         </div>
         <div className="tab-progress" />
+        <Panel>
+          <LineG />
+        </Panel>
         <Panel>
           <div>
             <QueryTime id="chart" />
@@ -59,9 +63,6 @@ const MainContainer = () => {
           <div>
             <Bar id="chart" />
           </div>
-        </Panel>
-        <Panel>
-          <LineG />
         </Panel>
       </div>
     </Tabs>

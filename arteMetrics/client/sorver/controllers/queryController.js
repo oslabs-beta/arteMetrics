@@ -40,16 +40,22 @@ queryController.getQueryById = (req, res, next) => {
 };
 
 queryController.login = (req, res, next) => {
+  console.log('inside querycontroller login: ', req.body);
   const { username, password } = req.body;
+  console.log('user/pass in querycontroller login: ', username, password);
   const text = `
     SELECT * 
     FROM users
     WHERE username = '${username}' and password = '${password}'
   `;
+  console.log('this is the query: ', text);
 
   db.query(text)
     .then(result => {
-      res.locals.user = result.rows;
+      if (result.rows[0] === undefined) {
+        return next('incorrect username or password');
+      }
+      res.locals.user = result.rows[0].username;
       return next();
     })
     .catch(err => next(err));

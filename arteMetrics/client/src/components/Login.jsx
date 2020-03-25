@@ -22,13 +22,12 @@ const Login = () => {
     console.log(username);
     console.log(password);
 
-    fetch('/login', {
+    fetch('login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        //need to figure out what type of query to submit
         username: username,
         password: password
       })
