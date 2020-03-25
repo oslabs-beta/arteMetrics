@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import Data from '../querydata.json';
 import { select, scaleLinear, axisRight, axisBottom, scaleBand } from 'd3';
 import '../styles/styles.css';
