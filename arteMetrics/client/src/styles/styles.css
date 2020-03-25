@@ -4,12 +4,16 @@ body {
 }
 
 svg {
+  display: "flex";
+  flex-direction: row;
+  align-items: center;
   background: #eeeeee;
   height: 75vh;
   width: 100vw;
   overflow: visible;
   border: solid red;
 }
+
 /* svg-comp {
   background: #eeeeee;
   height: 50vh;
