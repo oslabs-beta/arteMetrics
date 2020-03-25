@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Query = () => {
+  // query data will contain the specific query that has tracing data
   const [queryData, setQueryData] = useState([]);
   const urlParams = window.location.search;
   const id = urlParams.substr(4);

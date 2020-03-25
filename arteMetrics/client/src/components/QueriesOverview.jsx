@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const QueriesOverview = () => {
+  // allQueries will contain the JSON object with queries in the last 24hrs
   const [allQueries, setAllQueries] = useState([]);
   const [topFive, setTopFive] = useState([]);
 
