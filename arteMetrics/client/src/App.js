@@ -10,6 +10,12 @@ import MainContainer from './components/MainContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
+import QueriesOverview from './components/QueriesOverview.jsx';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000'
+});
 
 class App extends Component {
   constructor(props) {
@@ -32,42 +38,47 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <TopNavBar />
-        <button onClick={this.testBackend}>Test Connection to Server.js</button>
+      <ApolloProvider client={client}>
+        <div className="App">
+          <TopNavBar />
+          <button onClick={this.testBackend}>
+            Test Connection to Server.js
+          </button>
 
-        <Router>
-          <Route path="/" exact component={Home} />
-          <Route path="/home" component={Home} />
-          <Route path="/metrics" component={MainContainer} />
-          <Route path="/login" component={Login} />
-          <Route path="/createaccount" component={CreateAccount} />
-        </Router>
-        <div id="particles">
-          <Particles
-            className="landing-bg"
-            params={{
-              particles: {
-                number: {
-                  value: 100
+          <Router>
+            <Route path="/" exact component={Home} />
+            <Route path="/home" component={Home} />
+            <Route path="/metrics" component={MainContainer} />
+            <Route path="/login" component={Login} />
+            <Route path="/createaccount" component={CreateAccount} />
+            <Route path="/queriesoverview" component={QueriesOverview} />
+          </Router>
+          <div id="particles">
+            <Particles
+              className="landing-bg"
+              params={{
+                particles: {
+                  number: {
+                    value: 100
+                  },
+                  size: {
+                    value: 3
+                  }
                 },
-                size: {
-                  value: 3
-                }
-              },
-              interactivity: {
-                detect_on: 'window',
-                events: {
-                  onhover: {
-                    enable: true,
-                    mode: 'repulse'
+                interactivity: {
+                  detect_on: 'window',
+                  events: {
+                    onhover: {
+                      enable: true,
+                      mode: 'repulse'
+                    }
                   }
                 }
-              }
-            }}
-          />
+              }}
+            />
+          </div>
         </div>
-      </div>
+      </ApolloProvider>
     );
   }
 }

@@ -1,34 +1,47 @@
-//sample data
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
-let users = {
-  1: {
-    id: '1',
-    username: 'WobbeGang'
-  },
-  2: {
-    id: '2',
-    username: 'Sean, Brian, Saejin, Noah, Joseph'
-  },
-  3: {
-    id: '3',
-    username: 'Brian'
-  }
-};
-
-const me = users[3];
-
-//resolver boilerplate
-
+const { Op } = require('sequelize');
+const moment = require('moment');
 const resolvers = {};
 
 resolvers.Query = {
-  allUsers: () => {
-    return 'hello';
+  user: async (parent, { id }, { models }) => {
+    return models.User.findByPk(id);
+  },
+  allUsers: async (parent, args, { models }) => {
+    return await models.User.findAll();
+  },
+  query: async (parent, { id }, { models }) => {
+    return models.Queries.findByPk(id);
+  },
+  allQueries: async (parent, args, { models }) => {
+    return await models.Queries.findAll({
+      where: {
+        // make this dynamic (per user)
+        api_key: 'myapikey',
+        start_time: {
+          [Op.gte]: moment()
+            .subtract(24, 'hours')
+            .toDate()
+        }
+      }
+    });
   }
 };
 
 resolvers.Mutation = {
-  createUser: (parent, args, context) => {}
+  createUser: async (parent, { username, password }, { models }) => {
+    console.log('inside mutation');
+    const user = await models.User.create({ username, password });
+    console.log(user);
+    console.log('after create');
+    return {
+      username: username,
+      password: password,
+      token: jwt.sign(username, process.env.JWT_KEY)
+    };
+  }
 };
 
 module.exports = resolvers;

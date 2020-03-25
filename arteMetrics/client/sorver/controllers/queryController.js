@@ -7,7 +7,7 @@ queryController.getAllQueries = (req, res, next) => {
   const api_key = 'myapikey';
 
   const text = `
-    SELECT id, name, duration, start_time
+    SELECT _id, name, duration, start_time, end_time
     FROM   queries
     WHERE  start_time >= NOW() - '1 day'::INTERVAL
     AND    api_key = '${api_key}'
@@ -28,12 +28,28 @@ queryController.getQueryById = (req, res, next) => {
   const text = `
     SELECT *
     FROM   queries
-    WHERE  id = ${id}
+    WHERE  _id = ${id}
     `;
 
   db.query(text)
     .then(result => {
       res.locals.query = result.rows;
+      return next();
+    })
+    .catch(err => next(err));
+};
+
+queryController.login = (req, res, next) => {
+  const { username, password } = req.body;
+  const text = `
+    SELECT * 
+    FROM users
+    WHERE username = '${username}' and password = '${password}'
+  `;
+
+  db.query(text)
+    .then(result => {
+      res.locals.user = result.rows;
       return next();
     })
     .catch(err => next(err));
