@@ -11,6 +11,7 @@ import MetricsContainer from './components/MetricsContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
+import QueriesOverview from './components/QueriesOverview.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
@@ -52,6 +53,7 @@ class App extends Component {
             <Route path="/metricsd3" component={MetricsContainer} />
             <Route path="/login" component={Login} />
             <Route path="/createaccount" component={CreateAccount} />
+            <Route path="/queriesoverview" component={QueriesOverview} />
           </Router>
           <div id="particles">
             <Particles
