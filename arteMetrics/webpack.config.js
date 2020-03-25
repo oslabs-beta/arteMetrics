@@ -8,24 +8,24 @@ module.exports = {
   entry: ['./client/index.js'],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   // dev server settings
   devServer: {
     publicPath: '/build/',
     proxy: {
-      '/api/': 'http://localhost:3000',
+      '/api/': 'http://localhost:3000'
     },
-    hot: true,
+    hot: true
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   // plugins
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css',
-    }),
+      filename: 'style.css'
+    })
   ],
   // loaders
   module: {
@@ -37,9 +37,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       // sass loader
       {
@@ -49,15 +49,15 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === 'development',
-            },
+              hmr: process.env.NODE_ENV === 'development'
+            }
           },
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
-    ],
-  },
+          'sass-loader'
+        ]
+      }
+    ]
+  }
 };

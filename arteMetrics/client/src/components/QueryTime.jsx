@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { HorizontalBar } from 'react-chartjs-2';
-import Data from '../querydata.json';
+// import { Bar } from 'react-chartjs-2';
+// import Data from '../querydata.json';
 import * as d3 from 'd3';
 import '../styles/styles.css';
 
 // console.log(Data)
-function millisToMinutesAndSeconds(millis) {
-  var minutes = Math.floor(millis / 600);
-  var seconds = ((millis % 6000) / 1000).toFixed(0);
-  return minutes + '.' + (seconds < 10 ? '0' : '') + seconds;
-}
+// function millisToMinutesAndSeconds(millis) {
+//   var minutes = Math.floor(millis / 600);
+//   var seconds = ((millis % 6000) / 1000).toFixed(0);
+//   return minutes + '.' + (seconds < 10 ? '0' : '') + seconds;
+// }
 
 const QueryTime = () => {
   const svgRef = useRef();
@@ -28,6 +28,7 @@ const QueryTime = () => {
   // console.log(data);
   const startOffset = [];
   const resolverDuration = [];
+  const releventData = [];
   const paths = [];
   const rootQuery = [];
   const [startOffSet, setStartOffset] = useState(startOffset);
@@ -37,15 +38,27 @@ const QueryTime = () => {
 
   d3.json('/query/6').then(queries => {
     const { id, api_key, name, start_time, end_time, duration } = queries[0];
-    console.log(duration);
-    rootQuery.push(id, api_key, name, start_time, end_time, duration);
+    rootQuery.push(
+      id,
+      api_key,
+      name,
+      start_time,
+      end_time,
+      duration,
+      startOffSet
+    );
     const resolvers = queries[0].resolvers;
-    console.log(resolvers);
+
+    console.log('startOffset', startOffSet);
     resolvers.forEach((info, i) => {
       startOffset.push(info['startOffset']);
       resolverDuration.push(info['duration']);
       paths.push(info['path']);
     });
+    for (let i = 0; i < startOffSet.length; i++) {
+      releventData.push([resolver[i], startOffSet[i]]);
+    }
+    console.log('releventData', releventData);
     const width = 1400;
     const height = 465;
     const x = d3
@@ -74,6 +87,7 @@ const QueryTime = () => {
     // console.log(firstQuery)
     // svg.selectAll(‘rect’).data(firstQuery).enter().append(‘rect’).attr(‘x’, 0).attr(‘y’, 0).attr(‘width’, (d) => d).attr(‘height’, 25).attr(‘transform’, ‘translate(150, 10)’).attr(‘fill’, ‘navy’).attr(‘class’, ‘bar’);
     //this renders the bars
+    // console.log(root[5])
     svg
       .selectAll('rect')
       .data(root[5])
@@ -83,12 +97,12 @@ const QueryTime = () => {
       .attr('y', 0)
       .attr('width', d => d)
       .attr('height', 25)
-      .data(resolver)
+      .data(releventData)
       .enter()
       .append('rect')
-      .attr('x', 0)
+      .attr('x', (d, i) => d[1] / 1000000)
       .attr('y', (d, i) => (i + 1) * 30)
-      .attr('width', (d, i) => d / 1000)
+      .attr('width', (d, i) => d[0] / 1000)
       .attr('height', 25)
       .attr('transform', 'translate(150, 10)')
       .attr('fill', 'navy')
