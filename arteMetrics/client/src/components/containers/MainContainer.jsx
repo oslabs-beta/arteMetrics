@@ -1,12 +1,6 @@
 import React from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
-<<<<<<< HEAD:arteMetrics/client/src/components/MainContainer.jsx
-import QueryTime from './QueryTime.jsx';
-import Bar from './Bar.jsx';
-import LineG from './LineG.jsx';
-=======
 import QueryTime from '../QueryTime.jsx';
->>>>>>> staging:arteMetrics/client/src/components/containers/MainContainer.jsx
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import BarContainer from './BarContainer.jsx';
@@ -58,9 +52,6 @@ const MainContainer = () => {
         </div>
         <div className="tab-progress" />
         <Panel>
-          <LineG />
-        </Panel>
-        <Panel>
           <div>
             <QueryTime id="chart" />
           </div>
@@ -70,12 +61,9 @@ const MainContainer = () => {
             <BarContainer />
           </div>
         </Panel>
-<<<<<<< HEAD:arteMetrics/client/src/components/MainContainer.jsx
-=======
         <Panel>
           <LineContainer />
         </Panel>
->>>>>>> staging:arteMetrics/client/src/components/containers/MainContainer.jsx
       </div>
     </Tabs>
   );
