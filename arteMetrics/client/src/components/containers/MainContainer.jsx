@@ -1,10 +1,16 @@
 import React from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
+<<<<<<< HEAD:arteMetrics/client/src/components/MainContainer.jsx
 import QueryTime from './QueryTime.jsx';
 import Bar from './Bar.jsx';
 import LineG from './LineG.jsx';
+=======
+import QueryTime from '../QueryTime.jsx';
+>>>>>>> staging:arteMetrics/client/src/components/containers/MainContainer.jsx
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import BarContainer from './BarContainer.jsx';
+import LineContainer from './LineContainer.jsx';
 
 const MainContainer = () => {
   let history = useHistory();
@@ -61,9 +67,15 @@ const MainContainer = () => {
         </Panel>
         <Panel>
           <div>
-            <Bar id="chart" />
+            <BarContainer />
           </div>
         </Panel>
+<<<<<<< HEAD:arteMetrics/client/src/components/MainContainer.jsx
+=======
+        <Panel>
+          <LineContainer />
+        </Panel>
+>>>>>>> staging:arteMetrics/client/src/components/containers/MainContainer.jsx
       </div>
     </Tabs>
   );
