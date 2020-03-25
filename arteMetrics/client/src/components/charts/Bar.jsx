@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
-import Data from '../querydata.json';
+import Data from '../../querydata.json';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -56,7 +56,9 @@ const BarGraph = () => {
   }
   return (
     <div>
-      <h2>Trace Data</h2>
+      <center>
+        <h2>Trace Data</h2>
+      </center>
       <Bar
         data={data}
         width={1000}
