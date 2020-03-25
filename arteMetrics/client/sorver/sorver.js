@@ -41,12 +41,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', queryController.login, (req, res) => {
-  console.log('this is login username: ', res.locals.user);
-  const token = jwt.sign(res.locals.user, process.env.JWT_KEY);
-  res.status(200).json({
-    success: true,
-    token: token
-  });
+  if (res.locals.user[0] === undefined) {
+    res.send('incorrect username or password');
+  } else {
+    const token = jwt.sign(res.locals.user[0].username, process.env.JWT_KEY);
+    res.status(200).json({
+      success: true,
+      token: token
+    });
+  }
 });
 
 app.post('/testjwt', (req, res) => {
