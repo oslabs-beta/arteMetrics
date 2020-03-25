@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
 import QueryTime from '../QueryTime.jsx';
 import { useHistory } from 'react-router-dom';
@@ -8,9 +8,30 @@ import LineContainer from './LineContainer.jsx';
 
 const MainContainer = () => {
   let history = useHistory();
+  let user;
+
+  async function verifyjwt() {
+    const jwt = await Cookies.get('token');
+
+    await fetch('testjwt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: jwt })
+    })
+      .then(data => data.json())
+      .then(myJson => {
+        user = myJson.user;
+        return user;
+      })
+      .catch(err => console.log(err));
+  }
+
   if (!Cookies.get('token')) {
     history.push('/');
+  } else {
+    verifyjwt();
   }
+
   const cn = (...args) => args.filter(Boolean).join(' ');
 
   const Tab = ({ children }) => {
@@ -25,9 +46,9 @@ const MainContainer = () => {
     <Tabs>
       <div className="tabs">
         <div className="tab-list">
+          <Tab>24 Hour Timeline</Tab>
           <Tab>Tracing</Tab>
           <Tab>Bar Graph</Tab>
-          <Tab>24 Hour Timeline</Tab>
         </div>
         <div className="tab-progress" />
         <Panel>

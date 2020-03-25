@@ -42,6 +42,7 @@ queryController.getQueryById = (req, res, next) => {
 
 queryController.login = (req, res, next) => {
   const { username, password } = req.body;
+  console.log('user/pass in querycontroller login: ', username, password);
   const text = `
     SELECT * 
     FROM users
