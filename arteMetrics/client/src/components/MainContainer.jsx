@@ -1,17 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
 import QueryTime from './QueryTime.jsx';
 import Bar from './Bar.jsx';
 import LineG from './LineG.jsx';
-import TopNavBar from './TopNavBar.jsx';
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const MainContainer = () => {
   let history = useHistory();
+
+  async function verifyjwt() {
+    const jwt = await Cookies.get('token');
+    console.log('inside else fetch now. this is jwt: ', jwt);
+
+    console.log('hello');
+
+    fetch('testjwt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: jwt })
+    })
+      .then(data => data.json())
+      .then(myJson => console.log(myJson))
+      .catch(err => console.log(err));
+  }
+
   if (!Cookies.get('token')) {
     history.push('/');
+  } else {
+    verifyjwt();
   }
+
   const cn = (...args) => args.filter(Boolean).join(' ');
 
   const Tab = ({ children }) => {

@@ -51,6 +51,13 @@ app.post('/login', queryController.login, (req, res) => {
   });
 });
 
+app.post('/testjwt', (req, res) => {
+  const { token } = req.body;
+  const user = jwt.verify(token, process.env.JWT_KEY);
+  console.log('testjwt result: ', user);
+  res.send({ user: user });
+});
+
 //middleware that handles getting all queries based on a user's api_key
 app.get('/query', queryController.getAllQueries, (req, res) => {
   res.status(200).json(res.locals.queries);
