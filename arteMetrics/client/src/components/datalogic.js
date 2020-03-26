@@ -823,4 +823,7 @@ const getSlowestQueries = data => {
   return queryWithId;
 };
 
-console.log(getSlowestQueries(data));
+// console.log(getSlowestQueries(data));
+
+let sample = data.slice(Math.max(data.length - 5, 1));
+console.log(sample.reverse());
