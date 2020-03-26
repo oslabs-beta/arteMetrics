@@ -54,11 +54,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 400px;
   font-size: 24px;
   color: #fff;
@@ -89,8 +89,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 1000px;
   margin: 0 auto 20px;
 }
@@ -127,7 +127,7 @@ body {
   left: 50%;
   margin-right: -50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #loginUsername {
@@ -301,5 +301,9 @@ body {
           flex-direction: column;
   padding-bottom: 20px;
   width: 150px;
+}
+
+.bar:hover {
+  fill: red;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -8,7 +8,6 @@ queryController.getAllQueries = (req, res, next) => {
 
   const text = `
     SELECT id, name, duration, start_time, end_time
-
     FROM   queries
     WHERE  start_time >= NOW() - '1 day'::INTERVAL
     AND    api_key = '${api_key}'
