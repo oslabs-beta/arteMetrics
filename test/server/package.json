@@ -16,20 +16,26 @@
     "apollo-server": "2.6.1",
     "apollo-server-testing": "2.6.1",
     "artemetrics": "^1.0.8",
-    "dotenv": "^8.2.0",
-    "graphql": "^14.2.1",
-    "graphql-type-json": "^0.3.1",
+    "artemiddle": "^1.0.2",
+    "aws-sdk": "^2.585.0",
+    "dotenv": "^6.2.0",
+    "graphql": "^14.5.8",
     "isemail": "^3.1.3",
-    "nodemon": "^1.18.4",
-    "sequelize": "^4.39.0",
-    "sqlite3": "^4.0.3"
+    "mime": "^2.4.4",
+    "nodemon": "^1.19.4",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.2",
+    "sqlite3": "^4.1.1",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "apollo": "^2.1.8",
     "apollo-link": "^1.2.3",
     "apollo-link-http": "^1.5.5",
-    "jest": "^23.6.0",
+    "jest": "^25.0.0",
     "nock": "^10.0.2",
-    "node-fetch": "^2.2.1"
+    "node-fetch": "^2.2.1",
+    "now": "^12.1.3"
   },
   "jest": {
     "testPathIgnorePatterns": [
