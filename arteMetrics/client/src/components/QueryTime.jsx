@@ -12,7 +12,8 @@ const QueryTime = () => {
     const [path, setPath] = useState(paths);
     const [resolver, setResolver] = useState(resolverDuration);
 
-    d3.json('/query/6').then(queries => {
+    d3.json('/query/1483').then(queries => {
+      console.log(queries)
         const {id, api_key, name, start_time, end_time, duration} = queries[0];
         rootQuery.push(id, api_key, name, start_time, end_time, duration);
         const resolvers = queries[0].resolvers;
@@ -22,7 +23,7 @@ const QueryTime = () => {
             paths.push(info['path']);
         })
 
-        const width = 1600;
+        const width = 1400;
         const height = 465;
 
         //this sets the main svg tag that will be used to create the chart
@@ -32,8 +33,8 @@ const QueryTime = () => {
 
         //creating the x-axis 
         const x = d3.scaleLinear()
-        .domain([0, d3.max(root, (d) => d)])
-        .range([150, width]);
+        .domain([0, d3.max(root, (d) => d/1000)])
+        .range([100, width - 100]);
 
         const xAxis = g => {
             g.attr('class', 'x-axis')
@@ -41,7 +42,13 @@ const QueryTime = () => {
             .call(d3.axisTop(x))
         }
 
-        svg.append('g').call(xAxis);
+        svg.append('g')
+        .call(xAxis)
+        .append('text')
+        .text('µs')
+        .attr('fill', 'black')
+        .attr('font-size', 14)
+        .attr('x', 1335);
 
         //appending a rect tag to svg
         svg.append('rect')
@@ -59,19 +66,23 @@ const QueryTime = () => {
             .attr('y', (d, i) => (i + 1) * 30)
             .attr('width', (d) => d)
             .attr('height', 25)
+            .attr('class', 'firstbar')
             .data(resolvers)
             .enter()
             .append('rect')
             .attr('x', (d, i) => d["startOffset"] / 1000000)
             .attr('y', (d, i) => (i + 1) * 30)
-            .attr('width', (d, i) => d["duration"] / 1000)
-            .attr('height', 10)
-            .attr('transform', 'translate(150, 10)')
+            .attr('width', (d, i) => {
+              if (i === 0) return d["duration"] / 1000000;
+              else return d["duration"] / 1000;
+            })
+            .attr('height', 6)
+            .attr('transform', 'translate(100, 10)')
             .attr('fill', 'navy')
             .attr('class', 'bar')
 
         //this renders the path's of each bar
-        svg.selectAll('text')
+            svg.selectAll('text')
             .data(root[2])
             .enter()
             .append('text')
@@ -83,7 +94,8 @@ const QueryTime = () => {
             .append('text')
             .attr('text-anchor', 'end')
             .text((d) => d["path"].join('.'))
-            .attr('x', (d, i) => (d["startOffset"] / 1000000) + 140)
+            //  + ' ' + Math.floor(d["duration"]/1000) + 'µs')
+            .attr('x', (d, i) => (d["startOffset"] / 1000000) + 90 )
             .attr('y', (d, i) => (i + 1) * 30)
             .attr('transform', 'translate(0, 20)')
             .attr('class', 'text');
