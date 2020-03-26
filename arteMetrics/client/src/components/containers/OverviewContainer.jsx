@@ -141,15 +141,33 @@ const QueriesOverview = () => {
   return (
     <div class="queriesOverview">
       <h1>Queries Overview</h1>
-      <h3>Request Rate</h3>
+      <h3>By Request Rate</h3>
       <ul>
-        {topFive.map((item, i) => (
-          <li key={`top_${[i]}`}>
-            <a href={`/query?id=${item.id}`}>{item.name}</a>
-            .......................
-            {Math.floor(item.duration / 1000000)}ms
-          </li>
-        ))}
+        {topFive.length ? (
+          topFive.map((item, i) => (
+            <li key={`top_${[i]}`}>
+              <a href={`/query?id=${item.id}`}>{item.name}</a>
+              .......................
+              {Math.floor(item.duration / 1000000)}ms
+            </li>
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
+      </ul>
+
+      <h3>Slowest Response Time</h3>
+      <ul>
+        {slowestFive.length ? (
+          slowestFive.map((item, i) => (
+            <li key={`top_${[i]}`}>
+              <a href={`/query?id=${item[1]}`}>{item[0]}</a>
+              .......................{item[2]}
+            </li>
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
       </ul>
     </div>
   );

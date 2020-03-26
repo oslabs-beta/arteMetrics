@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import BarContainer from './BarContainer.jsx';
 import LineContainer from './LineContainer.jsx';
+import OverviewContainer from './OverviewContainer.jsx';
 
 const MainContainer = () => {
   let history = useHistory();
@@ -49,6 +50,7 @@ const MainContainer = () => {
           <Tab>24 Hour Timeline</Tab>
           <Tab>Tracing</Tab>
           <Tab>Bar Graph</Tab>
+          <Tab>Overview</Tab>
         </div>
         <div className="tab-progress" />
         <Panel>
@@ -63,6 +65,9 @@ const MainContainer = () => {
         </Panel>
         <Panel>
           <LineContainer />
+        </Panel>
+        <Panel>
+          <OverviewContainer />
         </Panel>
       </div>
     </Tabs>
