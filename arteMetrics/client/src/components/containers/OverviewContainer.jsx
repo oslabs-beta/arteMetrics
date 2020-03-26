@@ -140,7 +140,7 @@ const QueriesOverview = () => {
 
   return (
     <div className="queriesOverview">
-      <h1>Queries Over Time</h1>
+      <h1>Queries Overview</h1>
       <h3>By Request Rate</h3>
       <ul>
         {topFive.length ? (

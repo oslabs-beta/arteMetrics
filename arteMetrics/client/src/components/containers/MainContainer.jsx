@@ -7,31 +7,31 @@ import BarContainer from './BarContainer.jsx';
 import LineContainer from './LineContainer.jsx';
 import OverviewContainer from './OverviewContainer.jsx';
 
-const MainContainer = () => {
+const MainContainer = props => {
   let history = useHistory();
   let user;
+  const { loggedin } = props;
+  console.log('loggedin in maincontainer: ', loggedin);
 
-  async function verifyjwt() {
-    const jwt = await Cookies.get('token');
+  // async function verifyjwt() {
+  //   const jwt = await Cookies.get('token');
 
-    await fetch('testjwt', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: jwt })
-    })
-      .then(data => data.json())
-      .then(myJson => {
-        user = myJson.user;
-        return user;
-      })
-      .catch(err => console.log(err));
-  }
+  //   await fetch('testjwt', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ token: jwt })
+  //   })
+  //     .then(data => data.json())
+  //     .then(myJson => {
+  //       user = myJson.user;
+  //       return user;
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
-  if (!Cookies.get('token')) {
-    history.push('/');
-  } else {
-    verifyjwt();
-  }
+  // if (!loggedin) {
+  //   history.push('/');
+  // }
 
   const cn = (...args) => args.filter(Boolean).join(' ');
 
@@ -43,9 +43,10 @@ const MainContainer = () => {
       </button>
     );
   };
+
   return (
     <Tabs>
-      <div className="tabs">
+      <div className="mainContainer">
         <div className="tab-list">
           <Tab>24 Hour Timeline</Tab>
           <Tab>Tracing</Tab>
@@ -53,6 +54,9 @@ const MainContainer = () => {
           <Tab>Overview</Tab>
         </div>
         <div className="tab-progress" />
+        <Panel>
+          <LineContainer />
+        </Panel>
         <Panel>
           <div>
             <QueryTime id="chart" />
@@ -62,9 +66,6 @@ const MainContainer = () => {
           <div>
             <BarContainer />
           </div>
-        </Panel>
-        <Panel>
-          <LineContainer />
         </Panel>
         <Panel>
           <OverviewContainer />

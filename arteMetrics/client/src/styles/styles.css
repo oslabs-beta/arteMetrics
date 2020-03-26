@@ -1,37 +1,46 @@
+@font-face {
+  font-family: 'RobotoMediumItalic';
+  src: local("Roboto"), url("./fonts/Roboto/Roboto-MediumItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'RobotoThin';
+  src: local("Roboto"), url("./fonts/Roboto/Roboto-ThinItalic.ttf") format("truetype");
+}
+
 html,
 body {
   height: 100%;
 }
 
-body {
-  background: linear-gradient(45deg, #c2a70d, #c6b34a, #c2a70d, #c6b34a);
-  background-size: 400% 400%;
-  -webkit-animation: gradient 3s ease infinite;
-          animation: gradient 3s ease infinite;
+.navbar {
+  font-family: 'Roboto', sans-serif;
 }
 
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.navbarlogo {
+  height: 50px;
+  width: 50px;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.navbar-light .navbar-brand {
+  font-family: 'RobotoMediumItalic', sans-serif;
+  color: #fff !important;
+}
+
+.navbar-light .navbar-brand:hover {
+  color: #ffc914 !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  color: #ffc914 !important;
+}
+
+.navbar-text {
+  color: #fff !important;
 }
 
 .landing-bg {
@@ -52,13 +61,14 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-family: 'RobotoMediumItalic', sans-serif;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 400px;
   font-size: 24px;
   color: #fff;
@@ -74,7 +84,7 @@ body {
 }
 
 #features {
-  background: ghostWhite;
+  background: #fff;
   padding: 40px 0;
   margin-top: 40vh;
   position: relative;
@@ -89,8 +99,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 1000px;
   margin: 0 auto 20px;
 }
@@ -104,7 +114,7 @@ body {
 }
 
 #chart {
-  background: ghostWhite;
+  background: #f1f0cc;
   padding: 40px 0;
   margin-top: 5%;
   position: relative;
@@ -112,6 +122,7 @@ body {
 
 .loginpanel {
   background: rgba(255, 255, 255, 0.4);
+  font-family: 'RobotoThin', sans-serif;
   padding: 50px 44px 0;
   border: 1px solid #9397cd;
   border-radius: 4px;
@@ -127,7 +138,17 @@ body {
   left: 50%;
   margin-right: -50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#loginBanner {
+  font-family: 'RobotoMediumItalic';
+  font-size: 1rem;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
 }
 
 #loginUsername {
@@ -174,7 +195,7 @@ body {
   width: 90%;
 }
 
-.tabs {
+.mainContainer {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: relative;
@@ -197,7 +218,6 @@ body {
   background-color: #fff;
   -webkit-box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
-  margin: 40px 0;
 }
 
 .tab-list {
@@ -214,7 +234,7 @@ body {
   top: 66px;
   height: 3px;
   z-index: 0;
-  background-color: #492796;
+  background-color: #053143;
   -webkit-transform-origin: 0%;
           transform-origin: 0%;
 }
@@ -226,7 +246,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   padding: 8px 16px;
-  color: #492796;
+  color: #053143;
   background-color: #fff;
   border: 1px solid #f1f1f1;
   -webkit-box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
@@ -251,11 +271,19 @@ body {
           box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
 }
 
+.tab:hover {
+  background-color: #e4572e;
+}
+
 .tab.active {
-  background-color: #492796;
-  border-color: #492796;
+  background-color: #053143;
+  border-color: #053143;
   color: white;
   cursor: default;
+}
+
+.tab.active:hover {
+  background-color: #e4572e;
 }
 
 .panel-list {
@@ -301,9 +329,5 @@ body {
           flex-direction: column;
   padding-bottom: 20px;
   width: 150px;
-}
-
-.bar:hover {
-  fill: red;
 }
 /*# sourceMappingURL=styles.css.map */
