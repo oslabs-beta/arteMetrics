@@ -7,6 +7,10 @@ import BarContainer from './BarContainer.jsx';
 import LineContainer from './LineContainer.jsx';
 import OverviewContainer from './OverviewContainer.jsx';
 
+// grab the query id by URL
+const urlParams = window.location.search;
+const id = urlParams.substr(4);
+
 const MainContainer = props => {
   let history = useHistory();
   let user;
@@ -47,29 +51,57 @@ const MainContainer = props => {
   return (
     <Tabs>
       <div className="mainContainer">
-        <div className="tab-list">
-          <Tab>24 Hour Timeline</Tab>
-          <Tab>Tracing</Tab>
-          <Tab>Bar Graph</Tab>
-          <Tab>Overview</Tab>
-        </div>
-        <div className="tab-progress" />
-        <Panel>
-          <LineContainer />
-        </Panel>
-        <Panel>
-          <div>
-            <QueryTime id="chart" />
+        {id.length > 0 ? (
+          <div className="tab-list">
+            <Tab>Tracing</Tab>
+            <Tab>Queries Over Time</Tab>
+            <Tab>Performance</Tab>
+            <Tab>Bar Graph</Tab>
           </div>
-        </Panel>
-        <Panel>
-          <div>
-            <BarContainer />
+        ) : (
+          <div className="tab-list">
+            <Tab>Queries Over Time</Tab>
+            <Tab>Performance</Tab>
+            <Tab>Bar Graph</Tab>
           </div>
-        </Panel>
-        <Panel>
-          <OverviewContainer />
-        </Panel>
+        )}
+
+        {id.length > 0 ? (
+          <div>
+            <div className="tab-progress" />
+            <Panel>
+              <div>
+                <QueryTime id="chart" />
+              </div>
+            </Panel>
+            <Panel>
+              <LineContainer />
+            </Panel>
+            <Panel>
+              <OverviewContainer />
+            </Panel>
+            <Panel>
+              <div>
+                <BarContainer />
+              </div>
+            </Panel>
+          </div>
+        ) : (
+          <div>
+            <div className="tab-progress" />
+            <Panel>
+              <LineContainer />
+            </Panel>
+            <Panel>
+              <OverviewContainer />
+            </Panel>
+            <Panel>
+              <div>
+                <BarContainer />
+              </div>
+            </Panel>
+          </div>
+        )}
       </div>
     </Tabs>
   );
