@@ -9,20 +9,20 @@ const TopNavbar = props => {
   }
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="home">arteMetrics</Navbar.Brand>
+      <Navbar.Brand href="/">arteMetrics</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="home">Home</Nav.Link>
+          {/* <Nav.Link href="home">Home</Nav.Link> */}
           {Cookies.get('token') ? (
             <Nav.Link href="metrics">Metrics</Nav.Link>
           ) : null}
           {Cookies.get('token') ? (
             <NavDropdown title="App" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+              <NavDropdown.Item href="#action/3.2">SpaceX App</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">
+                Federation App
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Separated link

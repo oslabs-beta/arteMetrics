@@ -66,14 +66,17 @@ class App extends Component {
           <TopNavBar loggedin={this.state.loggedin} />
           <Router>
             <Route path="/" exact component={Home} />
-            <Route path="/home" component={Home} />
+            {/* <Route path="/home" component={Home} /> */}
             <Route path="/metrics" component={MainContainer} />
             <Route path="/metricsd3" component={MetricsContainer} />
             <Route
               path="/login"
               render={() => <Login verifyjwt={this.verifyjwt} />}
             />
-            <Route path="/createaccount" component={CreateAccount} />
+            <Route
+              path="/createaccount"
+              render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
+            />
             <Route path="/query" component={Query} />
           </Router>
           <div id="particles">
