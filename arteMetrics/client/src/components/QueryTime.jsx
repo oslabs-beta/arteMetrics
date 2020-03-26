@@ -7,13 +7,14 @@ const QueryTime = () => {
     const resolverDuration = [];
     const paths = [];
     const rootQuery = [];
+    const request = [];
     const [startOffSet, setStartOffset] = useState(startOffset);
     const [root, setRoot] = useState(rootQuery);
     const [path, setPath] = useState(paths);
     const [resolver, setResolver] = useState(resolverDuration);
 
-    d3.json('/query/1483').then(queries => {
-      console.log(queries)
+    d3.json('/query/345').then(queries => {
+      request.push(queries[0])
         const {id, api_key, name, start_time, end_time, duration} = queries[0];
         rootQuery.push(id, api_key, name, start_time, end_time, duration);
         const resolvers = queries[0].resolvers;
@@ -22,12 +23,14 @@ const QueryTime = () => {
             resolverDuration.push(info['duration']);
             paths.push(info['path']);
         })
+        console.log(rootQuery[5]- ((startOffset[startOffset.length-1]) - resolverDuration[resolverDuration.length-1]))
 
         const width = 1400;
-        const height = 465;
+        const height = 1000;
 
         //this sets the main svg tag that will be used to create the chart
         const svg = d3.select(svgRef.current)
+        .attr('class', 'svg')
         .attr('width', width)
         .attr('height', height);
 
@@ -44,11 +47,7 @@ const QueryTime = () => {
 
         svg.append('g')
         .call(xAxis)
-        .append('text')
-        .text('µs')
-        .attr('fill', 'black')
-        .attr('font-size', 14)
-        .attr('x', 1335);
+
 
         //appending a rect tag to svg
         svg.append('rect')
@@ -58,6 +57,8 @@ const QueryTime = () => {
         .attr('height', height)
 
         //this renders the bars
+        svg.selectAll('rect')
+
         svg.selectAll('rect')
             .data(root[5])
             .enter()
@@ -74,7 +75,7 @@ const QueryTime = () => {
             .attr('y', (d, i) => (i + 1) * 30)
             .attr('width', (d, i) => {
               if (i === 0) return d["duration"] / 1000000;
-              else return d["duration"] / 1000;
+              else return d["duration"] / 10000;
             })
             .attr('height', 6)
             .attr('transform', 'translate(100, 10)')

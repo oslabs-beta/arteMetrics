@@ -334,5 +334,14 @@ body {
 .bar:hover {
   fill: orange;
 }
+
+.svg {
+  overflow-y: scroll;
+}
+
+/* .svg {
+  width: 60vw;
+  height: 40vh;
+} */
 /*# sourceMappingURL=styles.css.map */
 
