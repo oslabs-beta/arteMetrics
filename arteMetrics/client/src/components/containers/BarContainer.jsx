@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
-import QueryTime from './QueryTime.jsx';
-import Bar from './Bar.jsx';
-import LineG from './LineG.jsx';
-import TopNavBar from './TopNavBar.jsx';
-import { useHistory } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import Bar from '../charts/Bar.jsx';
 
-const MainContainer = () => {
-  let history = useHistory();
-  if (!Cookies.get('token')) {
-    history.push('/');
-  }
+const BarContainer = () => {
   const cn = (...args) => args.filter(Boolean).join(' ');
 
   const Tab = ({ children }) => {
@@ -24,16 +15,15 @@ const MainContainer = () => {
   };
   return (
     <Tabs>
-      <div className="tabs">
-        <div className="tab-list">
-          <Tab>Tracing</Tab>
-          <Tab>Bar Graph</Tab>
-          <Tab>24 Hour Timeline</Tab>
+      <div className="side-tabs">
+        <div className="side-tab-list">
+          <Tab>10 Minutes</Tab>
+          <Tab>1 Hour</Tab>
+          <Tab>1 Day</Tab>
         </div>
-        <div className="tab-progress" />
         <Panel>
           <div>
-            <QueryTime id="chart" />
+            <Bar id="chart" />
           </div>
         </Panel>
         <Panel>
@@ -42,11 +32,11 @@ const MainContainer = () => {
           </div>
         </Panel>
         <Panel>
-          <LineG />
+          <Bar id="chart" />
         </Panel>
       </div>
     </Tabs>
   );
 };
 
-export default MainContainer;
+export default BarContainer;

@@ -11,7 +11,28 @@ body {
 }
 
 body {
-  background: linear-gradient(45deg, navy, teal);
+  background: linear-gradient(
+    45deg,
+    rgb(194, 167, 13),
+    rgb(198, 179, 74),
+    rgb(194, 167, 13),
+    rgb(198, 179, 74)
+  );
+  // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 //landing bg
@@ -144,20 +165,16 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
-
   padding: 24px 32px;
   border: 1px solid #f1f1f1;
   background-color: #fff;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
-
-  margin: 80px 0;
+  margin: 40px 0;
 }
-
 .tab-list {
   display: flex;
   padding-bottom: 20px;
 }
-
 .tab-progress {
   position: absolute;
   left: -1px;
@@ -165,11 +182,9 @@ body {
   top: 66px;
   height: 3px;
   z-index: 0;
-
   background-color: #492796;
   transform-origin: 0%;
 }
-
 .tab {
   outline: none;
   cursor: pointer;
@@ -182,35 +197,50 @@ body {
   border: 1px solid #f1f1f1;
   box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   margin-right: 24px;
-
   transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out,
     border-color 0.16s ease-in-out;
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
+    &:not(:focus-visible) {
+      box-shadow: none;
+    }
+  }
+  &:focus-visible {
+    box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
+  }
 }
-
-.tab:focus,
-.tab:focus-visible {
-  box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
-}
-
-.tab:focus:not(:focus-visible) {
-  box-shadow: none;
-}
-
 .tab.active {
   background-color: #492796;
   border-color: #492796;
   color: white;
   cursor: default;
 }
-
 .panel-list {
   list-style: none;
   margin: 0;
   padding: 0;
-
   position: relative;
 }
-
 .panel {
   position: absolute;
+}
+
+.side-tabs {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 32px;
+  border: 1px solid #f1f1f1;
+  background-color: #fff;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+.side-tab-list {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  width: 150px;
 }

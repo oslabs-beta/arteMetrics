@@ -41,14 +41,22 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', queryController.login, (req, res) => {
-  const token = jwt.sign(
-    { username: res.locals.user.username },
-    process.env.JWT_KEY
-  );
-  res.status(200).send({
-    success: true,
-    token: token
-  });
+  if (res.locals.user[0] === undefined) {
+    res.json({ error: 'incorrect username or password' });
+  } else {
+    const token = jwt.sign(res.locals.user[0].username, process.env.JWT_KEY);
+    res.status(200).json({
+      success: true,
+      token: token
+    });
+  }
+});
+
+app.post('/testjwt', (req, res) => {
+  const { token } = req.body;
+  const user = jwt.verify(token, process.env.JWT_KEY);
+  console.log('testjwt result: ', user);
+  res.send({ user: user });
 });
 
 //middleware that handles getting all queries based on a user's api_key
