@@ -52,6 +52,9 @@ const MainContainer = () => {
         </div>
         <div className="tab-progress" />
         <Panel>
+          <LineContainer />
+        </Panel>
+        <Panel>
           <div>
             <QueryTime id="chart" />
           </div>
@@ -60,9 +63,6 @@ const MainContainer = () => {
           <div>
             <BarContainer />
           </div>
-        </Panel>
-        <Panel>
-          <LineContainer />
         </Panel>
       </div>
     </Tabs>

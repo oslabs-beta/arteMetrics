@@ -11,7 +11,6 @@ import MetricsContainer from './components/containers/MetricsContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
-import QueriesOverview from './components/QueriesOverview.jsx';
 import Query from './components/Query.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
 
@@ -22,8 +21,9 @@ const client = new ApolloClient({
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.testBackend = this.testBackend.bind(this);
+    this.state = {
+      loggedin: false
+    };
   }
 
   render() {
@@ -38,7 +38,6 @@ class App extends Component {
             <Route path="/metricsd3" component={MetricsContainer} />
             <Route path="/login" component={Login} />
             <Route path="/createaccount" component={CreateAccount} />
-            <Route path="/queriesoverview" component={QueriesOverview} />
             <Route path="/query" component={Query} />
           </Router>
           <div id="particles">

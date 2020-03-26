@@ -14,19 +14,18 @@ const TopNavbar = () => {
           {Cookies.get('token') ? (
             <Nav.Link href="metrics">Metrics</Nav.Link>
           ) : null}
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="queriesoverview">
-              Queries Overview
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
+          {Cookies.get('token') ? (
+            <NavDropdown title="App" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.2">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : null}
         </Nav>
         <Nav.Link href="login">Login</Nav.Link>
         {/* <Form inline>
