@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
+import loadingGif from '../../assets/loading.gif';
 
 const LineG = () => {
   const [data, setData] = useState({});
@@ -109,7 +110,9 @@ const LineG = () => {
       {Object.keys(data).length ? (
         <Line data={data} width={1000} height={500} />
       ) : (
-        <div>Loading</div>
+        <div className="gifPos">
+          <img className="loadingGif" src={loadingGif} />
+        </div>
       )}
     </div>
   );

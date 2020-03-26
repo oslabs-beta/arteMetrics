@@ -113,8 +113,6 @@ class App extends Component {
                 path="/createaccount"
                 render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
               />
-              <Route path="/queriesoverview" component={QueriesOverview} />
-              <Route path="/query" component={Query} />
             </Router>
             {/* <div id="particles">
             <Particles

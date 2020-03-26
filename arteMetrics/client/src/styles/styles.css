@@ -331,17 +331,11 @@ body {
   width: 150px;
 }
 
-.bar:hover {
-  fill: orange;
+.loadingGif {
+  width: 50px;
 }
 
-.svg {
-  overflow-y: scroll;
+.gifPos {
+  padding-left: 60px;
 }
-
-/* .svg {
-  width: 60vw;
-  height: 40vh;
-} */
 /*# sourceMappingURL=styles.css.map */
-

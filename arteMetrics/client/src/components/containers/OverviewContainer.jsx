@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import loadingGif from '../../assets/loading.gif';
 
 const QueriesOverview = () => {
   // allQueries will contain the JSON object with queries in the last 24hrs
@@ -146,13 +147,15 @@ const QueriesOverview = () => {
         {topFive.length ? (
           topFive.map((item, i) => (
             <li key={`top_${[i]}`}>
-              <a href={`/query?id=${item.id}`}>{item.name}</a>
+              <a href={`/metrics?id=${item.id}`}>{item.name}</a>
               .......................
               {Math.floor(item.duration / 1000000)}ms
             </li>
           ))
         ) : (
-          <div>Loading...</div>
+          <div className="gifPos">
+            <img className="loadingGif" src={loadingGif} />
+          </div>
         )}
       </ul>
 
@@ -161,12 +164,14 @@ const QueriesOverview = () => {
         {slowestFive.length ? (
           slowestFive.map((item, i) => (
             <li key={`top_${[i]}`}>
-              <a href={`/query?id=${item[1]}`}>{item[0]}</a>
+              <a href={`/metrics?id=${item[1]}`}>{item[0]}</a>
               .......................{item[2]}
             </li>
           ))
         ) : (
-          <div>Loading...</div>
+          <div className="gifPos">
+            <img className="loadingGif" src={loadingGif} />
+          </div>
         )}
       </ul>
     </div>
