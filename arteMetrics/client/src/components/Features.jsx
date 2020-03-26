@@ -3,6 +3,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import queryScreenShot from '../assets/24hrQuery.png';
 import graphQLLogo from '../assets/graphQL400x400.png';
 import apolloLogo from '../assets/apollo400x400.png';
+import tracingDataScreenshot from '../assets/tracingDataPrelim.png';
 
 const Features = () => {
   return (
@@ -34,7 +35,7 @@ const Features = () => {
       </figure>
 
       <figure>
-        <img src="https://picsum.photos/200/300?grayscale" alt="" />
+        <img id="tracingDataScreenshot" src={tracingDataScreenshot} alt="" />
         <ScrollAnimation animateIn="fadeInRight">
           <figcaption>
             Currently, arteMetrics only provides our users with tracing data but
