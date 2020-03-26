@@ -3,7 +3,10 @@ import Cookies from 'js-cookie';
 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-const TopNavbar = () => {
+const TopNavbar = props => {
+  function logout() {
+    Cookies.remove('token');
+  }
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="home">arteMetrics</Navbar.Brand>
@@ -27,7 +30,14 @@ const TopNavbar = () => {
             </NavDropdown>
           ) : null}
         </Nav>
-        <Nav.Link href="login">Login</Nav.Link>
+        {Cookies.get('token') ? (
+          <Nav.Link href="/" onClick={logout}>
+            Logout
+          </Nav.Link>
+        ) : (
+          <Nav.Link href="login">Login</Nav.Link>
+        )}
+
         {/* <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-success">Search</Button>
