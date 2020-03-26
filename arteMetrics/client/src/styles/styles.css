@@ -13,6 +13,37 @@ body {
   height: 100%;
 }
 
+body {
+  background: linear-gradient(45deg, #003530, #055476, #003530, #055476);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 4s ease infinite;
+          animation: gradient 4s ease infinite;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .navbar {
   font-family: 'Roboto', sans-serif;
 }
@@ -57,6 +88,10 @@ body {
   z-index: -1;
 }
 
+.homesection {
+  height: 60vh;
+}
+
 #hero {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -72,9 +107,9 @@ body {
   width: 400px;
   font-size: 24px;
   color: #fff;
-  margin: auto;
-  position: absolute;
-  top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30vh;
   right: 0;
   left: 0;
 }
@@ -86,8 +121,8 @@ body {
 #features {
   background: #fff;
   padding: 40px 0;
-  margin-top: 40vh;
   position: relative;
+  height: 100%;
 }
 
 #features h2 {
@@ -111,6 +146,14 @@ body {
 
 #features figcaption {
   padding: 40px;
+}
+
+#featureQueryScreenShot {
+  height: 200px;
+}
+
+#tracingDataScreenshot {
+  height: 200px;
 }
 
 #chart {
