@@ -158,17 +158,19 @@ const QueryTime = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <h4>Operation: {queryData.name}</h4>
-      {queryData.start_time && id.length > 0 ? (
-        <h6>Performed at: {new Date(queryData.start_time).toString()}</h6>
-      ) : (
-        <div className="gifPos">
-          <img className="loadingGif" src={loadingGif} />
-        </div>
-      )}
-      <svg ref={svgRef}></svg>
-    </React.Fragment>
+    <div className="chartTab">
+      <React.Fragment>
+        <h4>Operation: {queryData.name}</h4>
+        {queryData.start_time && id.length > 0 ? (
+          <h6>Performed at: {new Date(queryData.start_time).toString()}</h6>
+        ) : (
+          <div className="gifPos">
+            <img className="loadingGif" src={loadingGif} />
+          </div>
+        )}
+        <svg ref={svgRef}></svg>
+      </React.Fragment>
+    </div>
   );
 };
 

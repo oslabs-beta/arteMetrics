@@ -11,8 +11,6 @@ import MainContainer from './components/containers/MainContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
-import Query from './components/Query.jsx';
-import QueriesOverview from './components/QueriesOverview.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
 import FOG from 'vanta/dist/vanta.fog.min';
 import * as THREE from 'three';
