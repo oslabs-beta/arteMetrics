@@ -8,11 +8,11 @@ import './styles/styles.css';
 import Particles from 'react-particles-js';
 import TopNavBar from './components/TopNavBar.jsx';
 import MainContainer from './components/containers/MainContainer.jsx';
-import MetricsContainer from './components/containers/MetricsContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
 import Query from './components/Query.jsx';
+import QueriesOverview from './components/QueriesOverview.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
@@ -71,7 +71,6 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             {/* <Route path="/home" component={Home} /> */}
             <Route path="/metrics" component={MainContainer} />
-            <Route path="/metricsd3" component={MetricsContainer} />
             <Route
               path="/login"
               render={() => <Login verifyjwt={this.verifyjwt} />}
@@ -80,6 +79,7 @@ class App extends Component {
               path="/createaccount"
               render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
             />
+            <Route path="/queriesoverview" component={QueriesOverview} />
             <Route path="/query" component={Query} />
           </Router>
           <div id="particles">

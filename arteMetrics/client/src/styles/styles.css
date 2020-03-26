@@ -7,7 +7,7 @@ body {
   background: linear-gradient(45deg, #003530, #055476, #003530, #055476);
   background-size: 400% 400%;
   -webkit-animation: gradient 4s ease infinite;
-          animation: gradient 4s ease infinite;
+  animation: gradient 4s ease infinite;
 }
 
 @-webkit-keyframes gradient {
@@ -54,11 +54,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 400px;
   font-size: 24px;
   color: #fff;
@@ -89,8 +89,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 1000px;
   margin: 0 auto 20px;
 }
@@ -127,7 +127,7 @@ body {
   left: 50%;
   margin-right: -50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #loginUsername {
@@ -163,11 +163,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .modal-90w {
@@ -176,27 +176,27 @@ body {
 
 .tabs {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 100%;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 24px 32px;
   border: 1px solid #f1f1f1;
   background-color: #fff;
   -webkit-box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
   margin: 40px 0;
 }
 
@@ -216,7 +216,7 @@ body {
   z-index: 0;
   background-color: #492796;
   -webkit-transform-origin: 0%;
-          transform-origin: 0%;
+  transform-origin: 0%;
 }
 
 .tab {
@@ -230,25 +230,27 @@ body {
   background-color: #fff;
   border: 1px solid #f1f1f1;
   -webkit-box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   margin-right: 24px;
-  -webkit-transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out, border-color 0.16s ease-in-out;
-  transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out, border-color 0.16s ease-in-out;
+  -webkit-transition: color 0.16s ease-in-out,
+    background-color 0.16s ease-in-out, border-color 0.16s ease-in-out;
+  transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out,
+    border-color 0.16s ease-in-out;
 }
 
 .tab:focus {
   -webkit-box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
-          box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
+  box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
 }
 
 .tab:focus:not(:focus-visible) {
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .tab:focus-visible {
   -webkit-box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
-          box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
+  box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
 }
 
 .tab.active {
@@ -271,23 +273,23 @@ body {
 
 .side-tabs {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 24px 32px;
   border: 1px solid #f1f1f1;
   background-color: #fff;
   -webkit-box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
   margin: 20px 0;
 }
 
@@ -297,9 +299,13 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   padding-bottom: 20px;
   width: 150px;
+}
+
+.bar:hover {
+  fill: red;
 }
 /*# sourceMappingURL=styles.css.map */
