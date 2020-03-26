@@ -14,6 +14,8 @@ import CreateAccount from './components/CreateAccount.jsx';
 import Query from './components/Query.jsx';
 import QueriesOverview from './components/QueriesOverview.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
+import FOG from 'vanta/dist/vanta.fog.min';
+import * as THREE from 'three';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql'
@@ -26,13 +28,34 @@ class App extends Component {
       loggedin: false,
       username: false
     };
+    this.vantaRef = React.createRef();
     this.verifyjwt = this.verifyjwt.bind(this);
   }
 
   componentWillMount() {
     console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
-      this.verifyjwt();
+      // this.verifyjwt();
+    }
+  }
+
+  componentDidMount() {
+    this.vantaEffect = FOG({
+      el: this.vantaRef.current,
+      THREE: THREE,
+      highlightColor: 0xffc914,
+      midtoneColor: 0xf1f0cc,
+      lowlightColor: 0xe4572e,
+      baseColor: 0x053143,
+      blurFactor: 0.6,
+      zoom: 1,
+      speed: 1
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.vantaEffect) {
+      this.vantaEffect.destroy();
     }
   }
 
@@ -63,36 +86,37 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <div className="App">
-          <TopNavBar
-            loggedin={this.state.loggedin}
-            username={this.state.username}
-          />
-          <Router>
-            <Route path="/" exact component={Home} />
-            {/* <Route path="/home" component={Home} /> */}
-            {/* <Route path="/metrics" component={MainContainer} /> */}
-            <Route
-              path="/metrics"
-              render={() => (
-                <MainContainer
-                  loggedin={this.state.loggedin}
-                  verifyjwt={this.verifyjwt}
-                />
-              )}
+        <div className="vanta" ref={this.vantaRef}>
+          <div className="App">
+            <TopNavBar
+              loggedin={this.state.loggedin}
+              username={this.state.username}
             />
-            <Route
-              path="/login"
-              render={() => <Login verifyjwt={this.verifyjwt} />}
-            />
-            <Route
-              path="/createaccount"
-              render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
-            />
-            <Route path="/queriesoverview" component={QueriesOverview} />
-            <Route path="/query" component={Query} />
-          </Router>
-          <div id="particles">
+            <Router>
+              <Route path="/" exact component={Home} />
+              {/* <Route path="/home" component={Home} /> */}
+              {/* <Route path="/metrics" component={MainContainer} /> */}
+              <Route
+                path="/metrics"
+                render={() => (
+                  <MainContainer
+                    loggedin={this.state.loggedin}
+                    verifyjwt={this.verifyjwt}
+                  />
+                )}
+              />
+              <Route
+                path="/login"
+                render={() => <Login verifyjwt={this.verifyjwt} />}
+              />
+              <Route
+                path="/createaccount"
+                render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
+              />
+              <Route path="/queriesoverview" component={QueriesOverview} />
+              <Route path="/query" component={Query} />
+            </Router>
+            {/* <div id="particles">
             <Particles
               className="landing-bg"
               params={{
@@ -115,6 +139,7 @@ class App extends Component {
                 }
               }}
             />
+          </div> */}
           </div>
         </div>
       </ApolloProvider>

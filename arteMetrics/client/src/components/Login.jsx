@@ -41,7 +41,8 @@ const Login = props => {
           document.cookie = 'token=' + myJson.token;
           console.log('this is verifyjwt: ', verifyjwt);
           verifyjwt();
-          history.push('/metrics');
+          // history.push('/metrics');
+          window.location.assign('/metrics');
         }
       })
       .catch(err => console.log(err));
