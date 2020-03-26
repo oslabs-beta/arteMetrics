@@ -63,7 +63,10 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <div className="App">
-          <TopNavBar loggedin={this.state.loggedin} />
+          <TopNavBar
+            loggedin={this.state.loggedin}
+            username={this.state.username}
+          />
           <Router>
             <Route path="/" exact component={Home} />
             {/* <Route path="/home" component={Home} /> */}

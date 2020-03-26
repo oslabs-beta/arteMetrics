@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const TopNavbar = props => {
+  const { username } = props;
   function logout() {
     Cookies.remove('token');
   }
@@ -30,6 +31,9 @@ const TopNavbar = props => {
             </NavDropdown>
           ) : null}
         </Nav>
+        {Cookies.get('token') ? (
+          <Navbar.Text>Welcome, {username}</Navbar.Text>
+        ) : null}
         {Cookies.get('token') ? (
           <Nav.Link href="/" onClick={logout}>
             Logout
