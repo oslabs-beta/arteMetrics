@@ -64,20 +64,21 @@ const QueryTime = () => {
           paths.push(info['path']);
         });
 
-        const width = 1600;
-        const height = 465;
+        const width = 1400;
+        const height = 1000;
 
         //this sets the main svg tag that will be used to create the chart
         const svg = d3
           .select(svgRef.current)
+          .attr('class', 'svg')
           .attr('width', width)
           .attr('height', height);
 
         //creating the x-axis
         const x = d3
           .scaleLinear()
-          .domain([0, d3.max(root, d => d)])
-          .range([150, width]);
+          .domain([0, d3.max(root, d => d / 1000)])
+          .range([100, width - 100]);
 
         const xAxis = g => {
           g.attr('class', 'x-axis')
@@ -96,6 +97,8 @@ const QueryTime = () => {
           .attr('height', height);
 
         //this renders the bars
+        svg.selectAll('rect');
+
         svg
           .selectAll('rect')
           .data(root[5])
@@ -105,14 +108,18 @@ const QueryTime = () => {
           .attr('y', (d, i) => (i + 1) * 30)
           .attr('width', d => d)
           .attr('height', 25)
+          .attr('class', 'firstbar')
           .data(resolvers)
           .enter()
           .append('rect')
           .attr('x', (d, i) => d['startOffset'] / 1000000)
           .attr('y', (d, i) => (i + 1) * 30)
-          .attr('width', (d, i) => d['duration'] / 1000)
-          .attr('height', 10)
-          .attr('transform', 'translate(150, 10)')
+          .attr('width', (d, i) => {
+            if (i === 0) return d['duration'] / 1000000;
+            else return d['duration'] / 10000;
+          })
+          .attr('height', 6)
+          .attr('transform', 'translate(100, 10)')
           .attr('fill', 'navy')
           .attr('class', 'bar');
 
@@ -130,7 +137,8 @@ const QueryTime = () => {
           .append('text')
           .attr('text-anchor', 'end')
           .text(d => d['path'].join('.'))
-          .attr('x', (d, i) => d['startOffset'] / 1000000 + 140)
+          //  + ' ' + Math.floor(d["duration"]/1000) + 'µs')
+          .attr('x', (d, i) => d['startOffset'] / 1000000 + 90)
           .attr('y', (d, i) => (i + 1) * 30)
           .attr('transform', 'translate(0, 20)')
           .attr('class', 'text');

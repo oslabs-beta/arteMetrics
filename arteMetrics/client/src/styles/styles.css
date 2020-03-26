@@ -330,4 +330,18 @@ body {
   padding-bottom: 20px;
   width: 150px;
 }
+
+.bar:hover {
+  fill: orange;
+}
+
+.svg {
+  overflow-y: scroll;
+}
+
+/* .svg {
+  width: 60vw;
+  height: 40vh;
+} */
 /*# sourceMappingURL=styles.css.map */
+
