@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 
+import logo from './assets/arte_lavender_yellow.png';
+
 ReactDOM.render(
   <BrowserRouter>
     <App />

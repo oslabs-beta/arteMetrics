@@ -139,7 +139,7 @@ const QueriesOverview = () => {
   }, []);
 
   return (
-    <div class="queriesOverview">
+    <div className="queriesOverview">
       <h1>Queries Overview</h1>
       <h3>By Request Rate</h3>
       <ul>
