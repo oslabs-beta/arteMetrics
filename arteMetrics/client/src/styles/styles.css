@@ -302,4 +302,8 @@ body {
   padding-bottom: 20px;
   width: 150px;
 }
+
+.bar:hover {
+  fill: red;
+}
 /*# sourceMappingURL=styles.css.map */
