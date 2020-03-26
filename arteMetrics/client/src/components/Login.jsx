@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from '../assets/arte_red_yellow.png';
 
 import { Link, useHistory, Router } from 'react-router-dom';
 
@@ -48,8 +49,9 @@ const Login = props => {
 
   return (
     <div class="loginpanel">
-      <h2>arteMetrics</h2> <br></br>
-      <p>Login</p>
+      <img className="logo" src={logo} />
+      {/* <h2>arteMetrics</h2> <br></br> */}
+      <p id="loginBanner">Login to arteMetrics</p>
       <form onSubmit={login}>
         <label for="username" translate-context="Label" translate></label>
         <input

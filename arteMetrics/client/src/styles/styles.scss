@@ -5,6 +5,18 @@
 
 //general
 
+@font-face {
+  font-family: 'RobotoMediumItalic';
+  src: local('Roboto'),
+    url('./fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoThin';
+  src: local('Roboto'),
+    url('./fonts/Roboto/Roboto-ThinItalic.ttf') format('truetype');
+}
+
 html,
 body {
   height: 100%;
@@ -35,6 +47,35 @@ body {
   }
 }
 
+// .navbar {
+//   font-family: 'Roboto', sans-serif;
+// }
+
+.navbarlogo {
+  height: 50px;
+  width: 50px;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+.nav-link:hover {
+  color: #ffc914 !important;
+}
+
+.navbar-text {
+  color: #fff !important;
+}
+
+.navbar-light .navbar-brand {
+  font-family: 'RobotoMediumItalic', sans-serif;
+  color: #fff !important;
+}
+.navbar-light .navbar-brand:hover {
+  font-family: 'RobotoMediumItalic', sans-serif;
+  color: #ffc914 !important;
+}
+
 //landing bg
 .landing-bg {
   width: 100%;
@@ -53,6 +94,7 @@ body {
 //hero
 #hero {
   display: flex;
+  font-family: 'RobotoMediumItalic', sans-serif;
   flex-direction: column;
   align-items: center;
   width: 400px;
@@ -71,7 +113,7 @@ body {
 
 //features
 #features {
-  background: ghostWhite;
+  background: #fff;
   padding: 40px 0;
   margin-top: 40vh;
   position: relative;
@@ -98,7 +140,7 @@ body {
 }
 
 #chart {
-  background: ghostWhite;
+  background: #f1f0cc;
   padding: 40px 0;
   margin-top: 5%;
   position: relative;
@@ -106,6 +148,7 @@ body {
 
 .loginpanel {
   background: hsla(0, 0%, 100%, 0.4);
+  font-family: 'RobotoThin', sans-serif;
   padding: 50px 44px 0;
   border: 1px solid #9397cd;
   border-radius: 4px;
@@ -121,6 +164,16 @@ body {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+
+#loginBanner {
+  font-family: 'RobotoMediumItalic';
+  font-size: 1rem;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
 }
 
 #loginUsername {

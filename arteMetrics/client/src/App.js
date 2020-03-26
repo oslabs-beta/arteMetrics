@@ -29,14 +29,15 @@ class App extends Component {
     this.verifyjwt = this.verifyjwt.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
       this.verifyjwt();
     }
   }
 
   componentDidUpdate() {
-    console.log(this.state);
+    console.log('inside componentdidupdtate: ', this.state);
   }
 
   async verifyjwt() {
@@ -44,7 +45,7 @@ class App extends Component {
 
     console.log('this is jwt: ', jwt);
 
-    await fetch('testjwt', {
+    fetch('testjwt', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })
@@ -70,7 +71,16 @@ class App extends Component {
           <Router>
             <Route path="/" exact component={Home} />
             {/* <Route path="/home" component={Home} /> */}
-            <Route path="/metrics" component={MainContainer} />
+            {/* <Route path="/metrics" component={MainContainer} /> */}
+            <Route
+              path="/metrics"
+              render={() => (
+                <MainContainer
+                  loggedin={this.state.loggedin}
+                  verifyjwt={this.verifyjwt}
+                />
+              )}
+            />
             <Route
               path="/login"
               render={() => <Login verifyjwt={this.verifyjwt} />}

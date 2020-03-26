@@ -1,7 +1,8 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import navbarLogo from '../assets/arte_white_clear.png';
 
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, NavLink } from 'react-bootstrap';
 
 const TopNavbar = props => {
   const { username } = props;
@@ -9,14 +10,17 @@ const TopNavbar = props => {
     Cookies.remove('token');
   }
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navbar" expand="lg">
+      <Nav.Link href="/">
+        <img className="navbarlogo" src={navbarLogo} />
+      </Nav.Link>
       <Navbar.Brand href="/">arteMetrics</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {/* <Nav.Link href="home">Home</Nav.Link> */}
           {Cookies.get('token') ? (
-            <Nav.Link href="metrics">Metrics</Nav.Link>
+            <Nav.Link href="/metrics">Metrics</Nav.Link>
           ) : null}
           {Cookies.get('token') ? (
             <NavDropdown title="App" id="basic-nav-dropdown">
