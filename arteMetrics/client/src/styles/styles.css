@@ -330,4 +330,9 @@ body {
   padding-bottom: 20px;
   width: 150px;
 }
+
+.bar:hover {
+  fill: orange;
+}
 /*# sourceMappingURL=styles.css.map */
+
