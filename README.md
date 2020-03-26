@@ -3,7 +3,7 @@
 Creating performance monitors for Apollo implementations of graphQL.
 
 ```js
-const arteMetrics = require("artemetrics");
+const arteMetrics = require('artemetrics');
 arteMetrics.process(request);
 ```
 
@@ -30,7 +30,7 @@ npm install artemetrics
 test installation by running the 'process' method.
 
 ```javascript
-const arteMetrics = require("artemetrics");
+const arteMetrics = require('artemetrics');
 arteMetrics.process(request);
 ```
 
@@ -49,6 +49,7 @@ arteMetrics welomes contributions in any form. If you have something you would l
 [Saejin Kang](https://github.com/skang1004),
 [Noah King](https://github.com/code-ark),
 [Joseph Renolayan](https://github.com/jodaisu),
+[Cecilia Choi][https://github.com/cychoi00]
 
 ## License
 
