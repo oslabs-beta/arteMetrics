@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
+import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import './styles/styles.css';
@@ -22,21 +23,56 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedin: false
+      loggedin: false,
+      username: false
     };
+    this.verifyjwt = this.verifyjwt.bind(this);
+  }
+
+  componentDidMount() {
+    if (Cookies.get('token')) {
+      this.verifyjwt();
+    }
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  async verifyjwt() {
+    const jwt = await Cookies.get('token');
+
+    console.log('this is jwt: ', jwt);
+
+    await fetch('testjwt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: jwt })
+    })
+      .then(data => data.json())
+      .then(myJson => {
+        const state = { ...this.state };
+        state.loggedin = true;
+        state.username = myJson.user;
+        this.setState(state);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
       <ApolloProvider client={client}>
         <div className="App">
-          <TopNavBar />
+          <TopNavBar loggedin={this.state.loggedin} />
           <Router>
             <Route path="/" exact component={Home} />
             <Route path="/home" component={Home} />
             <Route path="/metrics" component={MainContainer} />
             <Route path="/metricsd3" component={MetricsContainer} />
-            <Route path="/login" component={Login} />
+            <Route
+              path="/login"
+              render={() => <Login verifyjwt={this.verifyjwt} />}
+            />
             <Route path="/createaccount" component={CreateAccount} />
             <Route path="/query" component={Query} />
           </Router>

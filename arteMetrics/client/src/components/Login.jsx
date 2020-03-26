@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 import { Link, useHistory, Router } from 'react-router-dom';
 
-const Login = () => {
+const Login = props => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { verifyjwt } = props;
 
   let history = useHistory();
 
@@ -37,6 +38,8 @@ const Login = () => {
         console.log(myJson);
         if (myJson.success) {
           document.cookie = 'token=' + myJson.token;
+          console.log('this is verifyjwt: ', verifyjwt);
+          verifyjwt();
           history.push('/metrics');
         }
       })
