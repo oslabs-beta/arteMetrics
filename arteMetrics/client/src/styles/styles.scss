@@ -23,29 +23,29 @@ body {
 }
 
 body {
-  // background: linear-gradient(
-  //   45deg,
-  //   rgb(0, 53, 48),
-  //   rgb(5, 84, 118),
-  //   rgb(0, 53, 48),
-  //   rgb(5, 84, 118)
-  // );
-  // // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  // background-size: 400% 400%;
-  // animation: gradient 4s ease infinite;
+  background: linear-gradient(
+    45deg,
+    rgb(0, 53, 48),
+    rgb(5, 84, 118),
+    rgb(0, 53, 48),
+    rgb(5, 84, 118)
+  );
+  // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
 }
 
-// @keyframes gradient {
-//   0% {
-//     background-position: 0% 50%;
-//   }
-//   50% {
-//     background-position: 100% 50%;
-//   }
-//   100% {
-//     background-position: 0% 50%;
-//   }
-// }
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 .navbar {
   font-family: 'Roboto', sans-serif;
@@ -90,7 +90,11 @@ body {
   z-index: -1;
 }
 
-//hero
+.homesection {
+  height: 60vh;
+}
+
+// //hero
 #hero {
   display: flex;
   font-family: 'RobotoMediumItalic', sans-serif;
@@ -99,12 +103,13 @@ body {
   width: 400px;
   font-size: 24px;
   color: #fff;
-  margin: auto;
-  position: absolute;
-  top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  // position: absolute;
+  margin-top: 30vh;
+
   right: 0;
   left: 0;
-
   h2 {
     font-size: 48px;
   }
@@ -114,28 +119,29 @@ body {
 #features {
   background: #fff;
   padding: 40px 0;
-  margin-top: 40vh;
   position: relative;
-
+  height: 100%;
+  // display: block;
+  // overflow: auto;
   h2 {
     text-align: center;
   }
-
   figure {
     display: flex;
     align-items: center;
     width: 1000px;
     margin: 0 auto 20px;
   }
-
   //overwrites last-child margin to be 0 since there are no more figures below the last one
   &:last-child {
     margin-bottom: 0;
   }
-
   figcaption {
     padding: 40px;
   }
+}
+#featureQueryScreenShot {
+  height: 200px;
 }
 
 #chart {

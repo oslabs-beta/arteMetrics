@@ -1,26 +1,23 @@
 import React from 'react';
 import ScrollAnimation from 'react-animate-on-scroll';
+import queryScreenShot from '../assets/24hrQuery.png';
+import graphQLLogo from '../assets/graphQL400x400.png';
+import apolloLogo from '../assets/apollo400x400.png';
 
 const Features = () => {
   return (
-    <section id="features">
-      <h2>Features</h2>
+    <section className="homesection" id="features">
+      <h2>An Apollo GraphQL Performance Monitoring Tool</h2>
       <figure>
-        <img src="https://picsum.photos/200/300?grayscale" alt="" />
+        <img className="logo" src={apolloLogo} />
+        <img className="logo" src={graphQLLogo} />
         <ScrollAnimation animateIn="fadeInRight">
           <figcaption>
-            Candy canes tootsie roll fruitcake. Pudding sweet apple pie. Oat
-            cake cake lemon drops liquorice cheesecake danish icing tart tootsie
-            roll. Candy soufflé cupcake topping wafer liquorice gummi bears
-            dragée. Jujubes sweet roll cotton candy topping lemon drops
-            chocolate bar gummies. Brownie wafer macaroon sweet candy canes
-            sweet roll jelly beans macaroon. Icing cake halvah pudding
-            croissant. Chupa chups ice cream soufflé. Sweet danish tiramisu.
-            Chocolate bar croissant candy halvah bonbon jelly sugar plum
-            caramels halvah. Pastry lemon drops pie toffee powder. Sugar plum
-            tiramisu chocolate bar gummies cupcake. Cake chocolate cake
-            marshmallow sesame snaps topping tart liquorice. Tiramisu candy
-            liquorice dessert cupcake tiramisu powder tootsie roll cotton candy.
+            arteMetrics is a free to use, open-source developer tool for the
+            monitoring of your apollo server implementation. arteMetrics is an
+            easy to use NPM package that is injected into the apollo server
+            instantiation and grabs data that developers can then visualize on
+            our web application.
           </figcaption>
         </ScrollAnimation>
       </figure>
@@ -28,39 +25,22 @@ const Features = () => {
       <figure>
         <ScrollAnimation animateIn="fadeInLeft">
           <figcaption>
-            Candy canes tootsie roll fruitcake. Pudding sweet apple pie. Oat
-            cake cake lemon drops liquorice cheesecake danish icing tart tootsie
-            roll. Candy soufflé cupcake topping wafer liquorice gummi bears
-            dragée. Jujubes sweet roll cotton candy topping lemon drops
-            chocolate bar gummies. Brownie wafer macaroon sweet candy canes
-            sweet roll jelly beans macaroon. Icing cake halvah pudding
-            croissant. Chupa chups ice cream soufflé. Sweet danish tiramisu.
-            Chocolate bar croissant candy halvah bonbon jelly sugar plum
-            caramels halvah. Pastry lemon drops pie toffee powder. Sugar plum
-            tiramisu chocolate bar gummies cupcake. Cake chocolate cake
-            marshmallow sesame snaps topping tart liquorice. Tiramisu candy
-            liquorice dessert cupcake tiramisu powder tootsie roll cotton candy.
+            arteMetrics provides 24 hour live monitoring of query statistics and
+            history as well as trace data for the corresponding traces to the
+            developer.
           </figcaption>
         </ScrollAnimation>
-        <img src="https://picsum.photos/200/300?grayscale" alt="" />
+        <img id="featureQueryScreenShot" src={queryScreenShot} alt="" />
       </figure>
 
       <figure>
         <img src="https://picsum.photos/200/300?grayscale" alt="" />
         <ScrollAnimation animateIn="fadeInRight">
           <figcaption>
-            Candy canes tootsie roll fruitcake. Pudding sweet apple pie. Oat
-            cake cake lemon drops liquorice cheesecake danish icing tart tootsie
-            roll. Candy soufflé cupcake topping wafer liquorice gummi bears
-            dragée. Jujubes sweet roll cotton candy topping lemon drops
-            chocolate bar gummies. Brownie wafer macaroon sweet candy canes
-            sweet roll jelly beans macaroon. Icing cake halvah pudding
-            croissant. Chupa chups ice cream soufflé. Sweet danish tiramisu.
-            Chocolate bar croissant candy halvah bonbon jelly sugar plum
-            caramels halvah. Pastry lemon drops pie toffee powder. Sugar plum
-            tiramisu chocolate bar gummies cupcake. Cake chocolate cake
-            marshmallow sesame snaps topping tart liquorice. Tiramisu candy
-            liquorice dessert cupcake tiramisu powder tootsie roll cotton candy.
+            Currently, arteMetrics only provides our users with tracing data but
+            the team is working hard to add other performance metrics to our
+            featureset and are also working to add support for tracing as well
+            as Gateway monitoring in Apollo Federation.
           </figcaption>
         </ScrollAnimation>
       </figure>
