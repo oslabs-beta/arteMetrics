@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import loadingGif from '../../assets/loading.gif';
 
 const QueriesOverview = () => {
   // allQueries will contain the JSON object with queries in the last 24hrs
@@ -152,7 +153,10 @@ const QueriesOverview = () => {
             </li>
           ))
         ) : (
-          <div>Loading...</div>
+          <div>
+            {' '}
+            <img className="loadingGif" src={loadingGif} />
+          </div>
         )}
       </ul>
 
@@ -166,7 +170,10 @@ const QueriesOverview = () => {
             </li>
           ))
         ) : (
-          <div>Loading...</div>
+          <div>
+            {' '}
+            <img className="loadingGif" src={loadingGif} />
+          </div>
         )}
       </ul>
     </div>
