@@ -153,8 +153,7 @@ const QueriesOverview = () => {
             </li>
           ))
         ) : (
-          <div>
-            {' '}
+          <div className="gifPos">
             <img className="loadingGif" src={loadingGif} />
           </div>
         )}
@@ -170,8 +169,7 @@ const QueriesOverview = () => {
             </li>
           ))
         ) : (
-          <div>
-            {' '}
+          <div className="gifPos">
             <img className="loadingGif" src={loadingGif} />
           </div>
         )}

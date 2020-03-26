@@ -110,7 +110,7 @@ const LineG = () => {
       {Object.keys(data).length ? (
         <Line data={data} width={1000} height={500} />
       ) : (
-        <div>
+        <div className="gifPos">
           <img className="loadingGif" src={loadingGif} />
         </div>
       )}

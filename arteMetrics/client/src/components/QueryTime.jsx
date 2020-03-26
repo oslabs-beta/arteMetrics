@@ -163,7 +163,7 @@ const QueryTime = () => {
       {queryData.start_time && id.length > 0 ? (
         <h6>Performed at: {new Date(queryData.start_time).toString()}</h6>
       ) : (
-        <div>
+        <div className="gifPos">
           <img className="loadingGif" src={loadingGif} />
         </div>
       )}
