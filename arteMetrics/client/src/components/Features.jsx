@@ -22,7 +22,6 @@ const Features = () => {
           </figcaption>
         </ScrollAnimation>
       </figure>
-
       <figure>
         <ScrollAnimation animateIn="fadeInLeft">
           <figcaption>
@@ -33,7 +32,6 @@ const Features = () => {
         </ScrollAnimation>
         <img id="featureQueryScreenShot" src={queryScreenShot} alt="" />
       </figure>
-
       <figure>
         <img id="tracingDataScreenshot" src={tracingDataScreenshot} alt="" />
         <ScrollAnimation animateIn="fadeInRight">

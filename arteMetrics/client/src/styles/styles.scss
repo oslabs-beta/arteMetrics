@@ -154,9 +154,6 @@ body {
   position: relative;
 }
 
-.bar:hover {
-  fill: orange;
-}
 .loginpanel {
   background: hsla(0, 0%, 100%, 0.4);
   font-family: 'RobotoThin', sans-serif;
@@ -320,40 +317,4 @@ body {
 
 .gifPos {
   padding-left: 60px;
-}
-
-.performanceGif {
-  margin-left: 60px;
-  width: 50px;
-}
-
-// .mainContainer {
-//   margin-left: 30px;
-//   margin-right: 50px;
-// }
-
-.chartTab {
-  // display: flex;
-  // flex-direction: column;
-  // background-color: orange;
-  margin-left: 200px;
-}
-
-.overviewCard {
-  background-color: rgb(248, 248, 248);
-  padding: 20px;
-  width: 400px;
-}
-
-.query {
-  display: flex;
-}
-
-.spacer {
-  flex: 2;
-}
-
-.ms {
-  font-size: 10px;
-  color: #636363;
 }
