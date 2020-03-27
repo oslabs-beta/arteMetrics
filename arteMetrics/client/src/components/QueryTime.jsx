@@ -1,3 +1,4 @@
+//this component renders the overall tracing chart for a specific query
 import * as d3 from 'd3';
 import React, { useState, useEffect, useRef } from 'react';
 import loadingGif from '../assets/loading.gif';
@@ -48,6 +49,7 @@ const QueryTime = () => {
       })
       .catch(err => console.log(err));
     if (id.length > 0) {
+      //making a fetch request to grab a query based on it's id to SQL database
       d3.json(`/query/${id}`).then(queries => {
         const {
           id,
@@ -57,9 +59,11 @@ const QueryTime = () => {
           end_time,
           duration
         } = queries[0];
+        //pushing the root query information into rootQuery
         rootQuery.push(id, api_key, name, start_time, end_time, duration);
         const resolvers = queries[0].resolvers;
         resolvers.forEach((info, i) => {
+          //pushing resolver information into respective arrays declared above
           startOffset.push(info['startOffset']);
           resolverDuration.push(info['duration']);
           paths.push(info['path']);
@@ -70,22 +74,24 @@ const QueryTime = () => {
         resolverDuration.push(response);
 
 
+        //setting a height and width variable for the svg image
         const width = 1400;
         const height = 1000;
 
-        //this sets the main svg tag that will be used to create the chart
+        //creating a svg tag and appending it to svgRef.current
         const svg = d3
           .select(svgRef.current)
           .attr('class', 'svg')
           .attr('width', width)
           .attr('height', height);
 
-        //creating the x-axis
+        //creating the x-axis with the domain set to 0 - the max duration value from root query and setting the range to fit inside of the actual web page
         const x = d3
           .scaleLinear()
           .domain([0, d3.max(root, d => d / 1000)])
           .range([100, width - 100]);
 
+        //creating an x-axis
         const xAxis = g => {
           g.attr('class', 'x-axis')
             .attr('transform', `translate(0, 30)`)
@@ -94,7 +100,7 @@ const QueryTime = () => {
 
         svg.append('g').call(xAxis);
 
-        //appending a rect tag to svg
+        //creating an initial rect element that appends to the svg element created above
         svg
           .append('rect')
           .attr('class', 'background')
@@ -102,7 +108,8 @@ const QueryTime = () => {
           .attr('width', width)
           .attr('height', height);
 
-        //this renders the bars
+
+        //this renders the bars that display the query data (need to refine svg bars)
         svg
           .selectAll('rect')
           .data(root[5])
@@ -140,7 +147,7 @@ const QueryTime = () => {
           .attr('transform', 'translate(100, 10)')
           .attr('fill', 'navy')
 
-        //this renders the path's of each bar
+        //this renders text elements that contain the paths of each query, sticking them next to their respective bars
         svg
           .selectAll('text')
           .data(root[2])
@@ -175,17 +182,19 @@ const QueryTime = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <h4>Operation: {queryData.name}</h4>
-      {queryData.start_time && id.length > 0 ? (
-        <h6>Performed at: {new Date(queryData.start_time).toString()}</h6>
-      ) : (
-        <div className="gifPos">
-          <img className="loadingGif" src={loadingGif} />
-        </div>
-      )}
-      <svg ref={svgRef}></svg>
-    </React.Fragment>
+    <div className="chartTab">
+      <React.Fragment>
+        <h4>Operation: {queryData.name}</h4>
+        {queryData.start_time && id.length > 0 ? (
+          <h6>Performed at: {new Date(queryData.start_time).toString()}</h6>
+        ) : (
+          <div className="gifPos">
+            <img className="loadingGif" src={loadingGif} />
+          </div>
+        )}
+        <svg ref={svgRef}></svg>
+      </React.Fragment>
+    </div>
   );
 };
 

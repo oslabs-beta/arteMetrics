@@ -3,7 +3,7 @@ import loadingGif from '../../assets/loading.gif';
 
 const QueriesOverview = () => {
   // allQueries will contain the JSON object with queries in the last 24hrs
-  const [allQueries, setAllQueries] = useState([]);
+  const [latest, setLatest] = useState([]);
   const [topFive, setTopFive] = useState([]);
   const [slowestFive, setSlowestFive] = useState([]);
 
@@ -31,7 +31,7 @@ const QueriesOverview = () => {
         // queries array
         const data = myJson.data.allQueries;
         console.log('data back: ', data);
-        setAllQueries(data);
+
         // filter the results to only show top 5 ('frequent' state)
         const names = data.map(item => item.name);
         const counter = {};
@@ -141,39 +141,52 @@ const QueriesOverview = () => {
 
   return (
     <div className="queriesOverview">
-      <h1>Queries Overview</h1>
-      <h3>By Request Rate</h3>
-      <ul>
-        {topFive.length ? (
-          topFive.map((item, i) => (
-            <li key={`top_${[i]}`}>
-              <a href={`/metrics?id=${item.id}`}>{item.name}</a>
-              .......................
-              {Math.floor(item.duration / 1000000)}ms
-            </li>
-          ))
-        ) : (
-          <div className="gifPos">
-            <img className="loadingGif" src={loadingGif} />
-          </div>
-        )}
-      </ul>
+      <div className="overviewCard">
+        <h3>Queries Overview</h3>
+        <h6>By Request Rate</h6>
+        <ul>
+          {topFive.length ? (
+            topFive.map((item, i) => (
+              <div key={`top_${[i]}`}>
+                <div className="query">
+                  <div>
+                    <a href={`/metrics?id=${item.id}`}>{item.name}</a>
+                  </div>
+                  <div className="spacer"></div>
+                  <div className="ms">
+                    {Math.floor(item.duration / 1000000)}ms
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="gifPos">
+              <img className="performanceGif" src={loadingGif} />
+            </div>
+          )}
+        </ul>
 
-      <h3>Slowest Response Time</h3>
-      <ul>
-        {slowestFive.length ? (
-          slowestFive.map((item, i) => (
-            <li key={`top_${[i]}`}>
-              <a href={`/metrics?id=${item[1]}`}>{item[0]}</a>
-              .......................{item[2]}
-            </li>
-          ))
-        ) : (
-          <div className="gifPos">
-            <img className="loadingGif" src={loadingGif} />
-          </div>
-        )}
-      </ul>
+        <h6>Slowest Response Time</h6>
+        <ul>
+          {slowestFive.length ? (
+            slowestFive.map((item, i) => (
+              <div key={`top_${[i]}`}>
+                <div className="query">
+                  <div>
+                    <a href={`/metrics?id=${item[1]}`}>{item[0]}</a>
+                  </div>
+                  <div className="spacer"></div>
+                  <div className="ms">{item[2]}</div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="gifPos">
+              <img className="performanceGif" src={loadingGif} />
+            </div>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };

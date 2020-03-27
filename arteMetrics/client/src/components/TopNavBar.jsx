@@ -35,9 +35,9 @@ const TopNavbar = props => {
             </NavDropdown>
           ) : null}
         </Nav>
-        {/* {Cookies.get('token') ? (
+        {Cookies.get('token') ? (
           <Navbar.Text>Welcome, {username}</Navbar.Text>
-        ) : null} */}
+        ) : null}
         {Cookies.get('token') ? (
           <Nav.Link href="/" onClick={logout}>
             Logout
