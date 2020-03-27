@@ -8,6 +8,7 @@ const QueryTime = () => {
   const resolverDuration = [];
   const paths = [];
   const rootQuery = [];
+  const response = [];
   const [startOffSet, setStartOffset] = useState(startOffset);
   const [root, setRoot] = useState(rootQuery);
   const [path, setPath] = useState(paths);
@@ -30,9 +31,9 @@ const QueryTime = () => {
           query(id: ${id}) {
             id
             name
-            duration
             start_time
             end_time
+            duration
             resolvers
           }
         }`
@@ -63,6 +64,11 @@ const QueryTime = () => {
           resolverDuration.push(info['duration']);
           paths.push(info['path']);
         });
+        const responseTime = rootQuery[5]- ((startOffSet[startOffSet.length-1]) - resolver[resolver.length-1]);
+        const responseOffset = startOffSet[startOffSet.length - 1] + resolver[resolver.length - 1];
+        response.push(responseTime, responseOffset);
+        resolverDuration.push(response);
+
 
         const width = 1400;
         const height = 1000;
@@ -97,8 +103,6 @@ const QueryTime = () => {
           .attr('height', height);
 
         //this renders the bars
-        svg.selectAll('rect');
-
         svg
           .selectAll('rect')
           .data(root[5])
@@ -122,6 +126,19 @@ const QueryTime = () => {
           .attr('transform', 'translate(100, 10)')
           .attr('fill', 'navy')
           .attr('class', 'bar');
+
+          console.log(resolver.length)
+          console.log(resolver)
+          svg.selectAll('rect')
+          .data(resolver)
+          .enter()
+          .append('rect')
+          .attr('x', (d, i) => d[d.length - 1][1] / 1000000)
+          .attr('y', (d, i) =>  d.length * 30)
+          .attr('width', (d, i) => d[d.length - 1][0] / 1000)
+          .attr('height', 6)
+          .attr('transform', 'translate(100, 10)')
+          .attr('fill', 'navy')
 
         //this renders the path's of each bar
         svg
