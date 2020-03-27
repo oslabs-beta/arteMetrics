@@ -33,7 +33,7 @@ class App extends Component {
   componentWillMount() {
     console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
-      // this.verifyjwt();
+      this.verifyjwt();
     }
   }
 
@@ -66,7 +66,7 @@ class App extends Component {
 
     console.log('this is jwt: ', jwt);
 
-    fetch('testjwt', {
+    await fetch('testjwt', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })

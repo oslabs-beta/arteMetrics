@@ -1,3 +1,4 @@
+//defines SQL table to create/reference by Sequelize
 const user = (sequelize, DataTypes) => {
   const User = sequelize.define('users', {
     username: {

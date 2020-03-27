@@ -6,15 +6,19 @@ const moment = require('moment');
 const resolvers = {};
 
 resolvers.Query = {
+  //returns specific users based on id passed by frontend
   user: async (parent, { id }, { models }) => {
     return models.User.findByPk(id);
   },
+  //returns all users
   allUsers: async (parent, args, { models }) => {
     return await models.User.findAll();
   },
+  //returns queries based on queryid
   query: async (parent, { id }, { models }) => {
     return models.Queries.findByPk(id);
   },
+  //returns all queries
   allQueries: async (parent, args, { models }) => {
     return await models.Queries.findAll({
       where: {
@@ -30,6 +34,7 @@ resolvers.Query = {
   }
 };
 
+//creates a new user
 resolvers.Mutation = {
   createUser: async (parent, { username, password }, { models }) => {
     console.log('inside mutation');

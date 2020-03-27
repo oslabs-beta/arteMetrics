@@ -1,11 +1,13 @@
 @font-face {
   font-family: 'RobotoMediumItalic';
-  src: local("Roboto"), url("./fonts/Roboto/Roboto-MediumItalic.ttf") format("truetype");
+  src: local('Roboto'),
+    url('./fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'RobotoThin';
-  src: local("Roboto"), url("./fonts/Roboto/Roboto-ThinItalic.ttf") format("truetype");
+  src: local('Roboto'),
+    url('./fonts/Roboto/Roboto-ThinItalic.ttf') format('truetype');
 }
 
 html,
@@ -17,7 +19,7 @@ body {
   background: linear-gradient(45deg, #003530, #055476, #003530, #055476);
   background-size: 400% 400%;
   -webkit-animation: gradient 4s ease infinite;
-          animation: gradient 4s ease infinite;
+  animation: gradient 4s ease infinite;
 }
 
 @-webkit-keyframes gradient {
@@ -99,11 +101,11 @@ body {
   font-family: 'RobotoMediumItalic', sans-serif;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 400px;
   font-size: 24px;
   color: #fff;
@@ -134,8 +136,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 1000px;
   margin: 0 auto 20px;
 }
@@ -163,10 +165,6 @@ body {
   position: relative;
 }
 
-.bar:hover {
-  fill: orange;
-}
-
 .loginpanel {
   background: rgba(255, 255, 255, 0.4);
   font-family: 'RobotoThin', sans-serif;
@@ -185,7 +183,7 @@ body {
   left: 50%;
   margin-right: -50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #loginBanner {
@@ -264,7 +262,7 @@ body {
   border: 1px solid #f1f1f1;
   background-color: #fff;
   -webkit-box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
 }
 
 .tab-list {
@@ -382,8 +380,6 @@ body {
 }
 
 /*------------------------------------------------------------------------------------------------------*/
-
-
 
 #team #profile-group > div:nth-of-type(1) .profile-photo {
   background: url('../images/brian.png');
@@ -552,8 +548,8 @@ body {
 
 .spacer {
   -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  -ms-flex: 2;
+  flex: 2;
 }
 
 .ms {

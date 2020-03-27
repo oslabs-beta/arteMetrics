@@ -11,7 +11,7 @@ const CreateAccount = props => {
 
   function createUser(e) {
     e.preventDefault();
-    console.log('inside fetchGQL');
+    console.log('inside createUser');
     if (password === confirmPassword) {
       fetch('/graphql', {
         method: 'POST',
