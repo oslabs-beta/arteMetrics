@@ -5,32 +5,37 @@ import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import BarContainer from './BarContainer.jsx';
 import LineContainer from './LineContainer.jsx';
+import OverviewContainer from './OverviewContainer.jsx';
 
-const MainContainer = () => {
+// grab the query id by URL
+const urlParams = window.location.search;
+const id = urlParams.substr(4);
+
+const MainContainer = props => {
   let history = useHistory();
   let user;
+  const { loggedin } = props;
+  console.log('loggedin in maincontainer: ', loggedin);
 
-  async function verifyjwt() {
-    const jwt = await Cookies.get('token');
+  // async function verifyjwt() {
+  //   const jwt = await Cookies.get('token');
 
-    await fetch('testjwt', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: jwt })
-    })
-      .then(data => data.json())
-      .then(myJson => {
-        user = myJson.user;
-        return user;
-      })
-      .catch(err => console.log(err));
-  }
+  //   await fetch('testjwt', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ token: jwt })
+  //   })
+  //     .then(data => data.json())
+  //     .then(myJson => {
+  //       user = myJson.user;
+  //       return user;
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
-  if (!Cookies.get('token')) {
-    history.push('/');
-  } else {
-    verifyjwt();
-  }
+  // if (!loggedin) {
+  //   history.push('/');
+  // }
 
   const cn = (...args) => args.filter(Boolean).join(' ');
 
@@ -42,28 +47,61 @@ const MainContainer = () => {
       </button>
     );
   };
+
   return (
     <Tabs>
-      <div className="tabs">
-        <div className="tab-list">
-          <Tab>24 Hour Timeline</Tab>
-          <Tab>Tracing</Tab>
-          <Tab>Bar Graph</Tab>
-        </div>
-        <div className="tab-progress" />
-        <Panel>
-          <div>
-            <QueryTime id="chart" />
+      <div className="mainContainer">
+        {id.length > 0 ? (
+          <div className="tab-list">
+            <Tab>Tracing</Tab>
+            <Tab>Queries Over Time</Tab>
+            <Tab>Performance</Tab>
+            <Tab>Bar Graph</Tab>
           </div>
-        </Panel>
-        <Panel>
-          <div>
-            <BarContainer />
+        ) : (
+          <div className="tab-list">
+            <Tab>Queries Over Time</Tab>
+            <Tab>Performance</Tab>
+            <Tab>Bar Graph</Tab>
           </div>
-        </Panel>
-        <Panel>
-          <LineContainer />
-        </Panel>
+        )}
+
+        {id.length > 0 ? (
+          <div>
+            <div className="tab-progress" />
+            <Panel>
+              <div>
+                <QueryTime id="chart" />
+              </div>
+            </Panel>
+            <Panel>
+              <LineContainer />
+            </Panel>
+            <Panel>
+              <OverviewContainer />
+            </Panel>
+            <Panel>
+              <div>
+                <BarContainer />
+              </div>
+            </Panel>
+          </div>
+        ) : (
+          <div>
+            <div className="tab-progress" />
+            <Panel>
+              <LineContainer />
+            </Panel>
+            <Panel>
+              <OverviewContainer />
+            </Panel>
+            <Panel>
+              <div>
+                <BarContainer />
+              </div>
+            </Panel>
+          </div>
+        )}
       </div>
     </Tabs>
   );

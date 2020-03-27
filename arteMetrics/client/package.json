@@ -22,6 +22,7 @@
     "d3": "^5.15.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "file-loader": "^6.0.0",
     "graphql": "^14.6.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.10.3",
@@ -43,7 +44,8 @@
     "react-vis": "^1.11.7",
     "sequelize": "^5.21.5",
     "sequelize-cli": "^5.5.1",
-    "timelines-chart": "^2.9.0"
+    "three": "^0.115.0",
+    "vanta": "^0.5.12"
   },
   "scripts": {
     "start": "react-scripts start",

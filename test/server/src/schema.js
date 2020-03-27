@@ -1,34 +1,49 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-  # The Query type is used to query the database
   type Query {
-    launches(pageSize: Int, after: String): LaunchConnection!
+    launches(
+      """
+      The number of results to show. Must be >= 1. Default = 20
+      """
+      pageSize: Int
+      """
+      If you add a cursor here, it will only return results _after_ this cursor
+      """
+      after: String
+    ): LaunchConnection!
     launch(id: ID!): Launch
     me: User
   }
 
-  type LaunchConnection { # add this below the Query type as an additional type.
-    cursor: String!
-    hasMore: Boolean!
-    launches: [Launch]!
-  }
-
-  # Mutation is used to update the database
-
   type Mutation {
+    # if false, signup failed -- check errors
     bookTrips(launchIds: [ID]!): TripUpdateResponse!
-    cancelTrip(launchId: ID!): TripUpdateResponse!
-    login(email: String): String
-  }
 
-  # the TripUpdateResponse object type is specifically defined to send
-  # mutation responses.
+    # if false, cancellation failed -- check errors
+    cancelTrip(launchId: ID!): TripUpdateResponse!
+
+    login(email: String): String # login token
+
+    # for use with the iOS tutorial
+    uploadProfileImage(file: Upload!): User
+  }
 
   type TripUpdateResponse {
     success: Boolean!
     message: String
     launches: [Launch]
+  }
+
+  """
+  Simple wrapper around our list of launches that contains a cursor to the
+  last item in the list. Pass this cursor to the launches query to fetch results
+  after these.
+  """
+  type LaunchConnection {
+    cursor: String!
+    hasMore: Boolean!
+    launches: [Launch]!
   }
 
   type Launch {
@@ -39,21 +54,22 @@ const typeDefs = gql`
     isBooked: Boolean!
   }
 
-  type User {
-    id: ID!
-    email: String!
-    trips: [Launch]!
-  }
-
   type Rocket {
     id: ID!
     name: String
     type: String
   }
 
+  type User {
+    id: ID!
+    email: String!
+    profileImage: String
+    trips: [Launch]!
+  }
+
   type Mission {
     name: String
-    missionPatch(mission: String, size: PatchSize): String
+    missionPatch(size: PatchSize): String
   }
 
   enum PatchSize {

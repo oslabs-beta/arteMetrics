@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import logo from '../assets/arte_red_yellow.png';
 
 import { Link, useHistory, Router } from 'react-router-dom';
 
-const Login = () => {
+const Login = props => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { verifyjwt } = props;
 
   let history = useHistory();
 
@@ -37,7 +39,10 @@ const Login = () => {
         console.log(myJson);
         if (myJson.success) {
           document.cookie = 'token=' + myJson.token;
-          history.push('/metrics');
+          console.log('this is verifyjwt: ', verifyjwt);
+          verifyjwt();
+          // history.push('/metrics');
+          window.location.assign('/metrics');
         }
       })
       .catch(err => console.log(err));
@@ -45,6 +50,9 @@ const Login = () => {
 
   return (
     <div class="loginpanel">
+      <img className="logo" src={logo} />
+      {/* <h2>arteMetrics</h2> <br></br> */}
+      <p id="loginBanner">Login to arteMetrics</p>
       <form onSubmit={login}>
         <label for="username" translate-context="Label" translate></label>
         <input
