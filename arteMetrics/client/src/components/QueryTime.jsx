@@ -9,6 +9,7 @@ const QueryTime = () => {
   const resolverDuration = [];
   const paths = [];
   const rootQuery = [];
+  const response = [];
   const [startOffSet, setStartOffset] = useState(startOffset);
   const [root, setRoot] = useState(rootQuery);
   const [path, setPath] = useState(paths);
@@ -31,9 +32,9 @@ const QueryTime = () => {
           query(id: ${id}) {
             id
             name
-            duration
             start_time
             end_time
+            duration
             resolvers
           }
         }`
@@ -67,6 +68,11 @@ const QueryTime = () => {
           resolverDuration.push(info['duration']);
           paths.push(info['path']);
         });
+        const responseTime = rootQuery[5]- ((startOffSet[startOffSet.length-1]) - resolver[resolver.length-1]);
+        const responseOffset = startOffSet[startOffSet.length - 1] + resolver[resolver.length - 1];
+        response.push(responseTime, responseOffset);
+        resolverDuration.push(response);
+
 
         //setting a height and width variable for the svg image
         const width = 1400;
@@ -102,6 +108,7 @@ const QueryTime = () => {
           .attr('width', width)
           .attr('height', height);
 
+
         //this renders the bars that display the query data (need to refine svg bars)
         svg
           .selectAll('rect')
@@ -126,6 +133,19 @@ const QueryTime = () => {
           .attr('transform', 'translate(100, 10)')
           .attr('fill', 'navy')
           .attr('class', 'bar');
+
+          console.log(resolver.length)
+          console.log(resolver)
+          svg.selectAll('rect')
+          .data(resolver)
+          .enter()
+          .append('rect')
+          .attr('x', (d, i) => d[d.length - 1][1] / 1000000)
+          .attr('y', (d, i) =>  d.length * 30)
+          .attr('width', (d, i) => d[d.length - 1][0] / 1000)
+          .attr('height', 6)
+          .attr('transform', 'translate(100, 10)')
+          .attr('fill', 'navy')
 
         //this renders text elements that contain the paths of each query, sticking them next to their respective bars
         svg
