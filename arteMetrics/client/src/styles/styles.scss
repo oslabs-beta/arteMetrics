@@ -133,9 +133,10 @@ body {
     margin: 0 auto 20px;
   }
   //overwrites last-child margin to be 0 since there are no more figures below the last one
-  &:last-child {
-    margin-bottom: 0;
-  }
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
+
   figcaption {
     padding: 40px;
   }
