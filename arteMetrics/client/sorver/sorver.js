@@ -2,6 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
 const path = require('path');
+const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -9,6 +10,8 @@ const jwt = require('jsonwebtoken');
 const PORT = 8080;
 
 const app = express();
+
+app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
 
 const schema = require('./schema.js');
 const resolvers = require('./resolvers.js');
