@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
 import ScrollAnimation from 'react-animate-on-scroll';
 
-
 const Team = () => {
   const [isCreatorProfiles] = useState([
     {
       name: 'Brian Chiang',
-      github: 'https://github.com/ch-brian',
+      github: 'https://github.com/ch-brian'
       // linkedin: 'https://www.linkedin.com/in/darrenDzhu'
     },
     {
       name: 'Saejin Kang',
-      github: 'https://github.com/skang1004',
+      github: 'https://github.com/skang1004'
       // linkedin: 'https://www.linkedin.com/in/kendall-lu'
     },
     {
       name: 'Joseph R',
-      github: 'https://github.com/jodaisu',
+      github: 'https://github.com/jodaisu'
       // linkedin: 'https://www.linkedin.com/in/rqreyes'
     },
     {
       name: 'Sean Arseneault',
-      github: 'https://github.com/itsmesean',
+      github: 'https://github.com/itsmesean'
       // linkedin: 'https://www.linkedin.com/in/kcrystalchen'
     },
     {
       name: 'Noah King',
-      github: 'https://github.com/code-ark',
+      github: 'https://github.com/code-ark'
       // linkedin: 'https://www.linkedin.com/in/kcrystalchen'
     }
   ]);
