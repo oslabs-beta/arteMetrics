@@ -18,6 +18,7 @@ const queryController = require('./controllers/queryController');
 
 require('dotenv').config();
 
+//declaration of new instance of ApolloServer
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
@@ -28,18 +29,16 @@ const server = new ApolloServer({
   }
 });
 
+//connecting Apollo to express @/graphql endpoint
 server.applyMiddleware({ app, path: '/graphql' });
 
+//express stuff
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  console.log('Hello World from express app.get to /');
-  res.sendStatus(200);
-});
-
+//RESTFUL endpoint for login just because
 app.post('/login', queryController.login, (req, res) => {
   if (res.locals.user[0] === undefined) {
     res.json({ error: 'incorrect username or password' });
@@ -52,6 +51,7 @@ app.post('/login', queryController.login, (req, res) => {
   }
 });
 
+//endpoint to verify jwts stored in cookies to send username back to frontend so the frontend knows who is logged in
 app.post('/testjwt', (req, res) => {
   const { token } = req.body;
   const user = jwt.verify(token, process.env.JWT_KEY);
@@ -59,24 +59,20 @@ app.post('/testjwt', (req, res) => {
   res.send({ user: user });
 });
 
-//middleware that handles getting all queries based on a user's api_key
-app.get('/query', queryController.getAllQueries, (req, res) => {
-  res.status(200).json(res.locals.queries);
-});
+// //middleware that handles getting all queries based on a user's api_key
+// app.get('/query', queryController.getAllQueries, (req, res) => {
+//   res.status(200).json(res.locals.queries);
+// });
 
-//middleware that handles getting tracing info from a query based on user's api_key
-app.get('/query/:id', queryController.getQueryById, (req, res) => {
-  res.status(200).json(res.locals.query);
-});
-
-app.get('/test', (req, res) => {
-  console.log('backend responding to test button');
-  res.status(200).send({ response: 'proxied server functional' });
-});
+// //middleware that handles getting tracing info from a query based on user's api_key
+// app.get('/query/:id', queryController.getQueryById, (req, res) => {
+//   res.status(200).json(res.locals.query);
+// });
 
 //this is to verify authentication of SQL deployment
 models.sequelize.authenticate();
 
+//connects the apolloserver to the SQL database.
 models.sequelize.sync().then(async () => {
   app.listen(PORT, () => {
     console.log(
