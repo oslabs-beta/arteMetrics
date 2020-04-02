@@ -1,15 +1,21 @@
 const user = (sequelize, DataTypes) => {
-  const User = sequelize.define('users', {
-    username: {
-      type: DataTypes.STRING,
-      unique: true
+  const User = sequelize.define(
+    'users',
+    {
+      username: {
+        type: DataTypes.STRING,
+        unique: true
+      },
+      password: DataTypes.STRING
     },
-    password: DataTypes.STRING
-  });
-
-  // User.associate = models => {
-  //   User.hasMany(models.Message, { onDelete: 'CASCADE' });
-  // };
+    {
+      classMethods: {
+        associate: function(models) {
+          User.hasMany(models.APIKeys);
+        }
+      }
+    }
+  );
 
   return User;
 };
