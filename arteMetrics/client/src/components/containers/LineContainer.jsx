@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
-import Line from '../charts/Line.jsx';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import QueriesOverNTIme from '../charts/QueriesOverNTime.jsx';
+
+const GET_DATA = gql`
+  query {
+    allQueries {
+      start_time
+    }
+  }
+`;
 
 const LineContainer = () => {
+  const { data, loading, error } = useQuery(GET_DATA);
+  if (loading) return <p>Loading ...</p>;
   const cn = (...args) => args.filter(Boolean).join(' ');
 
   const Tab = ({ children }) => {
@@ -23,16 +35,37 @@ const LineContainer = () => {
         </div>
         <Panel>
           <div>
-            <Line id="chart" />
+            <QueriesOverNTIme
+              id="chart"
+              scope="Ten Minutes"
+              amount={10}
+              unit="minutes"
+              granularity="minute"
+              data={data}
+            />
           </div>
         </Panel>
         <Panel>
           <div>
-            <Line id="chart" />
+            <QueriesOverNTIme
+              id="chart"
+              scope="hour"
+              amount={60}
+              unit="minutes"
+              granularity="minute"
+              data={data}
+            />
           </div>
         </Panel>
         <Panel>
-          <Line id="chart" />
+          <QueriesOverNTIme
+            id="chart"
+            scope="day"
+            amount={24}
+            unit="hours"
+            granularity="hour"
+            data={data}
+          />
         </Panel>
       </div>
     </Tabs>
