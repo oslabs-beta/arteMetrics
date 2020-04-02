@@ -33,7 +33,7 @@ class App extends Component {
   componentWillMount() {
     console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
-      this.verifyjwt();
+      // this.verifyjwt();
     }
   }
 
