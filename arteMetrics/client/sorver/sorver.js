@@ -60,14 +60,14 @@ app.post('/testjwt', (req, res) => {
 });
 
 // //middleware that handles getting all queries based on a user's api_key
-// app.get('/query', queryController.getAllQueries, (req, res) => {
-//   res.status(200).json(res.locals.queries);
-// });
+app.get('/query', queryController.getAllQueries, (req, res) => {
+  res.status(200).json(res.locals.queries);
+});
 
 // //middleware that handles getting tracing info from a query based on user's api_key
-// app.get('/query/:id', queryController.getQueryById, (req, res) => {
-//   res.status(200).json(res.locals.query);
-// });
+app.get('/query/:id', queryController.getQueryById, (req, res) => {
+  res.status(200).json(res.locals.query);
+});
 
 //this is to verify authentication of SQL deployment
 models.sequelize.authenticate();
