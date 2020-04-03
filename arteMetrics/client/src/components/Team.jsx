@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
 import ScrollAnimation from 'react-animate-on-scroll';
 
-
 const Team = () => {
   const [isCreatorProfiles] = useState([
     {
       name: 'Brian Chiang',
       github: 'https://github.com/ch-brian',
-      // linkedin: 'https://www.linkedin.com/in/darrenDzhu'
+      linkedin: ''
     },
     {
       name: 'Saejin Kang',
       github: 'https://github.com/skang1004',
-      // linkedin: 'https://www.linkedin.com/in/kendall-lu'
+      linkedin: ''
     },
     {
-      name: 'Joseph R',
+      name: 'Joseph Renolayan',
       github: 'https://github.com/jodaisu',
-      // linkedin: 'https://www.linkedin.com/in/rqreyes'
+      linkedin: ''
     },
     {
       name: 'Sean Arseneault',
       github: 'https://github.com/itsmesean',
-      // linkedin: 'https://www.linkedin.com/in/kcrystalchen'
+      linkedin: ''
     },
     {
       name: 'Noah King',
       github: 'https://github.com/code-ark',
-      // linkedin: 'https://www.linkedin.com/in/kcrystalchen'
+      linkedin: ''
     }
   ]);
   const creatorProfileArray = isCreatorProfiles.map(profile => {
