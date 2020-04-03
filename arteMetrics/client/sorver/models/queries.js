@@ -7,14 +7,15 @@ const queries = (sequelize, DataTypes) => {
       duration: DataTypes.INTEGER,
       start_time: DataTypes.DATE,
       end_time: DataTypes.DATE,
-      resolvers: DataTypes.STRING
+      resolvers: DataTypes.JSONB
     },
     {
       classMethods: {
         associate: function(models) {
           Queries.belongsTo(models.apiKeys);
         }
-      }
+      },
+      timestamps: false
     }
   );
 

@@ -13,7 +13,8 @@ const user = (sequelize, DataTypes) => {
         associate: function(models) {
           User.hasMany(models.APIKeys);
         }
-      }
+      },
+      timestamps: false
     }
   );
 

@@ -11,7 +11,8 @@ const apiKeys = (sequelize, DataTypes) => {
           APIKeys.hasMany(models.Queries);
           APIKeys.belongsTo(models.User);
         }
-      }
+      },
+      timestamps: false
     }
   );
   return APIKeys;
