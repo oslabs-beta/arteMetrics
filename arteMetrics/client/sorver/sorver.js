@@ -79,14 +79,14 @@ models.sequelize.authenticate();
 models.sequelize.sync().then(async () => {
   app.listen(PORT, () => {
     console.log(
-      `Server is listening on port: ${'http://localhost:' +
-        PORT +
-        '/'}...!!!!!! `
+      `Server is listening on port: ${
+        'http://localhost:' + PORT + '/'
+      }...!!!!!! `
     );
     console.log(
-      `🚀Apollo Server is listening on port: ${'http://localhost:' +
-        PORT +
-        '/graphql'} 🚀 `
+      `🚀Apollo Server is listening on port: ${
+        'http://localhost:' + PORT + '/graphql'
+      } 🚀 `
     );
   });
 });
