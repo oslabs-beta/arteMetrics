@@ -66,7 +66,7 @@ class App extends Component {
 
     console.log('this is jwt: ', jwt);
 
-    fetch('testjwt', {
+    await fetch('testjwt', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })

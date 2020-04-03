@@ -1,3 +1,4 @@
+//defines SQL table to create/reference by Sequelize
 const queries = (sequelize, DataTypes) => {
   const Queries = sequelize.define(
     'queries',

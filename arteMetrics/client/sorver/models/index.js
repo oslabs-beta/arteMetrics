@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
+//declares new instance os Sequelize which will help us layer GQL on top of RESTful API
 const sequelize = new Sequelize(process.env.PG);
 
+//imports table declarations
 const models = {
   User: sequelize.import('./user'),
   Queries: sequelize.import('./queries'),
@@ -15,6 +17,7 @@ Object.keys(models).forEach(modelName => {
   }
 });
 
+//just some stuff we have to do !?
 models.sequelize = sequelize;
 models.Sequelize = Sequelize;
 
