@@ -2,6 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
 const path = require('path');
+const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -9,6 +10,8 @@ const jwt = require('jsonwebtoken');
 const PORT = 8080;
 
 const app = express();
+
+app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
 
 const schema = require('./schema.js');
 const resolvers = require('./resolvers.js');
@@ -60,14 +63,14 @@ app.post('/testjwt', (req, res) => {
 });
 
 // //middleware that handles getting all queries based on a user's api_key
-// app.get('/query', queryController.getAllQueries, (req, res) => {
-//   res.status(200).json(res.locals.queries);
-// });
+app.get('/query', queryController.getAllQueries, (req, res) => {
+  res.status(200).json(res.locals.queries);
+});
 
 // //middleware that handles getting tracing info from a query based on user's api_key
-// app.get('/query/:id', queryController.getQueryById, (req, res) => {
-//   res.status(200).json(res.locals.query);
-// });
+app.get('/query/:id', queryController.getQueryById, (req, res) => {
+  res.status(200).json(res.locals.query);
+});
 
 //this is to verify authentication of SQL deployment
 models.sequelize.authenticate();
