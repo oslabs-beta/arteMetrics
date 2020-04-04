@@ -7,6 +7,7 @@ const QueriesOverNTIme = props => {
 
   const parse = (data, unit, amount, granularity) => {
     let timeFrame = moment().subtract(amount, unit);
+    if (data === undefined) return;
     let temp = data.allQueries.filter(stat =>
       moment(stat.start_time).isAfter(timeFrame)
     );
