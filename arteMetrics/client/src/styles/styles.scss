@@ -155,6 +155,23 @@ body {
   position: relative;
 }
 
+.svg {
+  height: 1000px;
+  overflow: auto;
+}
+
+svg {
+  overflow: scroll;
+}
+
+.bar:hover {
+  fill: orange;
+}
+
+.barChart {
+  height: 1000px;
+}
+
 .loginpanel {
   background: hsla(0, 0%, 100%, 0.4);
   font-family: 'RobotoThin', sans-serif;
@@ -225,6 +242,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: auto;
   justify-content: center;
   align-items: center;
   padding: 24px 32px;
