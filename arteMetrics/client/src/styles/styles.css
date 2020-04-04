@@ -159,6 +159,23 @@ body {
   position: relative;
 }
 
+.svg {
+  height: 1000px;
+  overflow: auto;
+}
+
+svg {
+  overflow: scroll;
+}
+
+.bar:hover {
+  fill: orange;
+}
+
+.barChart {
+  height: 1000px;
+}
+
 .loginpanel {
   background: rgba(255, 255, 255, 0.4);
   font-family: 'RobotoThin', sans-serif;
@@ -246,6 +263,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
+  height: auto;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
