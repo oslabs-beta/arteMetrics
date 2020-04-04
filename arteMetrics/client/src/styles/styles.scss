@@ -337,3 +337,43 @@ svg {
 .gifPos {
   padding-left: 60px;
 }
+
+.loadingGif {
+  width: 50px;
+}
+
+.gifPos {
+  padding-left: 60px;
+}
+
+.performanceGif {
+  margin-left: 60px;
+  width: 50px;
+}
+
+.chartTab {
+  margin-left: 200px;
+}
+
+.overviewCard {
+  background-color: #f8f8f8;
+  padding: 20px;
+  width: 400px;
+}
+
+.query {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.spacer {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+
+.ms {
+  font-size: 10px;
+  color: #636363;
+}
