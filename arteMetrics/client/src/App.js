@@ -12,8 +12,6 @@ import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
 import { ApolloProvider } from '@apollo/react-hooks';
-import FOG from 'vanta/dist/vanta.fog.min';
-import * as THREE from 'three';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql'

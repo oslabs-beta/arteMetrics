@@ -10,7 +10,12 @@ app.use('/data', data);
 
 app.use('/', (req, res) => {
   console.log('Hello World');
-  res.sendStatus(200);
+  res.status(200).send({ api: 'hitapiendpoint' });
+});
+
+app.use('/test', (req, res) => {
+  console.log('Hello World');
+  res.status(200).send({ api: 'hitapiendpoint' });
 });
 
 app.listen(PORT, (req, res) => {
