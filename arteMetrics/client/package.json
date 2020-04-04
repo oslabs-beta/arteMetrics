@@ -15,6 +15,7 @@
     "apollo-server-express": "^2.11.0",
     "babel": "^6.23.0",
     "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "cookie-parser": "^1.4.5",
@@ -43,7 +44,8 @@
     "react-scripts": "3.4.0",
     "react-vis": "^1.11.7",
     "sequelize": "^5.21.5",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "serve-favicon": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
