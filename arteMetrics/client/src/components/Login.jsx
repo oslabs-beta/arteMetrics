@@ -24,7 +24,7 @@ const Login = props => {
     console.log(username);
     console.log(password);
 
-    fetch('/login', {
+    fetch('login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
