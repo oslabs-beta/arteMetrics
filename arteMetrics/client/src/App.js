@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    console.log('insidemount state: ', this.state);
+    // console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
       // this.verifyjwt();
     }
@@ -44,9 +44,7 @@ class App extends Component {
     // }
   }
 
-  componentDidUpdate() {
-    console.log('inside componentdidupdtate: ', this.state);
-  }
+  componentDidUpdate() {}
 
   async verifyjwt() {
     const jwt = await Cookies.get('token');

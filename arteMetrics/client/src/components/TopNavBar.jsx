@@ -7,37 +7,53 @@ import { Navbar, Nav, NavDropdown, NavLink } from 'react-bootstrap';
 const TopNavbar = (props) => {
   const [apps, setApps] = useState([]);
   const [user, setUser] = useState('');
+  const [userid, setuserId] = useState(0);
+
   const { username } = props;
   function logout() {
     Cookies.remove('token');
   }
   // make this the user's specific ID dynamic (need to grab user's id from STATE)
-  const id = 1;
+
   useEffect(() => {
-    // populate apps dropdown for existing user apps
-    fetch('/graphql', {
+    const jwt = Cookies.get('token');
+    let id;
+    // populate apps dr1pdown for existing user apps
+    fetch('/getuserid', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        // query for dummy apikey account
-        query: `query {
-          allApps(id:${id}){
-            id
-            app_name
-            api_key
-          }
-        }`
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: jwt })
     })
-      .then((data) => data.json())
-      .then((myJson) => {
-        setApps(myJson.data.allApps);
-      });
+      .then((data) => {
+        return data.json();
+      })
+      .then((result) => {
+        id = result.id;
+        fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            // query for dummy apikey account
+            query: `query {
+              allApps(id:${id}){
+                id
+                app_name
+                api_key
+              }
+            }`
+          })
+        })
+          .then((data) => data.json())
+          .then((myJson) => {
+            console.log(myJson);
+            setApps(myJson.data.allApps);
+          });
+      })
+      .catch((err) => console.log(err));
 
     // fetch current user's name and ID
-    const jwt = Cookies.get('token');
     fetch('testjwt', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -66,7 +82,7 @@ const TopNavbar = (props) => {
           {Cookies.get('token') ? (
             <NavDropdown title="App" id="basic-nav-dropdown">
               {apps.map((item, id) => (
-                <NavDropdown.Item key={id} href="/metrics">
+                <NavDropdown.Item key={id} href={`/metrics?id=${item.api_key}`}>
                   {item.app_name}
                 </NavDropdown.Item>
               ))}
