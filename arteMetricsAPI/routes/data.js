@@ -5,7 +5,7 @@ const dataController = require('../controllers/dataController.js');
 
 data.post(
   '/insert',
-  authController.verify,
+  // authController.verify,
   dataController.insert,
   (req, res) => {
     const { accessID, data } = req.body;
