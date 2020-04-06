@@ -10,6 +10,7 @@ const typeDefs = gql`
     allUsers: [User!]
     allQueries: [Queries!]
     query(id: ID!): Queries
+    allApps(id: ID!): [App!]
   }
 
   type Mutation {
@@ -33,6 +34,12 @@ const typeDefs = gql`
     start_time: DateTime!
     end_time: DateTime!
     resolvers: JSON!
+  }
+
+  type App {
+    id: Int!
+    app_name: String!
+    api_key: String!
   }
 `;
 
