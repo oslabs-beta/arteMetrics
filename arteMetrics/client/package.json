@@ -53,10 +53,10 @@
     "serve-favicon": "^2.5.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "dev": "nodemon sorver/sorver.js & npm start",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "dev": "npm run server & npm start",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon sorver/sorver.js"
   },
