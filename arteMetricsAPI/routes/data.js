@@ -7,8 +7,8 @@ data.post(
   '/insert',
   // authController.verify,
   dataController.insert,
-  (req, res) => {
-    const { accessID, data } = req.body;
+  (req, res, next) => {
+    res.status(200).json(res.locals.data);
   }
 );
 module.exports = data;

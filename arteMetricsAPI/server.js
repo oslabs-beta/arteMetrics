@@ -15,11 +15,11 @@ app.use('/data', data);
 
 app.use('/test', data);
 
-app.post('/test', (req, res) => {
-  console.log('hello: ', req);
-  console.log('Hello World from /test');
-  res.status(200).send({ api: 'hitapiendpoint from/test' });
-});
+// app.post('/test', (req, res) => {
+//   console.log('hello: ', req);
+//   console.log('Hello World from /test');
+//   res.status(200).send({ api: 'hitapiendpoint from/test' });
+// });
 
 app.listen(PORT, (req, res) => {
   console.log('App is listening on port: ', PORT);
