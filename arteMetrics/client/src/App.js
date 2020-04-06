@@ -36,19 +36,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    // this.vantaEffect = FOG({
-    //   el: this.vantaRef.current,
-    //   THREE: THREE
-    //   highlightColor: 0xffc914,
-    //   midtoneColor: 0xf1f0cc,
-    //   lowlightColor: 0xe4572e,
-    //   baseColor: 0x053143,
-    //   blurFactor: 0.6,
-    //   zoom: 1,
-    //   speed: 1
-    // });
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {
     // if (this.vantaEffect) {
