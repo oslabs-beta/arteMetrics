@@ -19,6 +19,7 @@ const models = require('./models/index.js');
 
 const queryController = require('./controllers/queryController');
 const appController = require('./controllers/appController');
+const userController = require('./controllers/userController');
 
 require('dotenv').config();
 
@@ -65,6 +66,11 @@ app.post('/testjwt', (req, res) => {
 
 app.post('/createApp', appController.createAPI, (req, res) => {
   res.status(200).json(res.locals.apiKey);
+});
+
+app.post('/getuserid', userController.getID, (req, res) => {
+  console.log('RESPONSE: ', res.locals.id);
+  res.status(200).json(res.locals.id);
 });
 
 // //middleware that handles getting all queries based on a user's api_key
