@@ -25,10 +25,16 @@ resolvers.Query = {
         // make this dynamic (per user)
         api_key: 'myapikey',
         start_time: {
-          [Op.gte]: moment()
-            .subtract(24, 'hours')
-            .toDate()
+          [Op.gte]: moment().subtract(24, 'hours').toDate()
         }
+      }
+    });
+  },
+  //returns queries based on queryid
+  allApps: async (parent, { id }, { models }) => {
+    return models.APIKeys.findAll({
+      where: {
+        user_id: id
       }
     });
   }
