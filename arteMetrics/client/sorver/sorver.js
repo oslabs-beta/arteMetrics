@@ -18,6 +18,7 @@ const resolvers = require('./resolvers.js');
 const models = require('./models/index.js');
 
 const queryController = require('./controllers/queryController');
+const appController = require('./controllers/appController');
 
 require('dotenv').config();
 
@@ -60,6 +61,10 @@ app.post('/testjwt', (req, res) => {
   const user = jwt.verify(token, process.env.JWT_KEY);
   console.log('testjwt result: ', user);
   res.send({ user: user });
+});
+
+app.post('/createApp', appController.createAPI, (req, res) => {
+  res.status(200).json(res.locals.apiKey);
 });
 
 // //middleware that handles getting all queries based on a user's api_key
