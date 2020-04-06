@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import navbarLogo from '../assets/arte_white_clear.png';
 
 import { Navbar, Nav, NavDropdown, NavLink } from 'react-bootstrap';
 
-const TopNavbar = props => {
+const TopNavbar = (props) => {
+  const [apps, setApps] = useState([]);
   const { username } = props;
   function logout() {
     Cookies.remove('token');
   }
+  // make this the user's specific ID dynamic (need to grab user's id from STATE)
+  const id = 1;
+
+  // populate apps dropdown for existing user apps
+  useEffect(() => {
+    fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // query for dummy apikey account
+        query: `query {
+          allApps(id:${id}){
+            id
+            app_name
+            api_key
+          }
+        }`
+      })
+    })
+      .then((data) => data.json())
+      .then((myJson) => {
+        setApps(myJson.data.allApps);
+      });
+  }, []);
+
   return (
     <Navbar className="navbar" expand="lg">
       <Nav.Link href="/">
@@ -24,13 +52,14 @@ const TopNavbar = props => {
           ) : null}
           {Cookies.get('token') ? (
             <NavDropdown title="App" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.2">SpaceX App</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
-                Federation App
-              </NavDropdown.Item>
+              {apps.map((item, id) => (
+                <NavDropdown.Item key={id} href="/metrics">
+                  {item.app_name}
+                </NavDropdown.Item>
+              ))}
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="/createapp">
+                Create an App
               </NavDropdown.Item>
             </NavDropdown>
           ) : null}
