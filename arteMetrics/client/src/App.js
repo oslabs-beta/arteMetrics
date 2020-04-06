@@ -11,6 +11,7 @@ import MainContainer from './components/containers/MainContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
+import CreateAppContainer from './components/containers/CreateAppContainer';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
@@ -69,14 +70,14 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })
     })
-      .then(data => data.json())
-      .then(myJson => {
+      .then((data) => data.json())
+      .then((myJson) => {
         const state = { ...this.state };
         state.loggedin = true;
         state.username = myJson.user;
         this.setState(state);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -109,6 +110,7 @@ class App extends Component {
               path="/createaccount"
               render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
             />
+            <Route path="/createapp" render={() => <CreateAppContainer />} />
           </Router>
           <div id="particles">
             <Particles
