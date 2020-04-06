@@ -5,7 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { AppContainer } from 'react-hot-loader';
 
 import logo from './assets/arte_lavender_yellow.png';
 
