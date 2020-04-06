@@ -6,15 +6,15 @@ import { Navbar, Nav, NavDropdown, NavLink } from 'react-bootstrap';
 
 const TopNavbar = (props) => {
   const [apps, setApps] = useState([]);
+  const [user, setUser] = useState('');
   const { username } = props;
   function logout() {
     Cookies.remove('token');
   }
   // make this the user's specific ID dynamic (need to grab user's id from STATE)
   const id = 1;
-
-  // populate apps dropdown for existing user apps
   useEffect(() => {
+    // populate apps dropdown for existing user apps
     fetch('/graphql', {
       method: 'POST',
       headers: {
@@ -35,6 +35,19 @@ const TopNavbar = (props) => {
       .then((myJson) => {
         setApps(myJson.data.allApps);
       });
+
+    // fetch current user's name and ID
+    const jwt = Cookies.get('token');
+    fetch('testjwt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: jwt })
+    })
+      .then((data) => data.json())
+      .then((myJson) => {
+        setUser(myJson.user);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -65,7 +78,7 @@ const TopNavbar = (props) => {
           ) : null}
         </Nav>
         {Cookies.get('token') ? (
-          <Navbar.Text>Welcome, {username}</Navbar.Text>
+          <Navbar.Text>Welcome, {user}</Navbar.Text>
         ) : null}
         {Cookies.get('token') ? (
           <Nav.Link href="/" onClick={logout}>
