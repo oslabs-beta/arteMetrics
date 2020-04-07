@@ -16,9 +16,11 @@ const GET_DATA = gql`
   }
 `;
 
-const LineContainer = () => {
+const LineContainer = (props) => {
   const { data, loading, error } = useQuery(GET_DATA);
   if (loading) return <p>Loading ...</p>;
+  if (error) return <p>Error fetching data</p>;
+
   const cn = (...args) => args.filter(Boolean).join(' ');
 
   const Tab = ({ children }) => {
@@ -45,7 +47,7 @@ const LineContainer = () => {
               amount={10}
               unit="minutes"
               granularity="minute"
-              data={data}
+              data={props.data}
             />
           </div>
         </Panel>
@@ -57,7 +59,7 @@ const LineContainer = () => {
               amount={60}
               unit="minutes"
               granularity="minute"
-              data={data}
+              data={props.data}
             />
           </div>
         </Panel>
@@ -68,7 +70,7 @@ const LineContainer = () => {
             amount={24}
             unit="hours"
             granularity="hour"
-            data={data}
+            data={props.data}
           />
         </Panel>
       </div>
