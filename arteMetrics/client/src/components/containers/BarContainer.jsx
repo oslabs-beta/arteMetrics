@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
-import Bar from '../charts/Bar.jsx';
 
-const BarContainer = () => {
+import Bar from '../charts/QueryResolveTime.jsx';
+
+const BarContainer = (props) => {
   const cn = (...args) => args.filter(Boolean).join(' ');
 
   const Tab = ({ children }) => {
