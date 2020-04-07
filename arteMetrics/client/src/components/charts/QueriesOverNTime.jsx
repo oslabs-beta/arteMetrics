@@ -37,7 +37,7 @@ const QueriesOverNTIme = (props) => {
       {
         label: `Queries per ${props.granularity}`,
         fill: false,
-        lineTension: 0.1,
+        lineTension: 0.001,
         backgroundColor: 'rgba(75,192,192,0.4)',
         borderColor: 'rgba(75,192,192,1)',
         borderCapStyle: 'butt',
@@ -73,6 +73,9 @@ const QueriesOverNTIme = (props) => {
           scales: {
             xAxes: [
               {
+                gridLines: {
+                  display: false
+                },
                 type: 'time',
                 time: {
                   format: 'LLL',
