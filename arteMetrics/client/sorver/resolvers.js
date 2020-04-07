@@ -19,11 +19,11 @@ resolvers.Query = {
     return models.Queries.findByPk(id);
   },
   //returns all queries
-  allQueries: async (parent, args, { models }) => {
+  allQueries: async (parent, { id }, { models }) => {
     return await models.Queries.findAll({
       where: {
         // make this dynamic (per user)
-        api_key: 'myapikey',
+        api_key: id,
         start_time: {
           [Op.gte]: moment().subtract(24, 'hours').toDate()
         }
