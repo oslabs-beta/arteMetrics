@@ -31,7 +31,7 @@ class App extends Component {
   componentWillMount() {
     console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
-      this.verifyjwt();
+      // this.verifyjwt();
     }
   }
 
@@ -69,14 +69,14 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })
     })
-      .then(data => data.json())
-      .then(myJson => {
+      .then((data) => data.json())
+      .then((myJson) => {
         const state = { ...this.state };
         state.loggedin = true;
         state.username = myJson.user;
         this.setState(state);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
