@@ -1,0 +1,24 @@
+{
+  "name": "artemetrics",
+  "version": "1.0.8",
+  "description": "Creating performance monitors for Apollo implementations of GraphQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/arteMetrics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/arteMetrics/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/arteMetrics#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^7.18.2"
+  }
+}
