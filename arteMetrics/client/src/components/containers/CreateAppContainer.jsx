@@ -94,7 +94,7 @@ const CreateApp = (props) => {
           <p></p>
           <div className="api">{api}</div>
           <br />
-          <Link to={`/metrics?id=${api}`}>
+          <Link to={`/?id=${api}`}>
             <button type="button" className="btn btn-info">
               OK
             </button>
