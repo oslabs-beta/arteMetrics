@@ -11,7 +11,7 @@ import OverviewContainer from './OverviewContainer.jsx';
 const urlParams = window.location.search;
 const id = urlParams.substr(4);
 
-const MainContainer = props => {
+const MainContainer = (props) => {
   let history = useHistory();
   let user;
   const { loggedin } = props;
@@ -51,7 +51,7 @@ const MainContainer = props => {
   return (
     <Tabs>
       <div className="mainContainer">
-        {id.length > 0 ? (
+        {id.length > 0 && id.length < 16 ? (
           <div className="tab-list">
             <Tab>Tracing</Tab>
             <Tab>Queries Over Time</Tab>
@@ -66,7 +66,7 @@ const MainContainer = props => {
           </div>
         )}
 
-        {id.length > 0 ? (
+        {id.length > 0 && id.length < 16 ? (
           <div>
             <div className="tab-progress" />
             <Panel>
