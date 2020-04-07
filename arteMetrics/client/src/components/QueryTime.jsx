@@ -33,17 +33,17 @@ const QueryTime = () => {
         }`
       })
     })
-      .then(data => data.json())
-      .then(myJson => {
+      .then((data) => data.json())
+      .then((myJson) => {
         // queries array
         const data = myJson.data.query;
         console.log('data back: ', data);
         setQueryData(data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
     if (id.length > 0) {
       //fetching trace information from our database
-      d3.json(`/query/${id}`).then(queries => {
+      d3.json(`/query/${id}`).then((queries) => {
         const {
           id,
           api_key,
@@ -68,7 +68,7 @@ const QueryTime = () => {
 
         //calculating the initial request duration time
         let durationWOresponse = requestDuration;
-        resolvers.forEach(val => {
+        resolvers.forEach((val) => {
           return (durationWOresponse += val['duration']);
         });
 
@@ -102,28 +102,25 @@ const QueryTime = () => {
         console.log('x axis', root[0]['duration'] / 1000000);
         const x = d3
           .scaleLinear()
-          .domain([0, d3.max(root, d => d['duration'] / 1000)])
+          .domain([0, d3.max(root, (d) => d['duration'] / 1000)])
           .range([100, width - 100]);
 
         //creating a svg tag and appending it to current element
         const svg = d3
           .select(svgRef.current)
           .attr('class', 'svg')
-          .attr('viewBox', `0 0 ${width} ${height}`)
+          .attr('viewBox', `0 0 1700 1100`)
           .append('g')
           .attr('transform', `translate(${margin.left}, ${margin.top})`)
           .attr('class', 'barChart');
 
         //creating an x-axis
-        const xAxis = g => {
+        const xAxis = (g) => {
           g.attr('class', 'x-axis')
             .attr('transform', `translate(0, 30)`)
             .call(d3.axisTop(x));
         };
-        svg
-          .append('g')
-          .transition(1500)
-          .call(xAxis);
+        svg.append('g').transition(1500).call(xAxis);
 
         //selecting rect element and using resolvers dataset to populate
         const rects = svg.selectAll('rect').data(resolvers);
@@ -141,6 +138,7 @@ const QueryTime = () => {
           .attr('height', 6)
           .attr('transform', 'translate(100, 10)')
           .attr('fill', 'navy')
+          .attr('overflow-y', 'auto')
           .attr('class', 'bar');
 
         //selecting the svg class declared above and using resolvers dataset to populate
@@ -159,8 +157,9 @@ const QueryTime = () => {
           })
           .attr('y', (d, i) => (i + 1) * 30)
           .attr('transform', 'translate(0, 20)')
+          .attr('overflow', 'auto')
           .attr('class', 'text')
-          .text(d =>
+          .text((d) =>
             Array.isArray(d['path']) ? d['path'].join('.') : d['path']
           );
 
@@ -182,7 +181,7 @@ const QueryTime = () => {
           .attr('y', (d, i) => (i + 1) * 30)
           .attr('transform', 'translate(0, 20)')
           .attr('class', 'measurement')
-          .text(d => {
+          .text((d) => {
             return Math.floor(d['duration'] / 1000) + ' µs';
           });
 
@@ -198,7 +197,7 @@ const QueryTime = () => {
   }, []);
 
   return (
-    <div className="chartTab">
+    <div className="chartTab" style={{ overflowY: 'scroll' }}>
       <React.Fragment>
         <h4>Operation: {queryData.name}</h4>
         {queryData.start_time && id.length > 0 ? (
