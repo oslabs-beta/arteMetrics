@@ -1,38 +1,38 @@
 require("dotenv").config();
 const arteMetrics = {};
-const db = require("./db/model");
-
-let name;
-
-arteMetrics.getName = query => {
+const fetch = require("node-fetch");
+let name = "NPM_Package_placeholderName";
+let apiKey = "NPM_Package_placeholderAPIKey";
+arteMetrics.getName = (query) => {
   name = query.definitions[0].name.value;
 };
-
-arteMetrics.process = response => {
+arteMetrics.setApiKey = (key) => {
+  apiKey = key;
+};
+arteMetrics.process = (response) => {
   const {
     startTime,
     endTime,
     duration,
-    execution
+    execution,
   } = response.extensions.tracing;
-  const text =
-    "INSERT INTO queries(api_key, name, start_time, end_time, duration, resolvers) VALUES($1, $2, $3, $4, $5, $6) RETURNING *";
-  const values = [
-    process.env.API_KEY,
-    name,
-    startTime,
-    endTime,
-    duration,
-    JSON.stringify(execution.resolvers)
-  ];
-
-  db.query(text, values)
-    .then(result => {
-      // console.log(result);
-    })
-    .catch(err => {
-      // console.log(err);
-    });
+  console.log("this is startime: ", startTime);
+  fetch("http://localhost:8081/test/insert", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/JSON",
+    },
+    body: JSON.stringify({
+      apiKey: apiKey,
+      name: name,
+      startTime: startTime,
+      endTime: endTime,
+      duration: duration,
+      execution: execution,
+    }),
+  })
+    .then((x) => x.json())
+    .then((myJson) => console.log(myJson))
+    .catch((err) => console.log(err));
 };
-
 module.exports = arteMetrics;
