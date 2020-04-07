@@ -18,6 +18,8 @@ const resolvers = require('./resolvers.js');
 const models = require('./models/index.js');
 
 const queryController = require('./controllers/queryController');
+const appController = require('./controllers/appController');
+const userController = require('./controllers/userController');
 
 require('dotenv').config();
 
@@ -62,6 +64,15 @@ app.post('/testjwt', (req, res) => {
   res.send({ user: user });
 });
 
+app.post('/createApp', appController.createAPI, (req, res) => {
+  res.status(200).json(res.locals.apiKey);
+});
+
+app.post('/getuserid', userController.getID, (req, res) => {
+  console.log('RESPONSE: ', res.locals.id);
+  res.status(200).json(res.locals.id);
+});
+
 // //middleware that handles getting all queries based on a user's api_key
 app.get('/query', queryController.getAllQueries, (req, res) => {
   res.status(200).json(res.locals.queries);
@@ -79,14 +90,14 @@ models.sequelize.authenticate();
 models.sequelize.sync().then(async () => {
   app.listen(PORT, () => {
     console.log(
-      `Server is listening on port: ${'http://localhost:' +
-        PORT +
-        '/'}...!!!!!! `
+      `Server is listening on port: ${
+        'http://localhost:' + PORT + '/'
+      }...!!!!!! `
     );
     console.log(
-      `🚀Apollo Server is listening on port: ${'http://localhost:' +
-        PORT +
-        '/graphql'} 🚀 `
+      `🚀Apollo Server is listening on port: ${
+        'http://localhost:' + PORT + '/graphql'
+      } 🚀 `
     );
   });
 });

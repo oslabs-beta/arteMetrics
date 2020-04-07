@@ -4,9 +4,13 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import QueriesOverNTIme from '../charts/QueriesOverNTime.jsx';
 
+// grab the query id by URL
+const urlParams = window.location.search;
+const apiKey = urlParams.substr(4);
+console.log('LineContainer API KEY, ', apiKey);
 const GET_DATA = gql`
   query {
-    allQueries {
+    allQueries(id:"${apiKey}") {
       start_time
     }
   }
