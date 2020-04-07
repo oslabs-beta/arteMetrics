@@ -11,6 +11,7 @@ import MainContainer from './components/containers/MainContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
+import CreateAppContainer from './components/containers/CreateAppContainer';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
@@ -29,25 +30,13 @@ class App extends Component {
   }
 
   componentWillMount() {
-    console.log('insidemount state: ', this.state);
+    // console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
       // this.verifyjwt();
     }
   }
 
-  componentDidMount() {
-    // this.vantaEffect = FOG({
-    //   el: this.vantaRef.current,
-    //   THREE: THREE
-    //   highlightColor: 0xffc914,
-    //   midtoneColor: 0xf1f0cc,
-    //   lowlightColor: 0xe4572e,
-    //   baseColor: 0x053143,
-    //   blurFactor: 0.6,
-    //   zoom: 1,
-    //   speed: 1
-    // });
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {
     // if (this.vantaEffect) {
@@ -55,9 +44,7 @@ class App extends Component {
     // }
   }
 
-  componentDidUpdate() {
-    console.log('inside componentdidupdtate: ', this.state);
-  }
+  componentDidUpdate() {}
 
   async verifyjwt() {
     const jwt = await Cookies.get('token');
@@ -109,6 +96,7 @@ class App extends Component {
               path="/createaccount"
               render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
             />
+            <Route path="/createapp" render={() => <CreateAppContainer />} />
           </Router>
           <div id="particles">
             <Particles

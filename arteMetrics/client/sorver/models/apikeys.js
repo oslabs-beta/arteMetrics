@@ -3,11 +3,12 @@ const apiKeys = (sequelize, DataTypes) => {
     'apiKeys',
     {
       user_id: DataTypes.INTEGER,
-      api_key: DataTypes.STRING
+      api_key: DataTypes.STRING,
+      app_name: DataTypes.STRING
     },
     {
       classMethods: {
-        associate: function(models) {
+        associate: function (models) {
           APIKeys.hasMany(models.Queries);
           APIKeys.belongsTo(models.User);
         }
