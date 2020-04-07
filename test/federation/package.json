@@ -19,6 +19,7 @@
     "@apollo/gateway": "latest",
     "apollo-server": "latest",
     "artemetrics": "^1.0.8",
+    "dotenv": "^8.2.0",
     "graphql": "latest",
     "node-fetch": "^2.6.0"
   }

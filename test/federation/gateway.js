@@ -1,6 +1,6 @@
-const { ApolloServer } = require("apollo-server");
-const { ApolloGateway } = require("@apollo/gateway");
-const arteMetrics = require("artemetrics");
+const { ApolloServer } = require('apollo-server');
+const { ApolloGateway } = require('@apollo/gateway');
+const arteMetrics = require('artemetrics');
 
 const gateway = new ApolloGateway({
   // This entire `serviceList` is optional when running in managed federation
@@ -9,10 +9,10 @@ const gateway = new ApolloGateway({
   // prevents composition failures at runtime using schema validation using
   // real usage-based metrics.
   serviceList: [
-    { name: "accounts", url: "http://localhost:4001/graphql" },
-    { name: "reviews", url: "http://localhost:4002/graphql" },
-    { name: "products", url: "http://localhost:4003/graphql" },
-    { name: "inventory", url: "http://localhost:4004/graphql" }
+    { name: 'accounts', url: 'http://localhost:4001/graphql' },
+    { name: 'reviews', url: 'http://localhost:4002/graphql' },
+    { name: 'products', url: 'http://localhost:4003/graphql' },
+    { name: 'inventory', url: 'http://localhost:4004/graphql' }
   ],
 
   // Experimental: Enabling this enables the query plan view in Playground.
@@ -32,8 +32,8 @@ const gateway = new ApolloGateway({
     formatResponse: response => {
       arteMetrics.process(response);
     },
-    introspection: false,
-    engine: false,
+    // introspection: true,
+    reporting: false,
     tracing: true,
     // Subscriptions are unsupported but planned for a future Gateway version.
     subscriptions: false
