@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 const CreateApp = (props) => {
   const [app, setApp] = useState('');
@@ -51,26 +52,53 @@ const CreateApp = (props) => {
     <div className="apppanel">
       {!api ? (
         <div className="appform">
-          <p>Create an App</p>
+          <h3>Create an App</h3>
           <form onSubmit={createApp}>
+            <p></p>
+            To get started, please enter the name of your app:
             <label for="name" translate-context="Label" translate></label>
+            <p></p>
             <input
               type="text"
               id="appName"
               name="appname"
               required
-              placeholder="App name"
+              placeholder={`${user}'s cool new app`}
               onChange={handleAppChange}
             />
             <br />
-            <input type="submit" id="loginSubmitButton" value="Create App" />
+            <p></p>
+            <input
+              className="btn btn-info"
+              type="submit"
+              id="loginSubmitButton"
+              value="OK"
+            />
           </form>
         </div>
       ) : (
         <div className="apiCard">
-          Save this API Key for use!!!!
+          <h4>Save this API Key to use with your app</h4>
+          <div className="appdescription">
+            <p>
+              Each app that you create is assigned with a specific API Key. To
+              view metrics, copy and paste this API Key to your .env file inside
+              your Apollo Server.
+            </p>
+          </div>
           <br />
-          {api}
+          <div className="warning">
+            WARNING: You are only issued this key once so put it in a safe
+            place!!!
+          </div>
+          <p></p>
+          <div className="api">{api}</div>
+          <br />
+          <Link to="/">
+            <button type="button" className="btn btn-info">
+              OK
+            </button>
+          </Link>
         </div>
       )}
     </div>
