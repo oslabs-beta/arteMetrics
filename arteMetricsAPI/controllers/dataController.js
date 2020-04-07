@@ -13,7 +13,7 @@ dataController.insert = (req, res, next) => {
     startTime,
     endTime,
     duration,
-    'hardcodedresolvers'
+    JSON.stringify(execution.resolvers)
   ];
 
   db.query(text, values)
