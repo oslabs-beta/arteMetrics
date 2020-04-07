@@ -1,5 +1,6 @@
 require("dotenv").config();
 const arteMetrics = {};
+
 const fetch = require("node-fetch");
 let name = "NPM_Package_placeholderName";
 let apiKey = "NPM_Package_placeholderAPIKey";
@@ -10,6 +11,7 @@ arteMetrics.setApiKey = (key) => {
   apiKey = key;
 };
 arteMetrics.process = (response) => {
+
   const {
     startTime,
     endTime,
@@ -35,4 +37,5 @@ arteMetrics.process = (response) => {
     .then((myJson) => console.log(myJson))
     .catch((err) => console.log(err));
 };
+
 module.exports = arteMetrics;
