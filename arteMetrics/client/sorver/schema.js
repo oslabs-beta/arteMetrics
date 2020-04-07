@@ -8,7 +8,7 @@ const typeDefs = gql`
   type Query {
     user(id: ID!): User
     allUsers: [User!]
-    allQueries: [Queries!]
+    allQueries(id: String!): [Queries!]
     query(id: ID!): Queries
     allApps(id: ID!): [App!]
   }
