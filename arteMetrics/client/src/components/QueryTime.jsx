@@ -121,9 +121,11 @@ const QueryTime = () => {
             g.attr('class', 'x-axis')
               .attr('transform', `translate(0, 30)`)
               .attr('overflow', 'auto')
-              .call(d3.axisTop(x));
+              .call(d3.axisTop(x).tickSize(0));
           };
           svg.append('g').transition(1500).call(xAxis);
+
+          d3.selectAll('.tick').attr('visibility', 'hidden');
 
           //selecting rect element and using resolvers dataset to populate
           const rects = svg.selectAll('rect').data(resolvers);
@@ -196,7 +198,7 @@ const QueryTime = () => {
             .attr('y', 8)
             .attr('text-anchor', 'middle')
             .attr('font-weight', 'bold')
-            .text('Tracing in milliseconds (ms)');
+            .text('Tracing in microseconds (µs)');
         } else {
           //setting margins for the svg canvas
           const margin = { top: 10, right: 10, bottom: 10, left: 90 };
@@ -227,9 +229,11 @@ const QueryTime = () => {
             g.attr('class', 'x-axis')
               .attr('transform', `translate(0, 30)`)
               .attr('overflow', 'auto')
-              .call(d3.axisTop(x));
+              .call(d3.axisTop(x).tickSize(0));
           };
           svg.append('g').transition(1500).call(xAxis);
+
+          d3.selectAll('.tick').attr('visibility', 'hidden');
 
           const rects = svg.selectAll('rect').data(root);
 
@@ -291,7 +295,7 @@ const QueryTime = () => {
             .attr('y', 8)
             .attr('text-anchor', 'middle')
             .attr('font-weight', 'bold')
-            .text('Tracing in milliseconds (ms)');
+            .text('Tracing in microseconds (µs)');
         }
       });
     }
