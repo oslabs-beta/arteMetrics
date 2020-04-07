@@ -8,8 +8,9 @@ const typeDefs = gql`
   type Query {
     user(id: ID!): User
     allUsers: [User!]
-    allQueries: [Queries!]
+    allQueries(id: String!): [Queries!]
     query(id: ID!): Queries
+    allApps(id: ID!): [App!]
   }
 
   type Mutation {
@@ -33,6 +34,12 @@ const typeDefs = gql`
     start_time: DateTime!
     end_time: DateTime!
     resolvers: JSON!
+  }
+
+  type App {
+    id: Int!
+    app_name: String!
+    api_key: String!
   }
 `;
 
