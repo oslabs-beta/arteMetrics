@@ -435,4 +435,43 @@ svg {
   font-size: 10px;
   color: #636363;
 }
+
+.apppanel {
+  padding: 30px;
+  text-align: center;
+  background-color: white;
+  width: 600px;
+  margin: auto;
+  border-radius: 3px;
+  height: 400px;
+}
+
+.selectpanel {
+  padding: 30px;
+  text-align: center;
+  background-color: white;
+  width: 600px;
+  margin: auto;
+  border-radius: 3px;
+}
+
+.api {
+  margin-top: 40px;
+  background-color: #aaaaaa;
+  width: 400px;
+  margin: auto;
+}
+
+.warning {
+  color: red;
+  font-size: 13px;
+}
+
+.appdescription {
+  padding-top: 40px;
+}
+
+.appname {
+  margin-top: 10px;
+}
 /*# sourceMappingURL=styles.css.map */
