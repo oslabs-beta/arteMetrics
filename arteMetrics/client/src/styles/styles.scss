@@ -86,7 +86,7 @@ body {
 #particles {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: -1;
 }
 
@@ -166,6 +166,10 @@ svg {
 
 .bar:hover {
   fill: orange;
+}
+
+.chartTab {
+  overflow: scroll;
 }
 
 .barChart {
