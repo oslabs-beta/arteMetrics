@@ -24,16 +24,40 @@ const BarContainer = (props) => {
         </div>
         <Panel>
           <div>
-            <Bar id="chart" />
+            <Bar
+              id="chart"
+              data={props.data}
+              scope="ten minutes"
+              amount={10}
+              unit="minutes"
+              granularity="minute"
+              yaxis="ms"
+            />
           </div>
         </Panel>
         <Panel>
           <div>
-            <Bar id="chart" />
+            <Bar
+              id="chart"
+              data={props.data}
+              scope="hour"
+              amount={60}
+              unit="minutes"
+              granularity="minute"
+              yaxis="ms"
+            />
           </div>
         </Panel>
         <Panel>
-          <Bar id="chart" />
+          <Bar
+            id="chart"
+            data={props.data}
+            scope="day"
+            amount={24}
+            unit="hours"
+            granularity="hour"
+            yaxis="ms"
+          />
         </Panel>
       </div>
     </Tabs>
