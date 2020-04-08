@@ -12,14 +12,23 @@ import loadingGif from '../../assets/loading.gif';
 
 // grab the query id by URL
 const urlParams = window.location.search;
+let apiKey = urlParams.substr(4);
+if (urlParams.length > 20) {
+  document.cookie = 'apikey=' + apiKey;
+}
+
 const id = urlParams.substr(4);
-let apiKey = Cookies.get('apikey');
+apiKey = Cookies.get('apikey');
 
 const GET_DATA = gql`
   query {
     allQueries(id:"${apiKey}") {
+      id
+      name
       duration
       start_time
+      end_time
+      resolvers
     }
   }
 `;
@@ -97,14 +106,14 @@ const MainContainer = (props) => {
             <div className="tab-progress" />
             <Panel>
               <div>
-                <QueryTime id="chart" />
+                <QueryTime id="chart" data={data} />
               </div>
             </Panel>
             <Panel>
               <LineContainer data={data} />
             </Panel>
             <Panel>
-              <OverviewContainer />
+              <OverviewContainer data={data} />
             </Panel>
             <Panel>
               <div>
@@ -119,7 +128,7 @@ const MainContainer = (props) => {
               <LineContainer data={data} />
             </Panel>
             <Panel>
-              <OverviewContainer />
+              <OverviewContainer data={data} />
             </Panel>
             <Panel>
               <div>
