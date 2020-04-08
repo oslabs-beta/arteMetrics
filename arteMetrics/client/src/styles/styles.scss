@@ -421,3 +421,147 @@ svg {
 .appname {
   margin-top: 10px;
 }
+
+#team {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 160px auto;
+  position: relative;
+}
+
+#team h2 {
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+#team #profile-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#team #profile-group > div:nth-of-type(1) .profile-photo {
+  background: url('../images/brian.png') no-repeat center;
+  background-size: cover;
+}
+#team #profile-group > div:nth-of-type(2) .profile-photo {
+  background: url('../images/saejin.png') no-repeat center;
+  background-size: cover;
+}
+
+#team #profile-group > div:nth-of-type(3) .profile-photo {
+  background: url('../images/joe.png') no-repeat center;
+  background-size: cover;
+}
+
+#team #profile-group > div:nth-of-type(4) .profile-photo {
+  background: url('../images/sean.png') no-repeat center;
+  background-size: cover;
+}
+
+#team #profile-group > div:nth-of-type(5) .profile-photo {
+  background: url('../images/noah.png') no-repeat center;
+  background-size: cover;
+}
+
+#team #profile-group > i {
+  font-size: 80px;
+  padding-top: 40px;
+}
+
+#team #profile-group > i:last-child {
+  display: none;
+}
+
+#team .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+#team .profile-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+  background: #f8f8ff;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#team .profile-frame:hover .profile-photo {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+#team .profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#team figcaption {
+  font-size: 24px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+#team .profile-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+#team .profile-links a {
+  margin: 0 10px;
+}
+
+#team .profile-links i {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#team .profile-links i:hover {
+  color: #71b8c2;
+}
+
+#team i {
+  font-size: 40px;
+  color: #fff;
+}
