@@ -10,6 +10,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import loadingGif from '../../assets/loading.gif';
 
+
 // grab the query id by URL
 const urlParams = window.location.search;
 let apiKey = urlParams.substr(4);
