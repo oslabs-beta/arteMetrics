@@ -10,8 +10,8 @@ const Features = () => {
     <section className="homesection" id="features">
       <h2>An Apollo GraphQL Performance Monitoring Tool</h2>
       <figure>
-        <img className="logo" src={apolloLogo} />
-        <img className="logo" src={graphQLLogo} />
+        <img className="logo" alt="our logo" src={apolloLogo} />
+        <img className="logo" alt="our logo" src={graphQLLogo} />
         <ScrollAnimation animateIn="fadeInRight">
           <figcaption>
             arteMetrics is a free to use, open-source developer tool for the

@@ -5,23 +5,28 @@ const Team = () => {
   const [isCreatorProfiles] = useState([
     {
       name: 'Brian Chiang',
-      github: 'https://github.com/ch-brian'
+      github: 'https://github.com/ch-brian',
+      linkedin: ''
     },
     {
       name: 'Saejin Kang',
-      github: 'https://github.com/skang1004'
+      github: 'https://github.com/skang1004',
+      linkedin: ''
     },
     {
-      name: 'Joseph R',
-      github: 'https://github.com/jodaisu'
+      name: 'Joseph Renolayan',
+      github: 'https://github.com/jodaisu',
+      linkedin: ''
     },
     {
       name: 'Sean Arseneault',
-      github: 'https://github.com/itsmesean'
+      github: 'https://github.com/itsmesean',
+      linkedin: ''
     },
     {
       name: 'Noah King',
-      github: 'https://github.com/code-ark'
+      github: 'https://github.com/code-ark',
+      linkedin: ''
     }
   ]);
   const creatorProfileArray = isCreatorProfiles.map(profile => {

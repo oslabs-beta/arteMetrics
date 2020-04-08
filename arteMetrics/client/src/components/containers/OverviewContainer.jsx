@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import loadingGif from '../../assets/loading.gif';
+import Cookies from 'js-cookie';
 
 const QueriesOverview = () => {
   // allQueries will contain the JSON object with queries in the last 24hrs
@@ -7,6 +8,17 @@ const QueriesOverview = () => {
   const [topFive, setTopFive] = useState([]);
   const [slowestFive, setSlowestFive] = useState([]);
 
+  // grab the query id by URL
+  const urlParams = window.location.search;
+
+  let apiKey = urlParams.substr(4);
+  console.log('API KEY', apiKey);
+  if (urlParams.length > 20) {
+    document.cookie = 'apikey=' + apiKey;
+  }
+  if (urlParams.length < 20) {
+    apiKey = Cookies.get('apikey');
+  }
   useEffect(() => {
     fetch('/graphql', {
       method: 'POST',
@@ -16,7 +28,7 @@ const QueriesOverview = () => {
       body: JSON.stringify({
         // query for dummy apikey account
         query: `query {
-          allQueries {
+          allQueries(id:"${apiKey}") {
             id
             name
             duration
@@ -26,14 +38,14 @@ const QueriesOverview = () => {
         }`
       })
     })
-      .then(data => data.json())
-      .then(myJson => {
+      .then((data) => data.json())
+      .then((myJson) => {
         // queries array
         const data = myJson.data.allQueries;
         console.log('data back: ', data);
 
         // filter the results to only show top 5 ('frequent' state)
-        const names = data.map(item => item.name);
+        const names = data.map((item) => item.name);
         const counter = {};
         for (let i = 0; i < names.length; i++) {
           if (counter[names[i]]) {
@@ -66,7 +78,7 @@ const QueriesOverview = () => {
             let d2 = new Date(
               Math.max.apply(
                 null,
-                topArray.map(item => {
+                topArray.map((item) => {
                   return new Date(item.start_time);
                 })
               )
@@ -79,7 +91,7 @@ const QueriesOverview = () => {
         setTopFive(topObj);
 
         // grab the slowest queries
-        const getSlowestQueries = data => {
+        const getSlowestQueries = (data) => {
           // grab unique query names in a Set
           const queries = new Set();
           console.log(data[0].name);
@@ -89,7 +101,7 @@ const QueriesOverview = () => {
 
           // loop through the set and grab durations for each
           const queryDurations = {};
-          queries.forEach(query => {
+          queries.forEach((query) => {
             // loop through data object and store all durations
             let durations = [];
             for (let i = 0; i < data.length; i++) {
@@ -111,7 +123,7 @@ const QueriesOverview = () => {
             sortable.push([query, queryDurations[query]]);
           }
 
-          sortable.sort(function(a, b) {
+          sortable.sort(function (a, b) {
             return b[1] - a[1];
           });
           const slowestFive = sortable.slice(0, 5);
@@ -136,7 +148,7 @@ const QueriesOverview = () => {
         };
         setSlowestFive(getSlowestQueries(data));
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const CreateAccount = props => {
+const CreateAccount = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,14 +22,14 @@ const CreateAccount = props => {
           query: `mutation {createUser(username: "${username}", password: "${password}"){token}}`
         })
       })
-        .then(data => data.json())
-        .then(myJson => {
+        .then((data) => data.json())
+        .then((myJson) => {
           console.log('data back: ', myJson);
           document.cookie = 'token=' + myJson.data.createUser.token;
           verifyjwt();
-          history.push('/metrics');
+          history.push('/');
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } else {
       alert('password and confirm password must match');
     }

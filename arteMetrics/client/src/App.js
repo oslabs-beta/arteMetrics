@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import Cookies from 'js-cookie';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './styles/styles.css';
 
@@ -11,10 +11,8 @@ import MainContainer from './components/containers/MainContainer.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
+import CreateAppContainer from './components/containers/CreateAppContainer';
 import { ApolloProvider } from '@apollo/react-hooks';
-import OrgCreate from './components/OrgCreate.jsx';
-// import FOG from 'vanta/dist/vanta.fog.min';
-// import * as THREE from 'three';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql'
@@ -32,25 +30,13 @@ class App extends Component {
   }
 
   componentWillMount() {
-    console.log('insidemount state: ', this.state);
+    // console.log('insidemount state: ', this.state);
     if (Cookies.get('token')) {
       // this.verifyjwt();
     }
   }
 
-  componentDidMount() {
-    // this.vantaEffect = FOG({
-    //   el: this.vantaRef.current,
-    //   THREE: THREE
-    //   highlightColor: 0xffc914,
-    //   midtoneColor: 0xf1f0cc,
-    //   lowlightColor: 0xe4572e,
-    //   baseColor: 0x053143,
-    //   blurFactor: 0.6,
-    //   zoom: 1,
-    //   speed: 1
-    // });
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {
     // if (this.vantaEffect) {
@@ -58,9 +44,7 @@ class App extends Component {
     // }
   }
 
-  componentDidUpdate() {
-    console.log('inside componentdidupdtate: ', this.state);
-  }
+  componentDidUpdate() {}
 
   async verifyjwt() {
     const jwt = await Cookies.get('token');
@@ -72,14 +56,14 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: jwt })
     })
-      .then(data => data.json())
-      .then(myJson => {
+      .then((data) => data.json())
+      .then((myJson) => {
         const state = { ...this.state };
         state.loggedin = true;
         state.username = myJson.user;
         this.setState(state);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -112,7 +96,7 @@ class App extends Component {
               path="/createaccount"
               render={() => <CreateAccount verifyjwt={this.verifyjwt} />}
             />
-            <Route path="/org-create" component={OrgCreate}/> 
+            <Route path="/createapp" render={() => <CreateAppContainer />} />
           </Router>
           <div id="particles">
             <Particles

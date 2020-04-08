@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import logo from '../assets/arte_red_yellow.png';
 
-import { Link, useHistory, Router } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-const Login = props => {
+const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { verifyjwt } = props;
 
-  let history = useHistory();
+  // let history = useHistory();
 
   function handleUserChange(e) {
     setUsername(e.target.value);
@@ -34,18 +34,18 @@ const Login = props => {
         password: password
       })
     })
-      .then(data => data.json())
-      .then(myJson => {
+      .then((data) => data.json())
+      .then((myJson) => {
         console.log(myJson);
         if (myJson.success) {
           document.cookie = 'token=' + myJson.token;
           console.log('this is verifyjwt: ', verifyjwt);
           verifyjwt();
           // history.push('/metrics');
-          window.location.assign('/metrics');
+          window.location.assign('/');
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   return (
