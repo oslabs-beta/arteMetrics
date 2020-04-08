@@ -2,6 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import navbarLogo from '../assets/arte_white_clear.png';
 
+
 import { Navbar, Nav, NavDropdown, NavLink } from 'react-bootstrap';
 
 const TopNavbar = props => {
@@ -29,8 +30,8 @@ const TopNavbar = props => {
                 Federation App
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="/create-org">
+                Create Organization
               </NavDropdown.Item>
             </NavDropdown>
           ) : null}
