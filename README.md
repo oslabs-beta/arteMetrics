@@ -49,7 +49,6 @@ arteMetrics welomes contributions in any form. If you have something you would l
 [Saejin Kang](https://github.com/skang1004),
 [Noah King](https://github.com/code-ark),
 [Joseph Renolayan](https://github.com/jodaisu),
-[Cecilia Choi][https://github.com/cychoi00]
 
 ## License
 
