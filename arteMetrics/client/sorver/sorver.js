@@ -43,6 +43,12 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, '../build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
 //RESTFUL endpoint for login just because
 app.post('/login', queryController.login, (req, res) => {
   if (res.locals.user[0] === undefined) {
@@ -90,14 +96,14 @@ models.sequelize.authenticate();
 models.sequelize.sync().then(async () => {
   app.listen(PORT, () => {
     console.log(
-      `Server is listening on port: ${
-        'http://localhost:' + PORT + '/'
-      }...!!!!!! `
+      `Server is listening on port: ${'http://localhost:' +
+        PORT +
+        '/'}...!!!!!! `
     );
     console.log(
-      `🚀Apollo Server is listening on port: ${
-        'http://localhost:' + PORT + '/graphql'
-      } 🚀 `
+      `🚀Apollo Server is listening on port: ${'http://localhost:' +
+        PORT +
+        '/graphql'} 🚀 `
     );
   });
 });
