@@ -111,7 +111,7 @@ body {
   right: 0;
   left: 0;
   h2 {
-    font-size: 48px;
+    font-size: 90px;
   }
 }
 
@@ -146,6 +146,66 @@ body {
 }
 #tracingDataScreenshot {
   height: 200px;
+}
+
+#prevId {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    background-color: #90f0ff;
+    color: #17a2b8;
+  }
+}
+
+#prevIdVoid {
+  background-color: rgb(99, 99, 99);
+  color: rgb(212, 212, 212);
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#nextIdVoid {
+  background-color: rgb(99, 99, 99);
+  color: rgb(212, 212, 212);
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#nextId {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 5px;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    background-color: #90f0ff;
+    color: #17a2b8;
+  }
 }
 
 #chart {
@@ -420,6 +480,29 @@ svg {
 
 .appname {
   margin-top: 10px;
+}
+
+#github-photo {
+  height: 32px;
+  width: 32px;
+  margin-top: 5px;
+  filter: invert(100%);
+  &:hover {
+    filter: sepia(20%);
+  }
+}
+.profile-linkedin:hover {
+  fill: white;
+}
+
+#linkedIn-photo {
+  height: 32px;
+  width: 32px;
+  margin-bottom: 5px;
+  filter: invert(100%);
+  &:hover {
+    filter: invert(15%);
+  }
 }
 
 #team {

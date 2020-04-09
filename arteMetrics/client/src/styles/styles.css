@@ -115,7 +115,7 @@ body {
 }
 
 #hero h2 {
-  font-size: 48px;
+  font-size: 90px;
 }
 
 #features {
@@ -150,6 +150,68 @@ body {
 
 #tracingDataScreenshot {
   height: 200px;
+}
+
+#prevId {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+#prevId:hover {
+  cursor: pointer;
+  background-color: #90f0ff;
+  color: #17a2b8;
+}
+
+#prevIdVoid {
+  background-color: #636363;
+  color: #d4d4d4;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#nextIdVoid {
+  background-color: #636363;
+  color: #d4d4d4;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#nextId {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+#nextId:hover {
+  cursor: pointer;
+  background-color: #90f0ff;
+  color: #17a2b8;
 }
 
 #chart {
@@ -479,6 +541,39 @@ svg {
   margin-top: 10px;
 }
 
+<<<<<<< HEAD
+=======
+#github-photo {
+  height: 32px;
+  width: 32px;
+  margin-top: 5px;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+
+#github-photo:hover {
+  -webkit-filter: sepia(20%);
+          filter: sepia(20%);
+}
+
+.profile-linkedin:hover {
+  fill: white;
+}
+
+#linkedIn-photo {
+  height: 32px;
+  width: 32px;
+  margin-bottom: 5px;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+
+#linkedIn-photo:hover {
+  -webkit-filter: invert(15%);
+          filter: invert(15%);
+}
+
+>>>>>>> staging
 #team {
   display: -webkit-box;
   display: -ms-flexbox;
