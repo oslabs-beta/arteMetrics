@@ -17,6 +17,8 @@ const QueryTime = (props) => {
   // iterate through props.data.allQueries
   const data = props.data.allQueries.filter((item) => item.id === parseInt(id));
 
+  console.log(data[0]);
+
   useEffect(() => {
     if (id.length > 0) {
       const {
