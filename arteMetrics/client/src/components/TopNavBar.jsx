@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import navbarLogo from '../assets/arte_white_clear.png';
 
+
 import { Navbar, Nav, NavDropdown, NavLink } from 'react-bootstrap';
 
 const TopNavbar = (props) => {
