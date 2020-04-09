@@ -152,6 +152,68 @@ body {
   height: 200px;
 }
 
+#prevId {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+#prevId:hover {
+  cursor: pointer;
+  background-color: #90f0ff;
+  color: #17a2b8;
+}
+
+#prevIdVoid {
+  background-color: #636363;
+  color: #d4d4d4;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#nextIdVoid {
+  background-color: #636363;
+  color: #d4d4d4;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#nextId {
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+#nextId:hover {
+  cursor: pointer;
+  background-color: #90f0ff;
+  color: #17a2b8;
+}
+
 #chart {
   background: #f1f0cc;
   padding: 40px 0;
