@@ -428,7 +428,7 @@ svg {
   margin-top: 5px;
   filter: invert(100%);
   &:hover {
-    filter: invert(50%);
+    filter: sepia(20%);
   }
 }
 .profile-linkedin:hover {
@@ -441,7 +441,7 @@ svg {
   margin-bottom: 5px;
   filter: invert(100%);
   &:hover {
-    filter: invert(50%);
+    filter: invert(15%);
   }
 }
 

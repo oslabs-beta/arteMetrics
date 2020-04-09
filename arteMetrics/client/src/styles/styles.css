@@ -488,8 +488,8 @@ svg {
 }
 
 #github-photo:hover {
-  -webkit-filter: invert(50%);
-          filter: invert(50%);
+  -webkit-filter: sepia(20%);
+          filter: sepia(20%);
 }
 
 .profile-linkedin:hover {
@@ -505,8 +505,8 @@ svg {
 }
 
 #linkedIn-photo:hover {
-  -webkit-filter: invert(50%);
-          filter: invert(50%);
+  -webkit-filter: invert(15%);
+          filter: invert(15%);
 }
 
 #team {
