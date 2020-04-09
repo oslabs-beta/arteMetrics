@@ -479,6 +479,34 @@ svg {
   margin-top: 10px;
 }
 
+#github-photo {
+  height: 30px;
+  width: 30px;
+  margin-top: 5px;
+  -webkit-filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+          filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
+#github-photo #github-photo:hover {
+  fill: #f6faff;
+}
+
+.profile-linkedin:hover {
+  fill: white;
+}
+
+#linkedIn-photo {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 5px;
+  -webkit-filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+          filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
+#linkedIn-photo #linkedIn-photo:hover {
+  fill: #0077b5;
+}
+
 #team {
   display: -webkit-box;
   display: -ms-flexbox;

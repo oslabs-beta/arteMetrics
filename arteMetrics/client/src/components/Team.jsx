@@ -6,17 +6,17 @@ const Team = () => {
     {
       name: 'Brian Chiang',
       github: 'https://github.com/ch-brian',
-      linkedin: ''
+      linkedin: 'https://www.linkedin.com/in/ch-brian/'
     },
     {
       name: 'Saejin Kang',
       github: 'https://github.com/skang1004',
-      linkedin: ''
+      linkedin: 'https://www.linkedin.com/in/saejinkang1004/'
     },
     {
       name: 'Joseph Renolayan',
       github: 'https://github.com/jodaisu',
-      linkedin: ''
+      linkedin: 'https://www.linkedin.com/in/jodaisu/'
     },
     {
       name: 'Sean Arseneault',
@@ -26,10 +26,10 @@ const Team = () => {
     {
       name: 'Noah King',
       github: 'https://github.com/code-ark',
-      linkedin: ''
+      linkedin: 'https://www.linkedin.com/in/noah-king/'
     }
   ]);
-  const creatorProfileArray = isCreatorProfiles.map(profile => {
+  const creatorProfileArray = isCreatorProfiles.map((profile) => {
     return (
       <Profiles
         key={`profile${profile.name}`}
@@ -61,12 +61,22 @@ const Profiles = ({ src, name, linkedin, github }) => {
           </figure>
         </ScrollAnimation>
         <div className="profile-link">
-          <a href={linkedin} target="_blank">
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a href={github} target="_blank">
-            <i className="fab fa-github"></i>
-          </a>
+          <div className="profile-linkedin">
+            <a href={linkedin}>
+              <img
+                src="https://image.flaticon.com/icons/svg/37/37019.svg"
+                id="linkedIn-photo"
+              ></img>
+            </a>
+          </div>
+          <div className="profile-github">
+            <a href={github}>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+                id="github-photo"
+              ></img>
+            </a>
+          </div>
         </div>
       </div>
       <i className="fas fa-exchange-alt"></i>
