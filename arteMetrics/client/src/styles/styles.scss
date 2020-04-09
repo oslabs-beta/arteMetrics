@@ -423,12 +423,12 @@ svg {
 }
 
 #github-photo {
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
   margin-top: 5px;
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
-  #github-photo:hover {
-    fill: #f6faff;
+  filter: invert(100%);
+  &:hover {
+    filter: invert(50%);
   }
 }
 .profile-linkedin:hover {
@@ -436,12 +436,12 @@ svg {
 }
 
 #linkedIn-photo {
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
   margin-bottom: 5px;
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
-  #linkedIn-photo:hover {
-    fill: #0077b5;
+  filter: invert(100%);
+  &:hover {
+    filter: invert(50%);
   }
 }
 
