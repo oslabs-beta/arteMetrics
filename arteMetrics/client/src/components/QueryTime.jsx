@@ -11,11 +11,31 @@ const QueryTime = (props) => {
 
   // grab the query id by URL
   const urlParams = window.location.search;
+
   const id = urlParams.substr(4);
-  // id = 370
 
   // iterate through props.data.allQueries
   const data = props.data.allQueries.filter((item) => item.id === parseInt(id));
+
+  //finding all resolvers with the same name
+  const sameQueries = props.data.allQueries.filter((query) => {
+    return query.name === data[0].name;
+  });
+  //finding the next resolver
+  const nextQuery = sameQueries[sameQueries.indexOf(data[0]) + 1];
+
+  let nextId;
+  if (nextQuery) {
+    nextId = nextQuery.id;
+  }
+
+  //finding the previous resolver
+  const prevQuery = sameQueries[sameQueries.indexOf(data[0]) - 1];
+
+  let prevId;
+  if (prevQuery) {
+    prevId = prevQuery.id;
+  }
 
   useEffect(() => {
     if (id.length > 0) {
@@ -75,7 +95,6 @@ const QueryTime = (props) => {
         const height = 1000 - margin.top - margin.bottom;
 
         //creating the x-axis with the domain set to 0 - the max duration value from root query and setting the range to fit the dimensions of the page
-        console.log('x axis', root[0]['duration'] / 1000000);
         const x = d3
           .scaleLinear()
           .domain([0, d3.max(root, (d) => d['duration'] / 1000)])
@@ -278,6 +297,37 @@ const QueryTime = (props) => {
   return (
     <div className="chartTab" style={{ overflowY: 'scroll' }}>
       <React.Fragment>
+        {prevQuery && nextQuery ? (
+          <React.Fragment>
+            <a id="prevId" href={`/metrics?id=${prevId}`}>
+              Previous
+            </a>
+            {'  '}
+            <a id="nextId" href={`/metrics?id=${nextId}`}>
+              Next
+            </a>
+          </React.Fragment>
+        ) : !prevQuery ? (
+          <React.Fragment>
+            <a id="prevIdVoid" href="#">
+              Previous
+            </a>
+            {'  '}
+            <a id="nextId" href={`/metrics?id=${nextId}`}>
+              Next
+            </a>
+          </React.Fragment>
+        ) : !nextQuery ? (
+          <React.Fragment>
+            <a id="prevId" href={`/metrics?id=${prevId}`}>
+              Previous
+            </a>
+            {'  '}
+            <a id="nextIdVoid" href="#">
+              Next
+            </a>
+          </React.Fragment>
+        ) : null}
         <h4>Operation: {data[0].name}</h4>
         <h6>Performed at: {new Date(data[0].start_time).toString()}</h6>
         <svg ref={svgRef}></svg>

@@ -74,7 +74,7 @@ const QueriesOverview = (props) => {
     const getSlowestQueries = (data) => {
       // grab unique query names in a Set
       const queries = new Set();
-      console.log(data[0].name);
+      // console.log(data[0].name);
       for (let i = 0; i < data.length; i++) {
         queries.add(data[i].name);
       }
