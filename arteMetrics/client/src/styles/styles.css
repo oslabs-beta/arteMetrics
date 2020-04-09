@@ -541,8 +541,6 @@ svg {
   margin-top: 10px;
 }
 
-<<<<<<< HEAD
-=======
 #github-photo {
   height: 32px;
   width: 32px;
@@ -573,7 +571,6 @@ svg {
           filter: invert(15%);
 }
 
->>>>>>> staging
 #team {
   display: -webkit-box;
   display: -ms-flexbox;
