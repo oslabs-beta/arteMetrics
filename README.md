@@ -43,15 +43,15 @@ npm install artemetrics
 Head over to [http://artemetrics.app](http://artemetrics.app) and sign up to create a new app:
 
 <p align="center">
-    <img src="artemetrics/client/src/assets/create_new_app.png" alt="creating new app" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./artemetrics/client/src/assets/create_new_app.png" alt="creating new app" width=90% style="box-shadow:10px 10px 5px gray">
 </p>
 After signing up, create a new app by clicking on the App dropdown
 <p align="center">
-    <img src="artemetrics/client/src/assets/creating_new_app.png" alt="naming new app" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./artemetrics/client/src/assets/creating_new_app.png" alt="naming new app" width=90% style="box-shadow:10px 10px 5px gray">
 </p>
 Once you name your new app, you will be redirected to a page containing a unique API key that you can inject into your own project
 <p align="center">
-    <img src="artemetrics/client/src/assets/grab_api_key.png" alt="grabbing api key" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./artemetrics/client/src/assets/grab_api_key.png" alt="grabbing api key" width=90% style="box-shadow:10px 10px 5px gray">
 </p>
 
 After copying the API key to your clipboard, paste it into a .env file
