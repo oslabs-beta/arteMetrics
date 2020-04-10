@@ -11,19 +11,19 @@
 ### Tracing chart for resolvers
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/TracingData.png" alt="Tracing chart" width=70%>
+    <img src="./arteMetrics/client/src/assets/TracingData.png" alt="Tracing chart" width=100%>
 </p>
 
 ### Distribution bar chart
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/distribution_chart.png" alt="distribution chart" width=70%>
+    <img src="./arteMetrics/client/src/assets/distribution_chart.png" alt="distribution chart" width=100%>
 </p>
 
 ### Line chart
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/24hrQuery.png" alt="line chart" width=70%>
+    <img src="./arteMetrics/client/src/assets/24hrQuery.png" alt="line chart" width=100%>
 </p>
 
 ## Getting Started
@@ -43,15 +43,15 @@ npm install artemetrics
 Head over to [http://artemetrics.app](http://artemetrics.app) and sign up to create a new app:
 
 <p align="center">
-    <img src="./artemetrics/client/src/assets/create_new_app.png" alt="creating new app" width=70%>
+    <img src="./artemetrics/client/src/assets/create_new_app.png" alt="creating new app" width=100%>
 </p>
 After signing up, create a new app by clicking on the App dropdown
 <p align="center">
-    <img src="./artemetrics/client/src/assets/creating_new_app.png" alt="naming new app" width=70%>
+    <img src="./artemetrics/client/src/assets/creating_new_app.png" alt="naming new app" width=100%>
 </p>
 Once you name your new app, you will be redirected to a page containing a unique API key that you can inject into your own project
 <p align="center">
-    <img src="./artemetrics/client/src/assets/grab_api_key.png" alt="grabing api key" width=70%>
+    <img src="./artemetrics/client/src/assets/grab_api_key.png" alt="grabing api key" width=100%>
 </p>
 
 After copying the API key to your clipboard, paste it into a .env file
