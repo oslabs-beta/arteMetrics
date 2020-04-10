@@ -13,6 +13,9 @@ const QueriesOverNTIme = (props) => {
       moment(stat.start_time).isAfter(timeFrame)
     );
 
+    // sort time i n acsending order
+    temp = temp.sort((a, b) => moment(a.start_time) - moment(b.start_time));
+
     // rounding down times array to nearest hour/minute depending on granularity
     temp = temp.map((item) => {
       return moment(item.start_time).startOf(granularity).format('LLL');
