@@ -11,19 +11,19 @@
 ### Tracing chart for resolvers
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/TracingData.png" alt="Tracing chart" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./arteMetrics/client/src/assets/TracingData.png" alt="Tracing chart" width=90% style="box-shadow:10px 10px 5px gray" style="-webkit-box-shadow:10px 10px 5px gray" style="-moz-box-shadow:10px 10px 5px gray">
 </p>
 
 ### Distribution bar chart
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/distribution_chart.png" alt="distribution chart" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./arteMetrics/client/src/assets/distribution_chart.png" alt="distribution chart" width=90% style="box-shadow:10px 10px 5px gray" style="-webkit-box-shadow:10px 10px 5px gray" style="-moz-box-shadow:10px 10px 5px gray">
 </p>
 
 ### Line chart
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/24hrQuery.png" alt="line chart" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./arteMetrics/client/src/assets/24hrQuery.png" alt="line chart" width=90% style="box-shadow:10px 10px 5px gray" style="-webkit-box-shadow:10px 10px 5px gray" style="-moz-box-shadow:10px 10px 5px gray">
 </p>
 
 ## Getting Started
@@ -43,15 +43,15 @@ npm install artemetrics
 Head over to [http://artemetrics.app](http://artemetrics.app) and sign up to create a new app:
 
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/create_new_app.png" alt="creating new app" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./arteMetrics/client/src/assets/create_new_app.png" alt="creating new app" width=90% style="box-shadow:10px 10px 5px gray" style="-webkit-box-shadow:10px 10px 5px gray" style="-moz-box-shadow:10px 10px 5px gray">
 </p>
 After signing up, create a new app by clicking on the App dropdown
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/creating_new_app.png" alt="naming new app" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./arteMetrics/client/src/assets/creating_new_app.png" alt="naming new app" width=90% style="box-shadow:10px 10px 5px gray" style="-webkit-box-shadow:10px 10px 5px gray" style="-moz-box-shadow:10px 10px 5px gray">
 </p>
 Once you name your new app, you will be redirected to a page containing a unique API key that you can inject into your own project
 <p align="center">
-    <img src="./arteMetrics/client/src/assets/grab_api_key.png" alt="grabbing api key" width=90% style="box-shadow:10px 10px 5px gray">
+    <img src="./arteMetrics/client/src/assets/grab_api_key.png" alt="grabbing api key" width=90% style="box-shadow:10px 10px 5px gray" style="-webkit-box-shadow:10px 10px 5px gray" style="-moz-box-shadow:10px 10px 5px gray">
 </p>
 
 After copying the API key to your clipboard, paste it into a .env file
