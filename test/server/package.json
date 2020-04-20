@@ -15,7 +15,7 @@
     "apollo-datasource-rest": "^0.1.5",
     "apollo-server": "2.6.1",
     "apollo-server-testing": "2.6.1",
-    "artemetrics": "^1.0.8",
+    "artemetrics": "^1.0.9",
     "artemiddle": "^1.0.2",
     "aws-sdk": "^2.585.0",
     "dotenv": "^6.2.0",
