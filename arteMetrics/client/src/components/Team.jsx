@@ -62,7 +62,7 @@ const Profiles = ({ src, name, linkedin, github }) => {
         </ScrollAnimation>
         <div className="profile-link">
           <div className="profile-linkedin">
-            <a href={linkedin}>
+            <a href={linkedin} target="_blank" rel="noopener noreferrer">
               <img
                 src="https://image.flaticon.com/icons/svg/37/37019.svg"
                 id="linkedIn-photo"
@@ -70,7 +70,7 @@ const Profiles = ({ src, name, linkedin, github }) => {
             </a>
           </div>
           <div className="profile-github">
-            <a href={github}>
+            <a href={github} target="_blank" rel="noopener noreferrer">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
                 id="github-photo"
