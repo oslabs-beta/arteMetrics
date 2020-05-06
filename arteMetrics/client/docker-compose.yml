@@ -1,13 +1,18 @@
 version: '3.0'
 services:
-  prod:
-    image: artemetrics/artemetrics-prod
-    container_name: 'artemetrics-prod'
+  dev:
+    image: artemetrics/artemetrics-dev
+    container_name: 'artemetrics-dev'
     ports:
+      # opens CRA for hot module reload
       - '3000:3000'
+      # opens server port for fetching data (8080)
+      - '8080:8080'
     volumes:
       - './:/usr/src/app/'
       - 'node_modules:/usr/src/app/node_modules'
     command: npm run dev
+    environment:
+      - CI=true
 volumes:
   node_modules:
