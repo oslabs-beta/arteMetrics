@@ -25,7 +25,6 @@ class App extends Component {
       loggedin: false,
       username: false
     };
-    // this.vantaRef = React.createRef();
     this.verifyjwt = this.verifyjwt.bind(this);
   }
 
@@ -69,7 +68,6 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        {/* <div className="vanta" ref={this.vantaRef}> */}
         <div className="App">
           <TopNavBar
             loggedin={this.state.loggedin}
