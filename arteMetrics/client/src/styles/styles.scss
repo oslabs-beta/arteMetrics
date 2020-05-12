@@ -94,6 +94,18 @@ body {
   height: 60vh;
 }
 
+#apikey {
+  position: relative;
+  right: 80px;
+  resize: none;
+}
+
+#copyButton {
+  position: relative;
+  bottom: 53px;
+  left: 210px;
+}
+
 // //hero
 #hero {
   display: flex;

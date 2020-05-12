@@ -48,6 +48,14 @@ const CreateApp = (props) => {
     setApp(e.target.value);
   }
 
+  function copyToClipboard(e) {
+    e.preventDefault();
+    let copyAPI = document.getElementById('apikey');
+    copyAPI.select();
+    document.execCommand('copy');
+    alert('Copied to clipboard!');
+  }
+
   return (
     <div className="apppanel">
       {!api ? (
@@ -92,7 +100,19 @@ const CreateApp = (props) => {
             place!!!
           </div>
           <p></p>
-          <div className="api">{api}</div>
+          <textarea
+            readOnly="readonly"
+            id="apikey"
+            value={api}
+            className="api"
+          ></textarea>
+          <button
+            id="copyButton"
+            className="btn btn-info"
+            onClick={copyToClipboard}
+          >
+            Copy to clipboard
+          </button>
           <br />
           <Link to={`/?id=${api}`}>
             <button type="button" className="btn btn-info">
