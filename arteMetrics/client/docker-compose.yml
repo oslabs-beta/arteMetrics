@@ -14,5 +14,21 @@ services:
     command: npm run dev
     environment:
       - CI=true
+    #######
+    # UNCOMMENT FOR RDS MIGRATION AND CONFIGURE NODE_ENV IN SERVER/PACKAGE.JSON
+    #######
+    # depends_on: [postgres-db]
+  # postgres-db:
+  #   image: artemetrics/artemetrics-postgres
+  #   container_name: artemetrics-postgres
+  #   environment:
+  #     [
+  #       POSTGRES_PASSWORD=admin,
+  #       POSTGRES_USER=artemetricsadmin,
+  #       POSTGRES_DB=artemetricsdb,
+  #     ]
+  #   volumes:
+  #     - dev-db-volume:/var/lib/postgresql/data
 volumes:
   node_modules:
+  # dev-db-volume:
