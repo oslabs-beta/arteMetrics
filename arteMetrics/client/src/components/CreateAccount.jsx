@@ -11,7 +11,6 @@ const CreateAccount = (props) => {
 
   function createUser(e) {
     e.preventDefault();
-    console.log('inside createUser');
     if (password === confirmPassword) {
       fetch('/graphql', {
         method: 'POST',
@@ -24,12 +23,11 @@ const CreateAccount = (props) => {
       })
         .then((data) => data.json())
         .then((myJson) => {
-          console.log('data back: ', myJson);
           document.cookie = 'token=' + myJson.data.createUser.token;
           verifyjwt();
           history.push('/');
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log("error creating an acct"));
     } else {
       alert('password and confirm password must match');
     }

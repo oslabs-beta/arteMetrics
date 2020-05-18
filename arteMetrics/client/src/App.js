@@ -15,7 +15,7 @@ import CreateAppContainer from './components/containers/CreateAppContainer';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8080/graphql'
+  uri: '/graphql'
 });
 
 class App extends Component {

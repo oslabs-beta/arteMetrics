@@ -51,7 +51,6 @@ const MainContainer = (props) => {
   // let history = useHistory();
   // let user;
   const { loggedin } = props;
-  console.log('loggedin in maincontainer: ', loggedin);
 
   // async function verifyjwt() {
   //   const jwt = await Cookies.get('token');

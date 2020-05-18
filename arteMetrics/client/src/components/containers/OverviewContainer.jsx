@@ -12,7 +12,6 @@ const QueriesOverview = (props) => {
   const urlParams = window.location.search;
 
   let apiKey = urlParams.substr(4);
-  console.log('API KEY', apiKey);
   if (urlParams.length > 20) {
     document.cookie = 'apikey=' + apiKey;
   }

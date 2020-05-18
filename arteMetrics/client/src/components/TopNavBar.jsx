@@ -19,7 +19,7 @@ const TopNavbar = (props) => {
   useEffect(() => {
     const jwt = Cookies.get('token');
     let id;
-    // populate apps dr1pdown for existing user apps
+    // populate apps dropdown for existing user apps
     fetch('/getuserid', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -48,11 +48,10 @@ const TopNavbar = (props) => {
         })
           .then((data) => data.json())
           .then((myJson) => {
-            console.log(myJson);
             setApps(myJson.data.allApps);
           });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error getting user id"));
 
     // fetch current user's name and ID
     fetch('testjwt', {
@@ -64,7 +63,7 @@ const TopNavbar = (props) => {
       .then((myJson) => {
         setUser(myJson.user);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error fetching user info"));
   }, []);
 
   return (
