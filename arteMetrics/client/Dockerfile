@@ -1,9 +1,8 @@
-FROM node:12.15
+FROM node:10.15
+ENV CI true
 WORKDIR /usr/src/app
-COPY . /usr/src/app
+COPY . /usr/src/app/
 RUN npm install
-# RUN npm run build
+EXPOSE 8080 
 EXPOSE 3000
-CMD npm run dev
-# CMD node ./sorver/sorver.js
-
+CMD ["npm", "run", "server"]

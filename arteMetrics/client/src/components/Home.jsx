@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Team from './Team.jsx';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000'
+  uri: 'http://localhost:8080'
 });
 //just adding a comment
 
@@ -19,7 +19,7 @@ const Home = () => {
       <div className="Home">
         <Hero />
         <Features />
-        <Team className="landing-page"/>
+        <Team className="landing-page" />
       </div>
     </ApolloProvider>
   );

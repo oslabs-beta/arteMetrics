@@ -19,14 +19,12 @@ const CreateApp = (props) => {
       .then((myJson) => {
         setUser(myJson.user);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error in creating app"));
   });
 
   function createApp(e) {
     e.preventDefault();
-    console.log(app);
     // transaction to add app name and receive an API key to display after 'create'
-
     fetch('/createApp', {
       method: 'POST',
       headers: {

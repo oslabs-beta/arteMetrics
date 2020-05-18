@@ -19,52 +19,53 @@ const TopNavbar = (props) => {
   useEffect(() => {
     const jwt = Cookies.get('token');
     let id;
-    // populate apps dr1pdown for existing user apps
-    fetch('/getuserid', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: jwt })
-    })
-      .then((data) => {
-        return data.json();
+    if (jwt){
+      // populate apps dropdown for existing user apps
+      fetch('/getuserid', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: jwt })
       })
-      .then((result) => {
-        id = result.id;
-        fetch('/graphql', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            // query for dummy apikey account
-            query: `query {
-              allApps(id:${id}){
-                id
-                app_name
-                api_key
-              }
-            }`
-          })
+        .then((data) => {
+          return data.json();
         })
-          .then((data) => data.json())
-          .then((myJson) => {
-            console.log(myJson);
-            setApps(myJson.data.allApps);
-          });
-      })
-      .catch((err) => console.log(err));
+        .then((result) => {
+          id = result.id;
+          fetch('/graphql', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              // query for dummy apikey account
+              query: `query {
+                allApps(id:${id}){
+                  id
+                  app_name
+                  api_key
+                }
+              }`
+            })
+          })
+            .then((data) => data.json())
+            .then((myJson) => {
+              setApps(myJson.data.allApps);
+            });
+        })
+        .catch((err) => console.log("error getting user id"));
 
-    // fetch current user's name and ID
-    fetch('testjwt', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: jwt })
-    })
-      .then((data) => data.json())
-      .then((myJson) => {
-        setUser(myJson.user);
+      // fetch current user's name and ID
+      fetch('testjwt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: jwt })
       })
-      .catch((err) => console.log(err));
+        .then((data) => data.json())
+        .then((myJson) => {
+          setUser(myJson.user);
+        })
+        .catch((err) => console.log("error fetching user info"));
+    }
   }, []);
 
   return (

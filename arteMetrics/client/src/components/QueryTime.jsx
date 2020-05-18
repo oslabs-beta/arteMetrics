@@ -296,6 +296,8 @@ const QueryTime = (props) => {
 
   return (
     <div className="chartTab" style={{ overflowY: 'scroll' }}>
+      <h4>Operation: {data[0].name}</h4>
+      <h6>Performed at: {new Date(data[0].start_time).toString()}</h6>
       <React.Fragment>
         {prevQuery && nextQuery ? (
           <React.Fragment>
@@ -328,8 +330,6 @@ const QueryTime = (props) => {
             </a>
           </React.Fragment>
         ) : null}
-        <h4>Operation: {data[0].name}</h4>
-        <h6>Performed at: {new Date(data[0].start_time).toString()}</h6>
         <svg ref={svgRef}></svg>
       </React.Fragment>
     </div>

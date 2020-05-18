@@ -6,6 +6,8 @@ const isEmail = require('isemail');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const { createStore } = require('./utils');
+
+// npm i artemetrics
 const arteMetrics = require('artemetrics');
 
 const LaunchAPI = require('./datasources/launch');
@@ -37,14 +39,19 @@ const context = async ({ req }) => {
   return { user };
 };
 
+// set api key here
+arteMetrics.setApiKey(process.env.API_KEY);
+
 // Set up Apollo Server
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  rootValue: query => {
+  rootValue: (query) => {
+    // inject this line
     arteMetrics.getName(query);
   },
-  formatResponse: response => {
+  formatResponse: (response) => {
+    // inject this line
     arteMetrics.process(response);
   },
   tracing: true,

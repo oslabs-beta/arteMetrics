@@ -1,6 +1,9 @@
 version: '3.0'
 services:
   dev:
+    build:
+      context: .
+      dockerfile: ./arteMetrics/client/Dockerfile
     image: artemetrics/artemetrics-dev
     container_name: 'artemetrics-dev'
     ports:
@@ -9,7 +12,7 @@ services:
       # opens server port for fetching data (8080)
       - '8080:8080'
     volumes:
-      - './:/usr/src/app/'
+      - './arteMetrics/client:/usr/src/app/'
       - 'node_modules:/usr/src/app/node_modules'
     command: npm run dev
     environment:

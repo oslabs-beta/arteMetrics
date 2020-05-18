@@ -20,9 +20,6 @@ const Login = (props) => {
 
   function login(e) {
     e.preventDefault();
-    console.log('inside login');
-    console.log(username);
-    console.log(password);
 
     fetch('login', {
       method: 'POST',
@@ -36,16 +33,14 @@ const Login = (props) => {
     })
       .then((data) => data.json())
       .then((myJson) => {
-        console.log(myJson);
         if (myJson.success) {
           document.cookie = 'token=' + myJson.token;
-          console.log('this is verifyjwt: ', verifyjwt);
           verifyjwt();
           // history.push('/metrics');
           window.location.assign('/');
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error logging in"));
   }
 
   return (
