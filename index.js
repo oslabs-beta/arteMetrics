@@ -34,7 +34,6 @@ arteMetrics.process = (response) => {
     }),
   })
     .then((x) => x.json())
-    .then((myJson) => console.log(myJson))
     .catch((err) => console.log(err));
 };
 
