@@ -1,46 +1,78 @@
 ## arteMetrics
-
 Creating performance monitors for Apollo implementations of GraphQL.
 
+## Getting Started
+
+To get resolver metrics for your GraphQL application, follow these easy steps.
+
+### npm
+
+Install the arteMetrics node module into your project
+
 ```js
-const arteMetrics = require("artemetrics");
-arteMetrics.process(response);
-```
-
-## Features
-
-- GrahpQL Tracing
-- more features
-- and more...
-- moooooore
-
-## Installation
-
-arteMetrics consists of an NPM package available through the
-[npm registry](https://www.npmjs.com/) and a [react web app](https://reactjs.org/).
-
-#### Node module
-
-Install the [artemetrics](https://www.npmjs.com/package/artemetrics) node module
-
-```
 npm install artemetrics
 ```
 
-test installation by running the 'process' method.
+### Installation
 
-```javascript
-const arteMetrics = require("artemetrics");
-arteMetrics.process(response);
+1. Head over to [http://artemetrics.app](http://artemetrics.app) and sign up to create a new app.
+
+2. After signing up, create a new app by clicking on the App dropdown
+
+3. Once you name your new app, you will be redirected to a page containing a unique API key that you can inject into your own project
+
+4. After copying the API key to your clipboard, paste it into a .env file
+
+```js
+API_KEY = '45ed4db2-9ee5-4e30-a391-090a2c9cf0mg';
 ```
 
-#### React App
+5. In your server file, require in our node module:
 
-Description of web app
+```js
+const arteMetrics = require('artemetrics');
+```
+
+6. And pass in your process.env.API_KEY into arteMetrics:
+
+```js
+arteMetrics.setApiKey(process.env.API_KEY);
+```
+
+7. Then when you create an instance of ApolloServer, pass in a couple keys to the ApolloServer constructor:
+
+```js
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  rootValue: (query) => {
+    arteMetrics.getName(query);
+  },
+  formatResponse: (response) => {
+    arteMetrics.process(response);
+  }
+});
+```
+
+8. And then spin up your server
+
+```js
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+  console.log(`🚀 app running at ${url}`);
+});
+```
+
+9. And now if you head over to [http://artemetrics.app](http://artemetrics.app) and select your app, you should be able to see the queries you made through your application and track the duration of your resolvers
+
+
+## License
+
+Distributed under the MIT License.
+[MIT](LICENSE)
 
 ## Contributing
 
-arteMetrics welomes contributions in any form. If you have something you would like to add, create a pull request.
+The team at arteMetrics would love contributions to this application! If there is something you would like to add, fork and clone this repo and make a PR!
 
 ## People
 
@@ -48,11 +80,7 @@ arteMetrics welomes contributions in any form. If you have something you would l
 [Brian Chiang](https://github.com/ch-brian),
 [Saejin Kang](https://github.com/skang1004),
 [Noah King](https://github.com/code-ark),
-[Joseph Renolayan](https://github.com/jodaisu),
-
-## License
-
-[MIT](LICENSE)
+[Joseph Renolayan](https://github.com/jodaisu)
 
 [npm-image]: **
 [npm-url]: https://www.npmjs.com/package/artemetrics
