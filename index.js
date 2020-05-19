@@ -19,7 +19,7 @@ arteMetrics.process = (response) => {
     execution,
   } = response.extensions.tracing;
   console.log("this is startime: ", startTime);
-  fetch("http://localhost:8081/test/insert", {
+  fetch("http://artemetrics-api.us-west-1.elasticbeanstalk.com/test/insert", {
     method: "POST",
     headers: {
       "Content-Type": "application/JSON",
@@ -34,7 +34,6 @@ arteMetrics.process = (response) => {
     }),
   })
     .then((x) => x.json())
-    .then((myJson) => console.log(myJson))
     .catch((err) => console.log(err));
 };
 
