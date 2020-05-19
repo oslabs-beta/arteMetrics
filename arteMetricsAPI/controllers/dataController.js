@@ -18,7 +18,6 @@ dataController.insert = (req, res, next) => {
 
   db.query(text, values)
     .then(result => {
-      console.log(result);
       res.locals.data = result.rows;
       return next();
     })
