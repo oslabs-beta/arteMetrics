@@ -1,0 +1,37 @@
+version: '3.0'
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ./arteMetrics/client/Dockerfile
+    image: artemetrics/artemetrics-dev
+    container_name: 'artemetrics-dev'
+    ports:
+      # opens CRA for hot module reload
+      - '3000:3000'
+      # opens server port for fetching data (8080)
+      - '8080:8080'
+    volumes:
+      - './arteMetrics/client:/usr/src/app/'
+      - 'node_modules:/usr/src/app/node_modules'
+    command: npm run dev
+    environment:
+      - CI=true
+    #######
+    # UNCOMMENT FOR RDS MIGRATION AND CONFIGURE NODE_ENV IN SERVER/PACKAGE.JSON
+    #######
+    # depends_on: [postgres-db]
+  # postgres-db:
+  #   image: artemetrics/artemetrics-postgres
+  #   container_name: artemetrics-postgres
+  #   environment:
+  #     [
+  #       POSTGRES_PASSWORD=admin,
+  #       POSTGRES_USER=artemetricsadmin,
+  #       POSTGRES_DB=artemetricsdb,
+  #     ]
+  #   volumes:
+  #     - dev-db-volume:/var/lib/postgresql/data
+volumes:
+  node_modules:
+  # dev-db-volume:

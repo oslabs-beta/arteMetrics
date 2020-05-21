@@ -14,15 +14,16 @@ queryController.getAllQueries = (req, res, next) => {
     `;
 
   db.query(text)
-    .then(result => {
+    .then((result) => {
       res.locals.queries = result.rows;
       return next();
     })
-    .catch(err => next(err));
+    .catch((err) => next(err));
 };
 
 // grabs query by specific _id when user selects on the front end
 queryController.getQueryById = (req, res, next) => {
+  if (req.params.id.length > 20) return next();
   const { id } = req.params;
 
   const text = `
@@ -32,11 +33,11 @@ queryController.getQueryById = (req, res, next) => {
     `;
 
   db.query(text)
-    .then(result => {
+    .then((result) => {
       res.locals.query = result.rows;
       return next();
     })
-    .catch(err => next(err));
+    .catch((err) => next(err));
 };
 
 queryController.login = (req, res, next) => {
@@ -49,11 +50,11 @@ queryController.login = (req, res, next) => {
   `;
 
   db.query(text)
-    .then(result => {
+    .then((result) => {
       res.locals.user = result.rows;
       return next();
     })
-    .catch(err => next(err));
+    .catch((err) => next(err));
 };
 
 module.exports = queryController;

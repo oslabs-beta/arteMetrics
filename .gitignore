@@ -110,3 +110,14 @@ package-lock.json
 
 # DS Store
 .DS_Store
+
+# Build files and archives + certificates
+build_1.0.zip
+build_1.1.zip
+artemetrics_io.csr
+artemetrics_io.key
+artemetrics_io.ca-bundle
+artemetrics_io.crt
+store.sqlite
+Archive.zip
+build.zip

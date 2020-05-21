@@ -1,172 +1,154 @@
-//this component renders the overall tracing chart for a specific query
+//this component renders the tracing chart on the metrics page
 import * as d3 from 'd3';
 import React, { useState, useEffect, useRef } from 'react';
 import loadingGif from '../assets/loading.gif';
 
-const QueryTime = () => {
+const QueryTime = (props) => {
   const svgRef = useRef();
-  // const startOffset = [];
-  // const resolverDuration = [];
-  // const paths = [];
   const rootQuery = [];
-  // const response = [];
-  // const [startOffSet, setStartOffset] = useState(startOffset);
   const [root, setRoot] = useState(rootQuery);
-  // const [path, setPath] = useState(paths);
-  // const [resolver, setResolver] = useState(resolverDuration);
   const [queryData, setQueryData] = useState([]);
 
   // grab the query id by URL
   const urlParams = window.location.search;
+
   const id = urlParams.substr(4);
 
+  // iterate through props.data.allQueries
+  const data = props.data.allQueries.filter((item) => item.id === parseInt(id));
+
+  //finding all resolvers with the same name
+  const sameQueries = props.data.allQueries.filter((query) => {
+    return query.name === data[0].name;
+  });
+  //finding the next resolver
+  const nextQuery = sameQueries[sameQueries.indexOf(data[0]) + 1];
+
+  let nextId;
+  if (nextQuery) {
+    nextId = nextQuery.id;
+  }
+
+  //finding the previous resolver
+  const prevQuery = sameQueries[sameQueries.indexOf(data[0]) - 1];
+
+  let prevId;
+  if (prevQuery) {
+    prevId = prevQuery.id;
+  }
+
   useEffect(() => {
-    fetch('/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        // query for dummy apikey account
-        query: `query {
-          query(id: ${id}) {
-            id
-            name
-            start_time
-            end_time
-            duration
-            resolvers
-          }
-        }`
-      })
-    })
-      .then(data => data.json())
-      .then(myJson => {
-        // queries array
-        const data = myJson.data.query;
-        console.log('data back: ', data);
-        setQueryData(data);
-      })
-      .catch(err => console.log(err));
     if (id.length > 0) {
-      //making a fetch request to grab a query based on it's id to SQL database
-      //id 1603 ${id}
-      d3.json(`/query/${id}`).then(queries => {
-        const {
-          id,
-          api_key,
-          name,
-          start_time,
-          end_time,
-          duration,
-          resolvers
-        } = queries[0];
+      const {
+        id,
+        api_key,
+        name,
+        start_time,
+        end_time,
+        duration,
+        resolvers
+      } = data[0];
 
-        //pushing root query information into array
-        rootQuery.push({
-          id,
-          api_key,
-          name,
-          start_time,
-          end_time,
-          duration,
-          resolvers
-        });
+      rootQuery.push({
+        duration
+      });
 
+      if (resolvers.length !== 0) {
         //calculating the response startOffset time
         const responseOffset =
           resolvers[resolvers.length - 1]['startOffset'] +
           resolvers[resolvers.length - 1]['duration'];
 
-        //calculating the response duration time
-        const responseDuration = duration - responseOffset;
+        //calculating the initial request duration
+        let requestDuration = resolvers[0]['startOffset'];
 
         //calculating the initial request duration time
-        let counter = 0;
-        resolvers.forEach(val => {
-          return (counter += val['duration']);
+        let durationWOresponse = requestDuration;
+        resolvers.forEach((val) => {
+          return (durationWOresponse += val['duration']);
         });
-        let requestDuration = duration - counter - responseDuration;
 
-        //unshifting the root query's id, name, and duration into array of resolvers
+        //calculating the response duration time
+        const responseDuration = duration - durationWOresponse;
+
+        //adding request information into resolvers array to make use of a single datasource
         resolvers.unshift({
           id,
           name,
           path: 'Request',
-          duration: requestDuration
+          duration: requestDuration,
+          startOffset: 0
         });
 
-        //pushing the response's start_offset time and duration time into array of resolvers
+        //pushing response information into resolvers array
         resolvers.push({
           startOffset: responseOffset,
           duration: responseDuration,
           path: 'Response'
         });
-        console.log('resolvers', resolvers);
 
-        const margin = { top: 10, right: 10, bottom: 10, left: 10 };
+        //setting margins for the svg canvas
+        const margin = { top: 10, right: 10, bottom: 10, left: 90 };
 
-        //setting a height and width variable for the svg image
-        const width = 1400 - margin.left - margin.right;
+        //setting a height and width variable for svg
+        const width = 1600 - margin.left - margin.right;
         const height = 1000 - margin.top - margin.bottom;
 
-        // console.log(queries);
-        //creating a svg tag and appending it to svgRef.current
+        //creating the x-axis with the domain set to 0 - the max duration value from root query and setting the range to fit the dimensions of the page
+        const x = d3
+          .scaleLinear()
+          .domain([0, d3.max(root, (d) => d['duration'] / 1000)])
+          .range([100, width - 100]);
+
+        //creating a svg tag and appending it to current element
         const svg = d3
           .select(svgRef.current)
           .attr('class', 'svg')
-          .attr('width', width + margin.left + margin.right)
-          .attr('height', height + margin.top + margin.bottom)
+          .attr('viewBox', `0 0 1700 1100`)
+          .attr('overflow', 'auto')
           .append('g')
-          .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-        //creating the x-axis with the domain set to 0 - the max duration value from root query and setting the range to fit inside of the actual web page
-        const x = d3
-          .scaleLinear()
-          .domain([0, d3.max(root, d => d['duration'] / 1000000)]) //change this line
-          .range([100, width - 100]);
+          .attr('transform', `translate(${margin.left}, ${margin.top})`)
+          .attr('class', 'barChart')
+          .attr('overflow', 'auto');
 
         //creating an x-axis
-        const xAxis = g => {
+        const xAxis = (g) => {
           g.attr('class', 'x-axis')
             .attr('transform', `translate(0, 30)`)
-            .call(d3.axisTop(x));
+            .attr('overflow', 'auto')
+            .call(d3.axisTop(x).tickSize(0));
         };
-        svg
-          .append('g')
-          .transition(1000)
-          .call(xAxis);
+        svg.append('g').transition(1500).call(xAxis);
 
-        //this renders the bars that display the query data (need to refine svg bars)
+        d3.selectAll('.tick').attr('visibility', 'hidden');
+
+        //selecting rect element and using resolvers dataset to populate
         const rects = svg.selectAll('rect').data(resolvers);
 
+        //creating the trace bars for each resolver
         rects
           .enter()
           .append('rect')
-          .transition(1000)
-          .attr('x', (d, i) => {
-            if (i === 0) return 0;
-            else return d['startOffset'] / 1000000;
-          })
+          .transition(1500)
+          .attr('x', (d, i) => d['startOffset'] / 1000000)
           .attr('y', (d, i) => (i + 1) * 30)
-          .attr('width', (d, i) => {
-            //first element in resolvers dataset is always the initial request information
-            if (i === 0 || i === 1) return d['duration'] / 1000000;
-            //if resolver duration time is less than 1,000,000 nanoseconds, set the bar to 1.5 to make it visible
-            else if (d['duration'] < 100000) return 1.5;
-            else return d['duration'] / 100000;
-          })
+          .attr('width', (d, i) =>
+            d['duration'] / 1000000 < 1 ? 1 : d['duration'] / 1000000
+          )
           .attr('height', 6)
           .attr('transform', 'translate(100, 10)')
           .attr('fill', 'navy')
+          .attr('overflow-y', 'auto')
           .attr('class', 'bar');
 
+        //selecting the svg class declared above and using resolvers dataset to populate
         const texts = svg.selectAll('.svg').data(resolvers);
 
+        //writing the path's for each resolver and adding them adjacently to the bars above
         texts
           .enter()
           .append('text')
-          .transition(1000)
+          .transition(1500)
           .attr('text-anchor', 'end')
           .attr('fill', 'black')
           .attr('x', (d, i) => {
@@ -175,90 +157,179 @@ const QueryTime = () => {
           })
           .attr('y', (d, i) => (i + 1) * 30)
           .attr('transform', 'translate(0, 20)')
+          .attr('overflow', 'auto')
           .attr('class', 'text')
-          .text(d =>
+          .text((d) =>
             Array.isArray(d['path']) ? d['path'].join('.') : d['path']
           );
 
-        //label for x-axis
+        //selecting the svg class and entering the resolvers dataset
+        const measurements = svg.selectAll('.svg').data(resolvers);
+
+        //writing down the duration measurement in microseconds for each resolver and adding them to the right of the bars
+        measurements
+          .enter()
+          .append('text')
+          .transition(1500)
+          .attr('text-anchor', 'start')
+          .attr('fill', 'red')
+          .attr('font-size', '14px')
+          .attr(
+            'x',
+            (d, i) => d['startOffset'] / 1000000 + d['duration'] / 1000000 + 110
+          )
+          .attr('y', (d, i) => (i + 1) * 30)
+          .attr('transform', 'translate(0, 20)')
+          .attr('class', 'measurement')
+          .text((d) => {
+            return Math.floor(d['duration'] / 1000) + ' µs';
+          });
+
+        //creating the label for the x-axis
         svg
           .append('text')
           .attr('x', width / 2)
           .attr('y', 8)
           .attr('text-anchor', 'middle')
-          .text('Tracing in milliseconds');
-        // svg
-        //   .selectAll('text')
-        //   .data(resolvers)
-        //   .enter()
-        //   .append('text')
-        //   .attr('text-anchor', 'end')
-        //   .text((d, i) => {
-        //     // console.log(d['path']);
-        //     // if (i === 0) return 'Request: ' + d['name'];
-        //     // else if (i === d.length - 1) return `Response`;
-        //     // else return d['path'].join('.');
-        //   })
-        //   .attr('x', (d, i) => {
-        //     // //the first bar should start at x-coordinate 0
-        //     // if (i === 0) return 0;
-        //     // //the second bar (first resolver) should start at this x-coordinate
-        //     // else if (i === 1) return d['startOffset'] / 100000 + 90;
-        //     // //the last bar should start at x-coordinate equal to last bar's response start_offset
-        //     // else if (i === d.length - 1)
-        //     //   return d['responseOffset'] / 1000000 + 90;
-        //     // //every other resolver should start at this x-coordinate
-        //     // else return d['startOffset'] / 1000000 + 90;
-        //   })
-        //   .attr('y', (d, i) => (i + 1) * 30)
-        //   .attr('transform', 'translate(0, 20)')
-        //   .attr('class', 'text');
+          .attr('font-weight', 'bold')
+          .text('Tracing in microseconds (µs)');
+      } else {
+        //setting margins for the svg canvas
+        const margin = { top: 10, right: 10, bottom: 10, left: 90 };
 
-        //this renders text elements that contain the paths of each query, sticking them next to their respective bars
-        // svg
-        //   .selectAll('text')
-        //   .data(root[2])
-        //   .enter()
-        //   .append('text')
-        //   .text(d => d)
-        //   .attr('x', 0)
-        //   .attr('y', 0)
-        //   .data(resolvers)
-        //   .enter()
-        //   .append('text')
-        //   .attr('text-anchor', 'end')
-        //   .text(d => d['path'].join('.'))
-        //   //  + ' ' + Math.floor(d["duration"]/1000) + 'µs')
-        //   .attr('x', (d, i) => d['startOffset'] / 1000000 + 90)
-        //   .attr('y', (d, i) => (i + 1) * 30)
-        //   .attr('transform', 'translate(0, 20)')
-        //   .attr('class', 'text');
+        //setting a height and width variable for svg
+        const width = 1600 - margin.left - margin.right;
+        const height = 1000 - margin.top - margin.bottom;
 
-        // svg.selectAll('text')
-        //     .data(resolvers)
-        //     .enter()
-        //     .append('text')
-        //     .attr('text-anchor', 'start')
-        //     .text((d) => `d["duration"]/1000 µs`)
-        //     .attr('x', (d, i) => (d["startOffset"] / 1000000) + 100)
-        //     .attr('y', (d, i) => (i + 1) * 30)
-        //     .attr('transform', 'translate(0, 20)')
-        //     .attr('class', 'text');
-      });
+        //creating the x-axis with the domain set to 0 - the max duration value from root query and setting the range to fit the dimensions of the page
+        const x = d3
+          .scaleLinear()
+          .domain([0, d3.max(root, (d) => d['duration'] / 1000)])
+          .range([100, width - 100]);
+
+        //creating a svg tag and appending it to current element
+        const svg = d3
+          .select(svgRef.current)
+          .attr('class', 'svg')
+          .attr('viewBox', `0 0 1700 1100`)
+          .attr('overflow', 'auto')
+          .append('g')
+          .attr('transform', `translate(${margin.left}, ${margin.top})`)
+          .attr('class', 'barChart')
+          .attr('overflow', 'auto');
+
+        //creating an x-axis
+        const xAxis = (g) => {
+          g.attr('class', 'x-axis')
+            .attr('transform', `translate(0, 30)`)
+            .attr('overflow', 'auto')
+            .call(d3.axisTop(x).tickSize(0));
+        };
+        svg.append('g').transition(1500).call(xAxis);
+
+        d3.selectAll('.tick').attr('visibility', 'hidden');
+
+        const rects = svg.selectAll('rect').data(root);
+
+        //creating the trace bars for each resolver
+        rects
+          .enter()
+          .append('rect')
+          .transition(1500)
+          .attr('x', 0)
+          .attr('y', 30)
+          .attr('width', (d, i) => d['duration'] / 100000)
+          .attr('height', 6)
+          .attr('transform', 'translate(100, 10)')
+          .attr('fill', 'navy')
+          .attr('overflow-y', 'auto')
+          .attr('class', 'bar');
+
+        const texts = svg.selectAll('.svg').data(root);
+
+        //writing the path's for each resolver and adding them adjacently to the bars above
+        texts
+          .enter()
+          .append('text')
+          .transition(1500)
+          .attr('text-anchor', 'end')
+          .attr('fill', 'black')
+          .attr('x', (d, i) => {
+            return 90;
+          })
+          .attr('y', 30)
+          .attr('transform', 'translate(0, 20)')
+          .attr('overflow', 'auto')
+          .attr('class', 'text')
+          .text('Response');
+
+        //selecting the svg class and entering the resolvers dataset
+        const measurements = svg.selectAll('.svg').data(root);
+
+        //writing down the duration measurement in microseconds for each resolver and adding them to the right of the bars
+        measurements
+          .enter()
+          .append('text')
+          .transition(1500)
+          .attr('text-anchor', 'start')
+          .attr('fill', 'red')
+          .attr('font-size', '14px')
+          .attr('x', (d, i) => d['duration'] / 100000 + 110)
+          .attr('y', 30)
+          .attr('transform', 'translate(0, 20)')
+          .attr('class', 'measurement')
+          .text((d) => {
+            return Math.floor(d['duration'] / 1000) + ' µs';
+          });
+
+        //creating the label for the x-axis
+        svg
+          .append('text')
+          .attr('x', width / 2)
+          .attr('y', 8)
+          .attr('text-anchor', 'middle')
+          .attr('font-weight', 'bold')
+          .text('Tracing in microseconds (µs)');
+      }
     }
   }, []);
 
   return (
-    <div className="chartTab">
+    <div className="chartTab" style={{ overflowY: 'scroll' }}>
+      <h4>Operation: {data[0].name}</h4>
+      <h6>Performed at: {new Date(data[0].start_time).toString()}</h6>
       <React.Fragment>
-        <h4>Operation: {queryData.name}</h4>
-        {queryData.start_time && id.length > 0 ? (
-          <h6>Performed at: {new Date(queryData.start_time).toString()}</h6>
-        ) : (
-          <div className="gifPos">
-            <img className="loadingGif" src={loadingGif} />
-          </div>
-        )}
+        {prevQuery && nextQuery ? (
+          <React.Fragment>
+            <a id="prevId" href={`/metrics?id=${prevId}`}>
+              Previous
+            </a>
+            {'  '}
+            <a id="nextId" href={`/metrics?id=${nextId}`}>
+              Next
+            </a>
+          </React.Fragment>
+        ) : !prevQuery ? (
+          <React.Fragment>
+            <a id="prevIdVoid" href="#">
+              Previous
+            </a>
+            {'  '}
+            <a id="nextId" href={`/metrics?id=${nextId}`}>
+              Next
+            </a>
+          </React.Fragment>
+        ) : !nextQuery ? (
+          <React.Fragment>
+            <a id="prevId" href={`/metrics?id=${prevId}`}>
+              Previous
+            </a>
+            {'  '}
+            <a id="nextIdVoid" href="#">
+              Next
+            </a>
+          </React.Fragment>
+        ) : null}
         <svg ref={svgRef}></svg>
       </React.Fragment>
     </div>

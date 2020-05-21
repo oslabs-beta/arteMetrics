@@ -1,27 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-const QueriesOverNTIme = props => {
+const QueriesOverNTIme = (props) => {
   let output = [];
 
   const parse = (data, unit, amount, granularity) => {
+    // filtering out times tht match requested time frame
     let timeFrame = moment().subtract(amount, unit);
-    let temp = data.allQueries.filter(stat =>
+    if (data === undefined) return;
+    let temp = data.allQueries.filter((stat) =>
       moment(stat.start_time).isAfter(timeFrame)
     );
 
-    temp = temp.map(item => {
-      return moment(item.start_time)
-        .startOf(granularity)
-        .format('LLL');
+    // sort time i n acsending order
+    temp = temp.sort((a, b) => moment(a.start_time) - moment(b.start_time));
+
+    // rounding down times array to nearest hour/minute depending on granularity
+    temp = temp.map((item) => {
+      return moment(item.start_time).startOf(granularity).format('LLL');
     });
 
-    temp = temp.reduce(function(prev, cur) {
+    // object with counts of queries per hour/minute
+    temp = temp.reduce(function (prev, cur) {
       prev[cur] = (prev[cur] || 0) + 1;
       return prev;
     }, {});
 
+    // chart.js readable data object {x: time, y: count}
     for (let [key, value] of Object.entries(temp)) {
       output.push({ x: key, y: value });
     }
@@ -34,7 +40,7 @@ const QueriesOverNTIme = props => {
       {
         label: `Queries per ${props.granularity}`,
         fill: false,
-        lineTension: 0.1,
+        lineTension: 0.001,
         backgroundColor: 'rgba(75,192,192,0.4)',
         borderColor: 'rgba(75,192,192,1)',
         borderCapStyle: 'butt',
@@ -70,6 +76,9 @@ const QueriesOverNTIme = props => {
           scales: {
             xAxes: [
               {
+                gridLines: {
+                  display: false
+                },
                 type: 'time',
                 time: {
                   format: 'LLL',
