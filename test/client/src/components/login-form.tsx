@@ -8,9 +8,10 @@ import { ReactComponent as Logo } from '../assets/logo.svg';
 import { ReactComponent as Curve } from '../assets/curve.svg';
 import { ReactComponent as Rocket } from '../assets/rocket.svg';
 import { colors, unit } from '../styles';
+import * as LoginTypes from '../pages/__generated__/login';
 
 interface LoginFormProps {
-  login: (a: { variables: any }) => void;
+  login: (a: { variables: LoginTypes.loginVariables }) => void;
 }
 
 interface LoginFormState {

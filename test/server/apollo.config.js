@@ -1,5 +1,5 @@
-module.expxorts = {
+module.exports = {
   service: {
-    name: 'arcanineTutorial'
-  }
+    name: 'space-explorer',
+  },
 };
