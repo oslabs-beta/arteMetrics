@@ -110,7 +110,6 @@ The team at arteMetrics would love contributions to this application! If there i
 
 [Sean Arseneault](https://github.com/itsmesean),
 [Brian Chiang](https://github.com/ch-brian),
-[Saejin Kang](https://github.com/skang1004),
 [Noah King](https://github.com/code-ark),
 [Joseph Renolayan](https://github.com/jodaisu),
 
